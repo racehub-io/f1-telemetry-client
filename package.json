@@ -15,6 +15,7 @@
   },
   "scripts": {
     "start": "babel-node src/index.js",
-    "build": "babel src --out-dir dist"
+    "build": "babel src --out-dir dist",
+    "prepublishOnly": "yarn build"
   }
 }

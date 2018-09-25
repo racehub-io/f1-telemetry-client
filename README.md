@@ -13,3 +13,8 @@ client.start();
 // and when you want to stop
 client.stop();
 ```
+
+## TODO
+
+- Write Tests!
+- Add Parsers according to documentation: https://forums.codemasters.com/discussion/136948/f1-2018-udp-specification
