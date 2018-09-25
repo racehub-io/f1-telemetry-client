@@ -26,7 +26,7 @@ class F12018UDP extends EventEmitter {
     } = opts;
 
     this.port = port;
-    this.client = dgram.createSocket("udp4");
+    this.client = dgram.createSocket('udp4');
   }
 
   /**
@@ -92,7 +92,7 @@ class F12018UDP extends EventEmitter {
   start() {
     this.client.on('listening', () => {
       const address = this.client.address();
-      console.log('UDP Client listening on ' + address.address + ":" + address.port);
+      console.log(`UDP Client listening on ${address.address}:${address.port}`);
       this.client.setBroadcast(true);
     });
 

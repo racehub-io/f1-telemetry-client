@@ -1,6 +1,6 @@
 import F1Parser from './F1Parser';
 
-  /*
+/**
    * struct CarMotionData
    * {
    *   float         m_worldPositionX;           // World space X position
@@ -26,23 +26,23 @@ import F1Parser from './F1Parser';
 export default class CarMotionData extends F1Parser {
   constructor() {
     super();
-    this.float("m_worldPositionX")
-      .float("m_worldPositionY")
-      .float("m_worldPositionZ")
-      .float("m_worldVelocityX")
-      .float("m_worldVelocityY")
-      .float("m_worldVelocityZ")
-      .uint16("m_worldForwardDirX")
-      .uint16("m_worldForwardDirY")
-      .uint16("m_worldForwardDirZ")
-      .uint16("m_worldRightDirX")
-      .uint16("m_worldRightDirY")
-      .uint16("m_worldRightDirZ")
-      .float("m_gForceLateral")
-      .float("m_gForceLongitudinal")
-      .float("m_gForceVertical")
-      .float("m_yaw")
-      .float("m_pitch")
-      .float("m_roll")
+    this.float('m_worldPositionX')
+      .float('m_worldPositionY')
+      .float('m_worldPositionZ')
+      .float('m_worldVelocityX')
+      .float('m_worldVelocityY')
+      .float('m_worldVelocityZ')
+      .uint16('m_worldForwardDirX')
+      .uint16('m_worldForwardDirY')
+      .uint16('m_worldForwardDirZ')
+      .uint16('m_worldRightDirX')
+      .uint16('m_worldRightDirY')
+      .uint16('m_worldRightDirZ')
+      .float('m_gForceLateral')
+      .float('m_gForceLongitudinal')
+      .float('m_gForceVertical')
+      .float('m_yaw')
+      .float('m_pitch')
+      .float('m_roll');
   }
 }

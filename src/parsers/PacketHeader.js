@@ -15,14 +15,17 @@ import F1Parser from './F1Parser';
 export default class PacketHeader extends F1Parser {
   constructor() {
     super();
-    this.endianess("little")
-      .uint16("m_packetFormat")
-      .uint8("m_packetVersion")
-      .uint8("m_packetId")
-      .buffer("m_sessionUID", { length: 8, clone:true, formatter: function(buf){ return buf.toString('ascii') }})
-      .float("m_sessionTime")
-      .uint32("m_frameIdentifier")
-      .uint8("m_playerCarIndex");
+    this.endianess('little')
+      .uint16('m_packetFormat')
+      .uint8('m_packetVersion')
+      .uint8('m_packetId')
+      .buffer('m_sessionUID', {
+        length: 8,
+        clone: true,
+        formatter: buf => buf.toString('ascii'),
+      })
+      .float('m_sessionTime')
+      .uint32('m_frameIdentifier')
+      .uint8('m_playerCarIndex');
   }
 }
-
