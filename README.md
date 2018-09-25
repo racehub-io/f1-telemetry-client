@@ -1,5 +1,7 @@
 # F12018UDP
 
+[![Build Status](https://travis-ci.org/irvingswiftj/f1-2018-udp.svg?branch=master)](https://travis-ci.org/irvingswiftj/f1-2018-udp)
+
 A javascript UDP client for Codemaster's F1 2018 game
 
 ## Get started
