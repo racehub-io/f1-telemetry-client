@@ -4,10 +4,22 @@ A javascript UDP client for Codemaster's F1 2018 game
 
 ## Get started
 
+yarn:
 ```
+yarn add f1-2018-udp
+```
+
+npm:
+```
+npm install f1-2018-udp
+```
+
+```
+import { F12018UDP } from 'f1-2018-udp';
+// const F12018UDP = require('f1-2018-udp').default;
+
 const client = new F12018UDP();
-  client.on('data', (d) => console.log(d)
-});
+client.on('data', (d) => console.log(d));
 client.start();
 
 // and when you want to stop
