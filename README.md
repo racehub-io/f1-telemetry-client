@@ -6,7 +6,7 @@ A javascript UDP client for Codemaster's F1 2018 game
 
 ## Get started
 
-### Turn on UDP in F1 2018
+### Turn on UDP in F1 2018
 
 Goto the Telemetry section from the settings panel
 
