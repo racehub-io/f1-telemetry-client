@@ -3,7 +3,7 @@ import EventEmitter from 'events';
 import PacketHeader from './parsers/PacketHeader';
 import PacketSessionData from './parsers/PacketSessionData';
 import PacketMotionData from './parsers/PacketMotionData';
-import { 
+import {
   MOTION,
   SESSION,
   LAP_DATA,
@@ -12,7 +12,7 @@ import {
   CAR_SETUPS,
   CAR_TELEMETRY,
   CAR_STATUS,
-  PACKET_TYPES
+  PACKET_TYPES,
 } from './constants/packetTypes';
 
 /**
@@ -30,8 +30,8 @@ class F12018UDP extends EventEmitter {
   }
 
   /**
-   * 
-   * @param {Buffer} buffer 
+   *
+   * @param {Buffer} buffer
    */
   static parsePacketHeader(buffer) {
     const ph = new PacketHeader();
@@ -39,25 +39,39 @@ class F12018UDP extends EventEmitter {
   }
 
   /**
-   * 
+   *
    * @param {Number} packetId
    */
   static getParserByPacketId(packetId) {
-    if(packetId === SESSION) {
+    if (packetId === SESSION) {
       return PacketSessionData;
-    } else if (packetId === MOTION) {
+    }
+
+    if (packetId === MOTION) {
       return PacketMotionData;
-    } else if (packetId === LAP_DATA) {
+    }
+
+    if (packetId === LAP_DATA) {
       return null;
-    } else if (packetId === EVENT) {
+    }
+
+    if (packetId === EVENT) {
       return null;
-    } else if (packetId === PARTICIPENTS) {
+    }
+
+    if (packetId === PARTICIPENTS) {
       return null;
-    } else if (packetId === CAR_SETUPS) {
+    }
+
+    if (packetId === CAR_SETUPS) {
       return null;
-    } else if (packetId === CAR_TELEMETRY) {
+    }
+
+    if (packetId === CAR_TELEMETRY) {
       return null;
-    } else if (packetId === CAR_STATUS) {
+    }
+
+    if (packetId === CAR_STATUS) {
       return null;
     }
 
@@ -65,13 +79,13 @@ class F12018UDP extends EventEmitter {
   }
 
   /**
-   * 
-   * @param {Buffer} message 
+   *
+   * @param {Buffer} message
    */
   parseMessage(message) {
     const buffer = Buffer.from(message.buffer);
 
-    const { m_packetId } = F12018UDP.parsePacketHeader(buffer);
+    const { m_packetId } = F12018UDP.parsePacketHeader(buffer); // eslint-disable-line
     const Parser = F12018UDP.getParserByPacketId(m_packetId);
 
     if (Parser !== null) {
@@ -96,7 +110,7 @@ class F12018UDP extends EventEmitter {
       this.client.setBroadcast(true);
     });
 
-    this.client.on('message', (m) => this.parseMessage(m));
+    this.client.on('message', m => this.parseMessage(m));
     this.client.bind(this.port);
   }
 
