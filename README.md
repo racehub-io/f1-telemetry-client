@@ -30,15 +30,28 @@ npm install f1-2018-udp
 
 ### How to use this module
 
-```
+```js
 import { F12018UDP } from 'f1-2018-udp';
 // const F12018UDP = require('f1-2018-udp').default;
 
 const client = new F12018UDP();
-client.on('data', (d) => console.log(d));
+client.on('SESSION', m => console.log(m));
+client.on('MOTION', m => console.log(m));
+
+//the following listeners need implementing:
+client.on('LAP_DATA', m => console.log(m);
+client.on('EVENT', m => console.log(m);
+client.on('PARTICIPENTS', m => console.log(m);
+client.on('CAR_SETUPS', m => console.log(m);
+client.on('CAR_TELEMETRY', m => console.log(m);
+client.on('CAR_STATUS', m => console.log(m);
+client.on('PACKET_TYPES', m => console.log(m);
+
+
+// to start listening:
 client.start();
 
-// and when you want to stop
+// and when you want to stop:
 client.stop();
 ```
 

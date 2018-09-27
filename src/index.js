@@ -89,14 +89,8 @@ class F12018UDP extends EventEmitter {
     const Parser = F12018UDP.getParserByPacketId(m_packetId);
 
     if (Parser !== null) {
-      const emitData = {
-        type: PACKET_TYPES[m_packetId],
-        data: {},
-      };
-
       const packetData = new Parser(buffer);
-      emitData.data = packetData.data;
-      this.emit('data', emitData);
+      this.emit(PACKET_TYPES[m_packetId], packetData.data);
     }
   }
 
