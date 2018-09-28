@@ -1,11 +1,11 @@
 {
   "name": "f1-2018-udp",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist/index.js",
   "license": "MIT",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/irvingswiftj/f1-2018-udp.git"
+    "type": "git",
+    "url": "https://github.com/irvingswiftj/f1-2018-udp.git"
   },
   "dependencies": {
     "@babel/node": "^7.0.0",
@@ -26,5 +26,14 @@
     "build": "babel src --out-dir dist",
     "prepublishOnly": "yarn build"
   },
-  "keywords": ["f12018", "formula 1", "f1", "codemasters", "udp", "telemetry", "simracing", "gaming"]
+  "keywords": [
+    "f12018",
+    "formula 1",
+    "f1",
+    "codemasters",
+    "udp",
+    "telemetry",
+    "simracing",
+    "gaming"
+  ]
 }
