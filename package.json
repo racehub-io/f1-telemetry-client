@@ -25,5 +25,6 @@
     "start": "babel-node src/index.js",
     "build": "babel src --out-dir dist",
     "prepublishOnly": "yarn build"
-  }
+  },
+  "keywords": ["f12018", "formula 1", "f1", "codemasters", "udp", "telemetry", "simracing", "gaming"]
 }
