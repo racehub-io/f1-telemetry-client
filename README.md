@@ -45,7 +45,6 @@ client.on('PARTICIPENTS', m => console.log(m);
 client.on('CAR_SETUPS', m => console.log(m);
 client.on('CAR_TELEMETRY', m => console.log(m);
 client.on('CAR_STATUS', m => console.log(m);
-client.on('PACKET_TYPES', m => console.log(m);
 
 
 // to start listening:
