@@ -34,6 +34,7 @@ export default class PacketMotionData extends F1Parser {
   constructor(buffer) {
     super();
     this.endianess('little')
+      // skips the header
       .skip(21)
       .array('m_carMotionData', {
         length: 20,

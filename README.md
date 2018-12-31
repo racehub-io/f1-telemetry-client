@@ -19,11 +19,13 @@ Enable Telemetry. Settings that I have working are as below (Screenshot from PS4
 ### Install this module
 
 yarn:
+
 ```
 yarn add f1-2018-udp
 ```
 
 npm:
+
 ```
 npm install f1-2018-udp
 ```
@@ -37,9 +39,9 @@ import { F12018UDP } from 'f1-2018-udp';
 const client = new F12018UDP();
 client.on('SESSION', m => console.log(m));
 client.on('MOTION', m => console.log(m));
+client.on('LAP_DATA', m => console.log(m);
 
 //the following listeners need implementing:
-client.on('LAP_DATA', m => console.log(m);
 client.on('EVENT', m => console.log(m);
 client.on('PARTICIPENTS', m => console.log(m);
 client.on('CAR_SETUPS', m => console.log(m);
@@ -59,7 +61,7 @@ client.stop();
 #### Session Data ('SESSION')
 
 ```js
-{ 
+{
   m_weather: 0,
   m_trackTemperature: 32,
   m_airTemperature: 24,
@@ -100,14 +102,14 @@ client.stop();
      { m_zoneStart: 0, m_zoneFlag: 0 }
     ],
     m_safetyCarStatus: 0,
-    m_networkGame: 0 
+    m_networkGame: 0
   }
 ```
 
 #### Motion Data ('MOTION')
 
 ```
-{ 
+{
   m_carMotionData:[
     {
        m_worldPositionX: -1.600844318216943e-10,

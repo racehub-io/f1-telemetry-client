@@ -3,6 +3,7 @@ import EventEmitter from 'events';
 import PacketHeader from './parsers/PacketHeader';
 import PacketSessionData from './parsers/PacketSessionData';
 import PacketMotionData from './parsers/PacketMotionData';
+import PacketLapData from './parsers/PacketLapData';
 import {
   MOTION,
   SESSION,
@@ -52,7 +53,7 @@ class F12018UDP extends EventEmitter {
     }
 
     if (packetId === LAP_DATA) {
-      return null;
+      return PacketLapData;
     }
 
     if (packetId === EVENT) {
@@ -85,7 +86,9 @@ class F12018UDP extends EventEmitter {
   parseMessage(message) {
     const buffer = Buffer.from(message.buffer);
 
-    const { m_packetId } = F12018UDP.parsePacketHeader(buffer); // eslint-disable-line
+    const {
+      m_packetId
+    } = F12018UDP.parsePacketHeader(buffer); // eslint-disable-line
     const Parser = F12018UDP.getParserByPacketId(m_packetId);
 
     if (Parser !== null) {

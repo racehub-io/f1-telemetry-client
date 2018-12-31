@@ -37,6 +37,7 @@ export default class PacketSessionData extends F1Parser {
       //  length: 21,
       //  formatter: new PacketHeader()
       // })
+      // skips the header
       .skip(21)
       .uint8('m_weather')
       .int8('m_trackTemperature')
