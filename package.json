@@ -24,6 +24,7 @@
     "lint": "eslint src/**/*.js",
     "start": "babel-node src/index.js",
     "build": "babel src --out-dir dist",
+    "update": "npm run build && npm run start && npm link",
     "prepublishOnly": "yarn build"
   },
   "keywords": [
