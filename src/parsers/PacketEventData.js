@@ -1,7 +1,4 @@
 import F1Parser from './F1Parser';
-import {
-  Parser
-} from 'binary-parser';
 
 /*
 struct PacketEventData

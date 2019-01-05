@@ -26,7 +26,7 @@ export default class PacketHeader extends F1Parser {
         clone: true,
         formatter: buf => buf.toString('ascii'),
       })
-      .float('m_sessionTime')
+      .floatle('m_sessionTime')
       .uint32('m_frameIdentifier')
       .uint8('m_playerCarIndex');
   }

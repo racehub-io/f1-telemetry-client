@@ -1,8 +1,5 @@
 import F1Parser from './F1Parser';
 import ParticipantData from './ParticipantData';
-import {
-  Parser
-} from 'binary-parser';
 
 /*
 struct PacketParticipantsData

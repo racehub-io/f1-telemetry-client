@@ -39,14 +39,14 @@ export default class PacketLapData extends F1Parser {
       //  formatter: new PacketHeader()
       //})
       .skip(21)
-      .float('m_lastLapTime') // Last lap time in seconds
-      .float('m_currentLapTime') // Current time around the lap in seconds
-      .float('m_bestLapTime') // Best lap time of the session in seconds
-      .float('m_sector1Time') // Sector 1 time in seconds
-      .float('m_sector2Time') // Sector 2 time in seconds
-      .float('m_lapDistance') // Distance vehicle is around current lap in metres – could be negative if line hasn’t been crossed yet
-      .float('m_totalDistance') // Total distance travelled in session in metres – could be negative if line hasn’t been crossed yet
-      .float('m_safetyCarDelta') // Delta in seconds for safety car
+      .floatle('m_lastLapTime') // Last lap time in seconds
+      .floatle('m_currentLapTime') // Current time around the lap in seconds
+      .floatle('m_bestLapTime') // Best lap time of the session in seconds
+      .floatle('m_sector1Time') // Sector 1 time in seconds
+      .floatle('m_sector2Time') // Sector 2 time in seconds
+      .floatle('m_lapDistance') // Distance vehicle is around current lap in metres – could be negative if line hasn’t been crossed yet
+      .floatle('m_totalDistance') // Total distance travelled in session in metres – could be negative if line hasn’t been crossed yet
+      .floatle('m_safetyCarDelta') // Delta in seconds for safety car
       .uint8("m_carPosition") // Car race position
       .uint8("m_currentLapNum") // Current lap number
       .uint8("m_pitStatus") // 0 = none, 1 = pitting, 2 = in pit area

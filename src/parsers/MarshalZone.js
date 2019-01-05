@@ -16,7 +16,7 @@ export default class MarshalZone extends F1Parser {
   constructor() {
     super();
     this.endianess('little')
-      .float('m_zoneStart')
+      .floatle('m_zoneStart')
       .int8('m_zoneFlag');
   }
 }

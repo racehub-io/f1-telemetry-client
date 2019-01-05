@@ -26,23 +26,23 @@ import F1Parser from './F1Parser';
 export default class CarMotionData extends F1Parser {
   constructor() {
     super();
-    this.float('m_worldPositionX')
-      .float('m_worldPositionY')
-      .float('m_worldPositionZ')
-      .float('m_worldVelocityX')
-      .float('m_worldVelocityY')
-      .float('m_worldVelocityZ')
+    this.floatle('m_worldPositionX')
+      .floatle('m_worldPositionY')
+      .floatle('m_worldPositionZ')
+      .floatle('m_worldVelocityX')
+      .floatle('m_worldVelocityY')
+      .floatle('m_worldVelocityZ')
       .uint16('m_worldForwardDirX')
       .uint16('m_worldForwardDirY')
       .uint16('m_worldForwardDirZ')
       .uint16('m_worldRightDirX')
       .uint16('m_worldRightDirY')
       .uint16('m_worldRightDirZ')
-      .float('m_gForceLateral')
-      .float('m_gForceLongitudinal')
-      .float('m_gForceVertical')
-      .float('m_yaw')
-      .float('m_pitch')
-      .float('m_roll');
+      .floatle('m_gForceLateral')
+      .floatle('m_gForceLongitudinal')
+      .floatle('m_gForceVertical')
+      .floatle('m_yaw')
+      .floatle('m_pitch')
+      .floatle('m_roll');
   }
 }
