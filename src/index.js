@@ -4,12 +4,14 @@ import PacketHeader from './parsers/PacketHeader';
 import PacketSessionData from './parsers/PacketSessionData';
 import PacketMotionData from './parsers/PacketMotionData';
 import PacketLapData from './parsers/PacketLapData';
+import PacketEventData from './parsers/PacketEventData';
+import PacketParticipantsData from './parsers/PacketParticipantsData';
 import {
   MOTION,
   SESSION,
   LAP_DATA,
   EVENT,
-  PARTICIPENTS,
+  PARTICIPANTS,
   CAR_SETUPS,
   CAR_TELEMETRY,
   CAR_STATUS,
@@ -57,11 +59,12 @@ class F12018UDP extends EventEmitter {
     }
 
     if (packetId === EVENT) {
-      return null;
+      console.log("elelelelle")
+      return PacketEventData;
     }
 
-    if (packetId === PARTICIPENTS) {
-      return null;
+    if (packetId === PARTICIPANTS) {
+      return PacketParticipantsData;
     }
 
     if (packetId === CAR_SETUPS) {
