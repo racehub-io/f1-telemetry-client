@@ -1,6 +1,7 @@
 import F1Parser from './F1Parser';
 import {
-  Parser
+  Parser,
+  StringOptions
 } from 'binary-parser';
 /**
 struct ParticipantData
@@ -21,10 +22,9 @@ export default class ParticipantData extends F1Parser {
       .uint8('m_teamId')
       .uint8('m_raceNumber')
       .uint8('m_nationality')
-    //.string('m_name')
-    //.array('m_name', {
-    //  length: 48,
-    //  type: new Parser().string
-    //})
+      .string('m_name', {
+        length: 48,
+        stripNull: true
+      })
   }
 }
