@@ -59,7 +59,6 @@ class F12018UDP extends EventEmitter {
     }
 
     if (packetId === EVENT) {
-      console.log("elelelelle")
       return PacketEventData;
     }
 

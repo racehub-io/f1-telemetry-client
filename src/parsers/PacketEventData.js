@@ -11,16 +11,14 @@ struct PacketEventData
 };
 */
 
-// not working?
 export default class PacketEventData extends F1Parser {
   constructor(buffer) {
     super();
     this.endianess('little')
       // skips the header
       .skip(21)
-      .array('m_eventStringCode', {
-        length: 4,
-        type: new Parser().uint8()
+      .string('m_eventStringCode', {
+        length: 4
       })
 
     this.data = this.fromBuffer(buffer);

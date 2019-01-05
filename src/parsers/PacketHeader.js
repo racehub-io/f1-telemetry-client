@@ -12,6 +12,8 @@ import F1Parser from './F1Parser';
  *     uint8     m_playerCarIndex;       // Index of player's car in the array
  *   };
  */
+
+// not working
 export default class PacketHeader extends F1Parser {
   constructor() {
     super();
