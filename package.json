@@ -1,11 +1,11 @@
 {
-  "name": "f1-2018-udp",
-  "version": "0.0.2",
+  "name": "f1-telemetry-parser",
+  "version": "0.0.3",
   "main": "dist/index.js",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/irvingswiftj/f1-2018-udp.git"
+    "url": "https://github.com/jonybur/f1-telemetry-parser.git"
   },
   "dependencies": {
     "@babel/node": "^7.0.0",
