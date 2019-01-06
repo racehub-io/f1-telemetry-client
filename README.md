@@ -4,7 +4,7 @@ A Javascript UDP client and telemetry parser for Codemaster's F1 2018 game.
 
 ## License
 
-Licensed under the [MIT](https://github.com/Microsoft/vscode/blob/master/LICENSE.txt) License.
+Licensed under the MIT License.
 
 ## Attribution
 
