@@ -8,7 +8,7 @@ import PacketCarSetupData from './PacketCarSetupData';
 import PacketCarStatusData from './PacketCarStatusData';
 import PacketCarTelemetryData from './PacketCarTelemetryData';
 
-export default {
+export {
   PacketHeader,
   PacketSessionData,
   PacketMotionData,
