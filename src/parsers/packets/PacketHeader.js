@@ -1,4 +1,4 @@
-import F1Parser from './F1Parser';
+import F1Parser from '../F1Parser';
 
 /**
  *   struct PacketHeader
@@ -13,7 +13,6 @@ import F1Parser from './F1Parser';
  *   };
  */
 
-// not working
 export default class PacketHeader extends F1Parser {
   constructor() {
     super();

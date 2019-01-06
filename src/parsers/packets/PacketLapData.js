@@ -1,5 +1,4 @@
-import F1Parser from './F1Parser';
-import PacketHeader from './PacketHeader'
+import F1Parser from '../F1Parser';
 
 /*
 struct LapData

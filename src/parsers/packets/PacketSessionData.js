@@ -1,6 +1,6 @@
-import F1Parser from './F1Parser';
+import F1Parser from '../F1Parser';
 import MarshalZone from './MarshalZone';
-import WEATHER from '../constants/weather';
+import WEATHER from '../../constants/weather';
 
 /**
  *
