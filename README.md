@@ -12,6 +12,29 @@ This is a Javascript UDP client and telemetry parser for Codemaster's F1 2018 ga
 $ npm install f1-telemetry-parser
 ```
 
+## Usage
+
+```
+import F12018UDP from "f1-telemetry-parser";
+// or: const F12018UDP = require("f1-telemetry-parser").default;
+
+const client = new F12018UDP();
+client.on("SESSION", m => console.log(m));
+client.on("MOTION", m => console.log(m));
+client.on("LAP_DATA", m => console.log(m));
+client.on("EVENT", m => console.log(m));
+client.on("PARTICIPANTS", m => console.log(m));
+client.on("CAR_SETUPS", m => console.log(m));
+client.on("CAR_TELEMETRY", m => console.log(m));
+client.on("CAR_STATUS", m => console.log(m));
+
+// to start listening:
+client.start();
+
+// and when you want to stop:
+client.stop();
+```
+
 ## Packets
 
 | Packet Name                              | Id  |                               Description |       Frequency |       Size |
@@ -115,7 +138,7 @@ uint16          m_trackLength;           	  // Track length in metres
 uint8           m_sessionType;         	    // 0 = unknown, 1 = P1, 2 = P2, 3 = P3, 4 = Short P
                                             // 5 = Q1, 6 = Q2, 7 = Q3, 8 = Short Q, 9 = OSQ
                                             // 10 = R, 11 = R2, 12 = Time Trial
-int8            m_trackId;         		      // -1 for unknown, 0-21 for tracks, see appendix
+int8            m_trackId;         		      // -1 for unknown, 0-21 for tracks
 uint8           m_era;                  	  // Era, 0 = modern, 1 = classic
 uint16          m_sessionTimeLeft;    	    // Time left in session in seconds
 uint16          m_sessionDuration;     	    // Session duration in seconds
@@ -217,8 +240,8 @@ ParticipantData m_participants[20];
 
 ```
 uint8      m_aiControlled;           // Whether the vehicle is AI (1) or Human (0) controlled
-uint8      m_driverId;               // Driver id - see appendix
-uint8      m_teamId;                 // Team id - see appendix
+uint8      m_driverId;               // Driver id
+uint8      m_teamId;                 // Team id
 uint8      m_raceNumber;             // Race number of the car
 uint8      m_nationality;            // Nationality of the driver
 char       m_name[48];               // Name of participant in UTF-8 format – null terminated
