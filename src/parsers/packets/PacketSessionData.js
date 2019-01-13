@@ -1,6 +1,7 @@
 import F1Parser from '../F1Parser';
 import MarshalZone from './MarshalZone';
 import WEATHER from '../../constants/weather';
+import PacketHeader from './PacketHeader';
 
 /**
  *
@@ -33,12 +34,9 @@ export default class PacketSessionData extends F1Parser {
     super(buffer);
 
     this.endianess('little')
-      // .buffer('m_header', {
-      //  length: 21,
-      //  formatter: new PacketHeader()
-      // })
-      // skips the header
-      .skip(21)
+      .nest("m_header", {
+        type: new PacketHeader()
+      })
       .uint8('m_weather')
       .int8('m_trackTemperature')
       .int8('m_airTemperature')

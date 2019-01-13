@@ -1,5 +1,6 @@
 import F1Parser from "../F1Parser";
 import CarTelemetryData from "./CarTelemetryData";
+import PacketHeader from './PacketHeader';
 
 /*
 struct PacketCarTelemetryData
@@ -15,8 +16,9 @@ export default class PacketCarTelemetryData extends F1Parser {
   constructor(buffer) {
     super();
     this.endianess("little")
-      // skips the header
-      .skip(21)
+      .nest("m_header", {
+        type: new PacketHeader()
+      })
       .array("m_carTelemetryData", {
         length: 20,
         type: new CarTelemetryData()

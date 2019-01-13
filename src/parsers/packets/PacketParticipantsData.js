@@ -1,5 +1,6 @@
 import F1Parser from '../F1Parser';
 import ParticipantData from './ParticipantData';
+import PacketHeader from './PacketHeader';
 
 /*
 struct PacketParticipantsData
@@ -14,8 +15,9 @@ export default class PacketParticipantsData extends F1Parser {
   constructor(buffer) {
     super(buffer);
     this.endianess('little')
-      // skips the header
-      .skip(21)
+      .nest("m_header", {
+        type: new PacketHeader()
+      })
       .uint8('m_numCars')
       .array('m_participants', {
         length: 20,
