@@ -28,7 +28,7 @@ import {
 /**
  *
  */
-class F12018UDP extends EventEmitter {
+class F1TelemetryParser extends EventEmitter {
   constructor(opts = {}) {
     super(opts);
     const {
@@ -97,8 +97,8 @@ class F12018UDP extends EventEmitter {
 
     const {
       m_packetId
-    } = F12018UDP.parsePacketHeader(buffer); // eslint-disable-line
-    const Parser = F12018UDP.getParserByPacketId(m_packetId);
+    } = F1TelemetryParser.parsePacketHeader(buffer); // eslint-disable-line
+    const Parser = F1TelemetryParser.getParserByPacketId(m_packetId);
 
     if (Parser !== null) {
       const packetData = new Parser(buffer);
@@ -128,4 +128,4 @@ class F12018UDP extends EventEmitter {
   }
 }
 
-export default F12018UDP;
+export default F1TelemetryParser;

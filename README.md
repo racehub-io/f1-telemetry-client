@@ -15,10 +15,10 @@ $ npm install f1-telemetry-parser
 ## Usage
 
 ```
-import F12018UDP from "f1-telemetry-parser";
-// or: const F12018UDP = require("f1-telemetry-parser").default;
+import F1TelemetryParser from "f1-telemetry-parser";
+// or: const F1TelemetryParser = require("f1-telemetry-parser").default;
 
-const client = new F12018UDP();
+const client = new F1TelemetryParser();
 client.on("SESSION", m => console.log(m));
 client.on("MOTION", m => console.log(m));
 client.on("LAP_DATA", m => console.log(m));
