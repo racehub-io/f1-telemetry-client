@@ -1,6 +1,6 @@
 {
   "name": "f1-telemetry-parser",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "dist/index.js",
   "license": "MIT",
   "repository": {
@@ -35,6 +35,15 @@
     "udp",
     "telemetry",
     "simracing",
-    "gaming"
+    "gaming",
+    "formula",
+    "ps4",
+    "xbox",
+    "xbox one",
+    "playstation",
+    "playstation 4",
+    "esports",
+    "e sports",
+    "e-sports"
   ]
 }
