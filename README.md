@@ -1,6 +1,6 @@
-# F1 Telemetry Parser
+# F1 Telemetry Client
 
-<a href='https://travis-ci.org/jonybur/f1-telemetry-parser' ><img src='https://travis-ci.org/jonybur/f1-telemetry-parser.svg?branch=master'></a>
+<a href='https://travis-ci.org/jonybur/f1-telemetry-client' ><img src='https://travis-ci.org/jonybur/f1-telemetry-client.svg?branch=master'></a>
 
 The F1 series of games support the outputting of key game data via a UDP data stream. This data can be interpreted by external apps or connected peripherals for a range of different uses, including providing additional telemetry information, customised HUD displays, motion platform hardware support or providing force feedback data for custom steering wheels.
 
@@ -9,16 +9,16 @@ This is a Javascript UDP client and telemetry parser for Codemaster's F1 2018 ga
 ## Installing
 
 ```
-$ npm install f1-telemetry-parser
+$ npm install f1-telemetry-client
 ```
 
 ## Usage
 
 ```
-import F1TelemetryParser from "f1-telemetry-parser";
-// or: const F1TelemetryParser = require("f1-telemetry-parser").default;
+import F1TelemetryClient from "f1-telemetry-client";
+// or: const F1TelemetryClient = require("f1-telemetry-client").default;
 
-const client = new F1TelemetryParser();
+const client = new F1TelemetryClient();
 client.on("SESSION", m => console.log(m));
 client.on("MOTION", m => console.log(m));
 client.on("LAP_DATA", m => console.log(m));
