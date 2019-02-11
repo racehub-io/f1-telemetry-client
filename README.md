@@ -118,6 +118,8 @@ float         m_pitch;                    // Pitch angle in radians
 float         m_roll;                     // Roll angle in radians
 ```
 
+Please note that `m_worldPositionY` corresponds to altitude, so in order to draw a track in two dimensions you would need to use `m_worldPositionX` and `m_worldPositionZ`.
+
 ### PacketSessionData
 
 The session packet includes details about the current session in progress.
