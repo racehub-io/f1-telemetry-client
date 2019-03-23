@@ -1,6 +1,6 @@
 {
   "name": "f1-telemetry-client",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "main": "dist/index.js",
   "license": "MIT",
   "repository": {
@@ -24,7 +24,7 @@
     "lint": "eslint src/**/*.js",
     "start": "babel-node src/index.js",
     "build": "babel src --out-dir dist",
-    "build:link": "npm run build && npm run start && npm link",
+    "build:link": "npm run build && npm run start && npm link && yarn link",
     "prepublishOnly": "yarn build"
   },
   "keywords": [

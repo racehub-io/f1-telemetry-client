@@ -124,7 +124,9 @@ class F1TelemetryClient extends EventEmitter {
    * Method to close the client
    */
   stop() {
-    return this.client.close();
+    return this.client.close(() => {
+      console.log(`UDP Client closed`);
+    });
   }
 }
 
