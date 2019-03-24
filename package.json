@@ -27,14 +27,12 @@
   },
   "scripts": {
     "lint": "eslint src/**/*.ts",
-    "start": "babel-node src/index.ts",
-    "type-check:watch": "npm run type-check -- --watch",
+    "prepublishOnly": "npm run build",
     "build": "npm run build:types",
     "build:types": "tsc",
-    "build:link": "npm run build && npm run start && npm link && yarn link",
-    "prepublishOnly": "yarn build",
-    "type-check": "tsc --noEmit",
-    "check-types": "tsc"
+    "build:link": "npm run build && npm link",
+    "type-check:watch": "npm run type-check -- --watch",
+    "type-check": "tsc --noEmit"
   },
   "keywords": [
     "f12018",
