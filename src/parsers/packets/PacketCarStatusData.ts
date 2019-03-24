@@ -1,6 +1,6 @@
-import F1Parser from '../F1Parser';
-import CarStatusData from './CarStatusData';
-import PacketHeader from './PacketHeader';
+import F1Parser from "../F1Parser";
+import CarStatusData from "./CarStatusData";
+import PacketHeader from "./PacketHeader";
 
 /*
 struct PacketCarStatusData
@@ -11,16 +11,18 @@ struct PacketCarStatusData
 */
 
 export default class PacketCarStatusData extends F1Parser {
-  constructor(buffer) {
+  data: any;
+
+  constructor(buffer: Buffer) {
     super();
-    this.endianess('little')
+    this.endianess("little")
       .nest("m_header", {
         type: new PacketHeader()
       })
-      .array('m_carSetups', {
+      .array("m_carSetups", {
         length: 20,
         type: new CarStatusData()
-      })
+      });
 
     this.data = this.fromBuffer(buffer);
   }

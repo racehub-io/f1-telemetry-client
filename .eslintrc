@@ -2,5 +2,13 @@
   "extends": "airbnb-base",
   "rules": {
     "import/prefer-default-export": "off"
+  },
+  "parser": "babel-eslint",
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
   }
 }

@@ -1,5 +1,5 @@
-import F1Parser from '../F1Parser';
-import PacketHeader from './PacketHeader';
+import F1Parser from "../F1Parser";
+import PacketHeader from "./PacketHeader";
 
 /*
 struct PacketEventData
@@ -10,15 +10,17 @@ struct PacketEventData
 */
 
 export default class PacketEventData extends F1Parser {
-  constructor(buffer) {
+  data: any;
+
+  constructor(buffer: Buffer) {
     super();
-    this.endianess('little')
+    this.endianess("little")
       .nest("m_header", {
         type: new PacketHeader()
       })
-      .string('m_eventStringCode', {
+      .string("m_eventStringCode", {
         length: 4
-      })
+      });
 
     this.data = this.fromBuffer(buffer);
   }
