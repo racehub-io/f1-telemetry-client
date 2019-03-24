@@ -100,7 +100,7 @@ class F1TelemetryClient extends EventEmitter {
 
     if (Parser !== null) {
       const packetData = new Parser(buffer);
-      this.emit(PACKET_TYPES[m_packetId], packetData.data);
+      this.emit(PACKETS[m_packetId], packetData.data);
     }
   }
 
