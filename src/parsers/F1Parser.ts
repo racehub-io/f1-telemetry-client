@@ -1,4 +1,4 @@
-import { Parser } from 'binary-parser';
+import { Parser } from "binary-parser";
 
 export default class F1Parser extends Parser {
   /**
