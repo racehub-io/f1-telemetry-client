@@ -16,18 +16,18 @@ $ npm install f1-telemetry-client
 ## Usage
 
 ```
-import { F1TelemetryClient, PacketTypes } from "f1-telemetry-client";
-// or: const { F1TelemetryClient, PacketTypes } = require('f1-telemetry-client');
+import { F1TelemetryClient, Packets } from "f1-telemetry-client";
+// or: const { F1TelemetryClient, Packets } = require('f1-telemetry-client');
 
 const client = new F1TelemetryClient();
-client.on(PacketTypes.SESSION, m => console.log(m));
-client.on(PacketTypes.MOTION, m => console.log(m));
-client.on(PacketTypes.LAP_DATA, m => console.log(m));
-client.on(PacketTypes.EVENT, m => console.log(m));
-client.on(PacketTypes.PARTICIPANTS, m => console.log(m));
-client.on(PacketTypes.CAR_SETUPS, m => console.log(m));
-client.on(PacketTypes.CAR_TELEMETRY, m => console.log(m));
-client.on(PacketTypes.CAR_STATUS, m => console.log(m));
+client.on(Packets.SESSION, m => console.log(m));
+client.on(Packets.MOTION, m => console.log(m));
+client.on(Packets.LAP_DATA, m => console.log(m));
+client.on(Packets.EVENT, m => console.log(m));
+client.on(Packets.PARTICIPANTS, m => console.log(m));
+client.on(Packets.CAR_SETUPS, m => console.log(m));
+client.on(Packets.CAR_TELEMETRY, m => console.log(m));
+client.on(Packets.CAR_STATUS, m => console.log(m));
 
 // to start listening:
 client.start();

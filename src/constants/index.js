@@ -8,13 +8,13 @@ import {
   TEAMS,
 } from './teams';
 import {
-  PACKET_TYPES,
-  PacketTypes,
-} from './packetTypes';
+  PACKETS,
+  Packets,
+} from './packets';
 
 export {
-  PacketTypes,
-  PACKET_TYPES,
+  Packets,
+  PACKETS,
   TRACKS,
   DRIVERS,
   TEAMS,

@@ -8,7 +8,7 @@ const CAR_SETUPS = 'Car Setups';
 const CAR_TELEMETRY = 'Car Telemetry';
 const CAR_STATUS = 'Car Status';
 
-export const PacketTypes = {
+export const Packets = {
   MOTION,
   SESSION,
   LAP_DATA,
@@ -19,7 +19,7 @@ export const PacketTypes = {
   CAR_STATUS,
 };
 
-export const PACKET_TYPES = [
+export const PACKETS = [
   MOTION,
   SESSION,
   LAP_DATA,

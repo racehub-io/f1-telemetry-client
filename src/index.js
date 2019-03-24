@@ -14,8 +14,8 @@ import {
 } from "./parsers/packets";
 
 import {
-  PacketTypes,
-  PACKET_TYPES,
+  Packets,
+  PACKETS,
   DRIVERS,
   TRACKS,
   TEAMS
@@ -49,37 +49,37 @@ class F1TelemetryClient extends EventEmitter {
    * @param {Number} packetId
    */
   static getParserByPacketId(packetId) {
-    const packetType = PACKET_TYPES[packetId];
+    const packetType = PACKETS[packetId];
 
-    if (packetType === PacketTypes.SESSION) {
+    if (packetType === Packets.SESSION) {
       return PacketSessionData;
     }
 
-    if (packetType === PacketTypes.MOTION) {
+    if (packetType === Packets.MOTION) {
       return PacketMotionData;
     }
 
-    if (packetType === PacketTypes.LAP_DATA) {
+    if (packetType === Packets.LAP_DATA) {
       return PacketLapData;
     }
 
-    if (packetType === PacketTypes.EVENT) {
+    if (packetType === Packets.EVENT) {
       return PacketEventData;
     }
 
-    if (packetType === PacketTypes.PARTICIPANTS) {
+    if (packetType === Packets.PARTICIPANTS) {
       return PacketParticipantsData;
     }
 
-    if (packetType === PacketTypes.CAR_SETUPS) {
+    if (packetType === Packets.CAR_SETUPS) {
       return PacketCarSetupData;
     }
 
-    if (packetType === PacketTypes.CAR_TELEMETRY) {
+    if (packetType === Packets.CAR_TELEMETRY) {
       return PacketCarTelemetryData;
     }
 
-    if (packetType === PacketTypes.CAR_STATUS) {
+    if (packetType === Packets.CAR_STATUS) {
       return PacketCarStatusData;
     }
 
@@ -130,7 +130,7 @@ class F1TelemetryClient extends EventEmitter {
 
 export {
   F1TelemetryClient,
-  PacketTypes,
+  Packets,
   DRIVERS,
   TRACKS,
   TEAMS
