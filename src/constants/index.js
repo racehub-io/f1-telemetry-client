@@ -1,15 +1,15 @@
 import {
-  DRIVERS
+  DRIVERS,
 } from './drivers';
 import {
-  TRACKS
+  TRACKS,
 } from './tracks';
 import {
-  TEAMS
+  TEAMS,
 } from './teams';
 import {
   PACKET_TYPES,
-  PacketTypes
+  PacketTypes,
 } from './packetTypes';
 
 export {
@@ -17,5 +17,5 @@ export {
   PACKET_TYPES,
   TRACKS,
   DRIVERS,
-  TEAMS
-}
+  TEAMS,
+};
