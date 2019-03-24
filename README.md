@@ -12,6 +12,10 @@ This is a TypeScript UDP client and telemetry parser for Codemaster's F1 2018 ga
 ```
 $ npm install f1-telemetry-client
 ```
+or
+```
+$ yarn add f1-telemetry-client
+```
 
 ## Usage
 
