@@ -13,7 +13,9 @@ import {
   PacketCarStatusData
 } from "./parsers/packets";
 
-import { Packets, PACKETS, DRIVERS, TRACKS, TEAMS } from "./constants";
+import * as Constants from "./constants";
+import * as ConstantsTypes from "./constants/types";
+
 import { IOptions } from "./types";
 import { Parser } from "binary-parser";
 import { AddressInfo } from "net";
@@ -27,6 +29,7 @@ class F1TelemetryClient extends EventEmitter {
 
   constructor(opts: IOptions = {}) {
     super();
+
     const { port = 20777 } = opts;
 
     this.port = port;
@@ -47,6 +50,8 @@ class F1TelemetryClient extends EventEmitter {
    * @param {Number} packetId
    */
   static getParserByPacketId(packetId: number) {
+    const { PACKETS, Packets } = Constants;
+
     const packetType = PACKETS[packetId];
 
     if (packetType === Packets.SESSION) {
@@ -96,7 +101,7 @@ class F1TelemetryClient extends EventEmitter {
 
     if (Parser !== null) {
       const packetData = new Parser(buffer);
-      this.emit(PACKETS[m_packetId], packetData.data);
+      this.emit(Constants.PACKETS[m_packetId], packetData.data);
     }
   }
 
@@ -126,4 +131,4 @@ class F1TelemetryClient extends EventEmitter {
   }
 }
 
-export { F1TelemetryClient, Packets, DRIVERS, TRACKS, TEAMS };
+export { F1TelemetryClient, Constants, ConstantsTypes };
