@@ -1,4 +1,4 @@
-import dgram from "dgram";
+import dgram, { Socket } from "dgram";
 import EventEmitter from "events";
 
 import {
@@ -13,23 +13,21 @@ import {
   PacketCarStatusData
 } from "./parsers/packets";
 
-import {
-  Packets,
-  PACKETS,
-  DRIVERS,
-  TRACKS,
-  TEAMS
-} from "./constants";
+import { Packets, PACKETS, DRIVERS, TRACKS, TEAMS } from "./constants";
+import { IOptions } from "./types";
+import { Parser } from "binary-parser";
+import { AddressInfo } from "net";
 
 /**
  *
  */
 class F1TelemetryClient extends EventEmitter {
-  constructor(opts = {}) {
-    super(opts);
-    const {
-      port = 20777
-    } = opts;
+  port: number;
+  client: Socket;
+
+  constructor(opts: IOptions = {}) {
+    super();
+    const { port = 20777 } = opts;
 
     this.port = port;
     this.client = dgram.createSocket("udp4");
@@ -39,7 +37,7 @@ class F1TelemetryClient extends EventEmitter {
    *
    * @param {Buffer} buffer
    */
-  static parsePacketHeader(buffer) {
+  static parsePacketHeader(buffer: Buffer): Parser.Parsed<any> {
     const ph = new PacketHeader();
     return ph.fromBuffer(buffer);
   }
@@ -48,7 +46,7 @@ class F1TelemetryClient extends EventEmitter {
    *
    * @param {Number} packetId
    */
-  static getParserByPacketId(packetId) {
+  static getParserByPacketId(packetId: number) {
     const packetType = PACKETS[packetId];
 
     if (packetType === Packets.SESSION) {
@@ -90,12 +88,10 @@ class F1TelemetryClient extends EventEmitter {
    *
    * @param {Buffer} message
    */
-  parseMessage(message) {
+  parseMessage(message: Buffer) {
     const buffer = Buffer.from(message.buffer);
 
-    const {
-      m_packetId
-    } = F1TelemetryClient.parsePacketHeader(buffer); // eslint-disable-line
+    const { m_packetId } = F1TelemetryClient.parsePacketHeader(buffer); // eslint-disable-line
     const Parser = F1TelemetryClient.getParserByPacketId(m_packetId);
 
     if (Parser !== null) {
@@ -109,8 +105,10 @@ class F1TelemetryClient extends EventEmitter {
    */
   start() {
     this.client.on("listening", () => {
-      const address = this.client.address();
-      console.log(`UDP Client listening on ${address.address}:${address.port} 🏎`);
+      const address = this.client.address() as AddressInfo;
+      console.log(
+        `UDP Client listening on ${address.address}:${address.port} 🏎`
+      );
       this.client.setBroadcast(true);
     });
 
@@ -128,10 +126,4 @@ class F1TelemetryClient extends EventEmitter {
   }
 }
 
-export {
-  F1TelemetryClient,
-  Packets,
-  DRIVERS,
-  TRACKS,
-  TEAMS
-};
+export { F1TelemetryClient, Packets, DRIVERS, TRACKS, TEAMS };

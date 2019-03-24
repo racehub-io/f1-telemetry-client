@@ -1,7 +1,7 @@
-import F1Parser from '../F1Parser';
-import MarshalZone from './MarshalZone';
-import WEATHER from '../../constants/weather';
-import PacketHeader from './PacketHeader';
+import F1Parser from "../F1Parser";
+import MarshalZone from "./MarshalZone";
+import WEATHER from "../../constants/weather";
+import PacketHeader from "./PacketHeader";
 
 /**
  *
@@ -30,35 +30,37 @@ import PacketHeader from './PacketHeader';
  *    unint8          m_networkGame;            // 0 = offline, 1 = online
  */
 export default class PacketSessionData extends F1Parser {
-  constructor(buffer) {
-    super(buffer);
+  data: any;
 
-    this.endianess('little')
+  constructor(buffer: Buffer) {
+    super();
+
+    this.endianess("little")
       .nest("m_header", {
         type: new PacketHeader()
       })
-      .uint8('m_weather')
-      .int8('m_trackTemperature')
-      .int8('m_airTemperature')
-      .uint8('m_totalLaps')
-      .uint16('m_trackLength') // meters
-      .uint8('m_sessionType')
-      .int8('m_trackId')
-      .uint8('m_era')
-      .uint16('m_sessionTimeLeft')
-      .uint16('m_sessionDuration')
-      .uint8('m_pitSpeedLimit')
-      .uint8('m_gamePaused')
-      .uint8('m_isSpectating')
-      .uint8('m_spectatorCarIndex')
-      .uint8('m_sliProNativeSupport')
-      .uint8('m_numMarshalZones')
-      .array('m_marshalZones', {
+      .uint8("m_weather")
+      .int8("m_trackTemperature")
+      .int8("m_airTemperature")
+      .uint8("m_totalLaps")
+      .uint16("m_trackLength") // meters
+      .uint8("m_sessionType")
+      .int8("m_trackId")
+      .uint8("m_era")
+      .uint16("m_sessionTimeLeft")
+      .uint16("m_sessionDuration")
+      .uint8("m_pitSpeedLimit")
+      .uint8("m_gamePaused")
+      .uint8("m_isSpectating")
+      .uint8("m_spectatorCarIndex")
+      .uint8("m_sliProNativeSupport")
+      .uint8("m_numMarshalZones")
+      .array("m_marshalZones", {
         length: 21,
-        type: new MarshalZone(),
+        type: new MarshalZone()
       })
-      .uint8('m_safetyCarStatus')
-      .uint8('m_networkGame');
+      .uint8("m_safetyCarStatus")
+      .uint8("m_networkGame");
 
     this.data = this.fromBuffer(buffer);
   }

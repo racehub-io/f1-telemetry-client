@@ -1,9 +1,10 @@
-const WEATHER = [];
-WEATHER[0] = 'CLEAR';
-WEATHER[1] = 'LIGHT_CLOUD';
-WEATHER[2] = 'OVERCAST';
-WEATHER[3] = 'LIGHT_RAIN';
-WEATHER[4] = 'HEAVY_RAIN';
-WEATHER[5] = 'STORM';
+const WEATHER = [
+  "CLEAR",
+  "LIGHT_CLOUD",
+  "OVERCAST",
+  "LIGHT_RAIN",
+  "HEAVY_RAIN",
+  "STORM"
+];
 
 export default WEATHER;

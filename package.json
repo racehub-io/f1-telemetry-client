@@ -26,11 +26,15 @@
     "typescript": "^3.3.4000"
   },
   "scripts": {
-    "lint": "eslint src/**/*.js",
-    "start": "babel-node src/index.js",
-    "build": "babel src --out-dir dist",
+    "lint": "eslint src/**/*.ts",
+    "start": "babel-node src/index.ts",
+    "type-check:watch": "npm run type-check -- --watch",
+    "build": "npm run build:types && npm run build:js",
+    "build:types": "tsc",
+    "build:js": "babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline",
     "build:link": "npm run build && npm run start && npm link && yarn link",
     "prepublishOnly": "yarn build",
+    "type-check": "tsc --noEmit",
     "check-types": "tsc"
   },
   "keywords": [
