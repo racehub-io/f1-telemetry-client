@@ -1,46 +1,187 @@
-const createDriverObject = (abbr, firstName, lastName) => ({
-  abbr,
-  firstName,
-  lastName,
-});
-
-const DRIVERS = [];
-DRIVERS[0] = createDriverObject('SAI', 'Carlos', 'Sainz');
-DRIVERS[2] = createDriverObject('RIC', 'Daniel', 'Ricciardo');
-DRIVERS[3] = createDriverObject('ALO', 'Fernando', 'Alonso');
-DRIVERS[6] = createDriverObject('RAI', 'Kimi', 'Raikonen');
-DRIVERS[7] = createDriverObject('HAM', 'Lewis', 'Hamilton');
-DRIVERS[8] = createDriverObject('ERI', 'Marcus', 'Ericsson');
-DRIVERS[9] = createDriverObject('VER', 'Max', 'Verstappen');
-DRIVERS[10] = createDriverObject('HUL', 'Nico', 'Hulkenburg');
-DRIVERS[11] = createDriverObject('MAG', 'Kevin', 'Magnusson');
-DRIVERS[12] = createDriverObject('GRO', 'Roman', 'Grosjean');
-DRIVERS[13] = createDriverObject('VET', 'Sebastien', 'Vettel');
-DRIVERS[14] = createDriverObject('PER', 'Sergio', 'Perez');
-DRIVERS[15] = createDriverObject('BOT', 'Valterie', 'Bottas');
-DRIVERS[17] = createDriverObject('OCO', 'Esteban', 'Ocon');
-DRIVERS[18] = createDriverObject('VAN', 'Stoffel', 'Vandorne');
-DRIVERS[19] = createDriverObject('STR', 'Lance', 'Stroll');
-DRIVERS[20] = createDriverObject('BAR', 'Arron', 'Barnes');
-DRIVERS[21] = createDriverObject('GIL', 'Martin', 'Giles');
-DRIVERS[22] = createDriverObject('MUR', 'Alex', 'Murray');
-DRIVERS[23] = createDriverObject('ROT', 'Lucas', 'Roth');
-DRIVERS[24] = createDriverObject('COR', 'Igor', 'Correia');
-DRIVERS[25] = createDriverObject('LEV', 'Sophie', 'Levasseur');
-DRIVERS[26] = createDriverObject('SCH', 'Jonas', 'Schiffer');
-DRIVERS[27] = createDriverObject('FOR', 'Alain', 'Forest');
-DRIVERS[28] = createDriverObject('LET', 'Jay', 'Letorneau');
-DRIVERS[29] = createDriverObject('SAA', 'Esto', 'Saari');
-DRIVERS[30] = createDriverObject('ATI', 'Yasar', 'Atiyeh');
-DRIVERS[31] = createDriverObject('CAL', 'Callisto', 'Calabresi');
-DRIVERS[32] = createDriverObject('IZU', 'Naota', 'Izum');
-DRIVERS[33] = createDriverObject('CLA', 'Howard', 'Clarke');
-DRIVERS[34] = createDriverObject('KAU', 'Wilheim', 'Kaufmann');
-DRIVERS[35] = createDriverObject('LAU', 'Marie', 'Laursen');
-DRIVERS[36] = createDriverObject('NIE', 'Flavio', 'Nieves');
-DRIVERS[58] = createDriverObject('LEC', 'Charles', 'Leclerc');
-DRIVERS[59] = createDriverObject('GAS', 'Pierre', 'Gasly');
-DRIVERS[60] = createDriverObject('HAR', 'Brendan', 'Hatley');
-DRIVERS[61] = createDriverObject('SIR', 'Sergey', 'Sirotkin');
-
-export default DRIVERS;
+export const DRIVERS = {
+  0: {
+    abbreviation: 'SAI',
+    firstName: 'Carlos',
+    lastName: 'Sainz',
+  },
+  2: {
+    abbreviation: 'RIC',
+    firstName: 'Daniel',
+    lastName: 'Ricciardo',
+  },
+  3: {
+    abbreviation: 'ALO',
+    firstName: 'Fernando',
+    lastName: 'Alonso',
+  },
+  6: {
+    abbreviation: 'RAI',
+    firstName: 'Kimi',
+    lastName: 'Raikkonen',
+  },
+  7: {
+    abbreviation: 'HAM',
+    firstName: 'Lewis',
+    lastName: 'Hamilton',
+  },
+  8: {
+    abbreviation: 'ERI',
+    firstName: 'Marcus',
+    lastName: 'Ericsson',
+  },
+  9: {
+    abbreviation: 'VER',
+    firstName: 'Max',
+    lastName: 'Verstappen',
+  },
+  10: {
+    abbreviation: 'HUL',
+    firstName: 'Nico',
+    lastName: 'Hulkenburg',
+  },
+  11: {
+    abbreviation: 'MAG',
+    firstName: 'Kevin',
+    lastName: 'Magnusson',
+  },
+  12: {
+    abbreviation: 'GRO',
+    firstName: 'Roman',
+    lastName: 'Grosjean',
+  },
+  13: {
+    abbreviation: 'VET',
+    firstName: 'Sebastien',
+    lastName: 'Vettel',
+  },
+  14: {
+    abbreviation: 'PER',
+    firstName: 'Sergio',
+    lastName: 'Perez',
+  },
+  15: {
+    abbreviation: 'BOT',
+    firstName: 'Valterie',
+    lastName: 'Bottas',
+  },
+  17: {
+    abbreviation: 'OCO',
+    firstName: 'Esteban',
+    lastName: 'Ocon',
+  },
+  18: {
+    abbreviation: 'VAN',
+    firstName: 'Stoffel',
+    lastName: 'Vandorne',
+  },
+  19: {
+    abbreviation: 'STR',
+    firstName: 'Lance',
+    lastName: 'Stroll',
+  },
+  20: {
+    abbreviation: 'BAR',
+    firstName: 'Arron',
+    lastName: 'Barnes',
+  },
+  21: {
+    abbreviation: 'GIL',
+    firstName: 'Martin',
+    lastName: 'Giles',
+  },
+  22: {
+    abbreviation: 'MUR',
+    firstName: 'Alex',
+    lastName: 'Murray',
+  },
+  23: {
+    abbreviation: 'ROT',
+    firstName: 'Lucas',
+    lastName: 'Roth',
+  },
+  24: {
+    abbreviation: 'COR',
+    firstName: 'Igor',
+    lastName: 'Correia',
+  },
+  25: {
+    abbreviation: 'LEV',
+    firstName: 'Sophie',
+    lastName: 'Levasseur',
+  },
+  26: {
+    abbreviation: 'SCH',
+    firstName: 'Jonas',
+    lastName: 'Schiffer',
+  },
+  27: {
+    abbreviation: 'FOR',
+    firstName: 'Alain',
+    lastName: 'Forest',
+  },
+  28: {
+    abbreviation: 'LET',
+    firstName: 'Jay',
+    lastName: 'Letorneau',
+  },
+  29: {
+    abbreviation: 'SAA',
+    firstName: 'Esto',
+    lastName: 'Saari',
+  },
+  30: {
+    abbreviation: 'ATI',
+    firstName: 'Yasar',
+    lastName: 'Atiyeh',
+  },
+  31: {
+    abbreviation: 'CAL',
+    firstName: 'Callisto',
+    lastName: 'Calabresi',
+  },
+  32: {
+    abbreviation: 'IZU',
+    firstName: 'Naota',
+    lastName: 'Izum',
+  },
+  33: {
+    abbreviation: 'CLA',
+    firstName: 'Howard',
+    lastName: 'Clarke',
+  },
+  34: {
+    abbreviation: 'KAU',
+    firstName: 'Wilheim',
+    lastName: 'Kaufmann',
+  },
+  35: {
+    abbreviation: 'LAU',
+    firstName: 'Marie',
+    lastName: 'Laursen',
+  },
+  36: {
+    abbreviation: 'NIE',
+    firstName: 'Flavio',
+    lastName: 'Nieves',
+  },
+  58: {
+    abbreviation: 'LEC',
+    firstName: 'Charles',
+    lastName: 'Leclerc',
+  },
+  59: {
+    abbreviation: 'GAS',
+    firstName: 'Pierre',
+    lastName: 'Gasly',
+  },
+  60: {
+    abbreviation: 'HAR',
+    firstName: 'Brendon',
+    lastName: 'Hatley',
+  },
+  61: {
+    abbreviation: 'SIR',
+    firstName: 'Sergey',
+    lastName: 'Sirotkin',
+  },
+};

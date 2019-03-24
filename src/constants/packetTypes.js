@@ -1,20 +1,31 @@
 // Data packet types
-export const MOTION = 0;
-export const SESSION = 1;
-export const LAP_DATA = 2;
-export const EVENT = 3;
-export const PARTICIPANTS = 4;
-export const CAR_SETUPS = 5;
-export const CAR_TELEMETRY = 6;
-export const CAR_STATUS = 7;
+const MOTION = 'Motion';
+const SESSION = 'Session';
+const LAP_DATA = 'Lap Data';
+const EVENT = 'Event';
+const PARTICIPANTS = 'Participants';
+const CAR_SETUPS = 'Car Setups';
+const CAR_TELEMETRY = 'Car Telemetry';
+const CAR_STATUS = 'Car Status';
 
-export const PACKET_TYPES = {
-  0: 'MOTION',
-  1: 'SESSION',
-  2: 'LAP_DATA',
-  3: 'EVENT',
-  4: 'PARTICIPANTS',
-  5: 'CAR_SETUPS',
-  6: 'CAR_TELEMETRY',
-  7: 'CAR_STATUS',
+export const PacketTypes = {
+  MOTION,
+  SESSION,
+  LAP_DATA,
+  EVENT,
+  PARTICIPANTS,
+  CAR_SETUPS,
+  CAR_TELEMETRY,
+  CAR_STATUS,
 };
+
+export const PACKET_TYPES = [
+  MOTION,
+  SESSION,
+  LAP_DATA,
+  EVENT,
+  PARTICIPANTS,
+  CAR_SETUPS,
+  CAR_TELEMETRY,
+  CAR_STATUS,
+];

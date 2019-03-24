@@ -1,5 +1,5 @@
-import dgram from 'dgram';
-import EventEmitter from 'events';
+import dgram from "dgram";
+import EventEmitter from "events";
 
 import {
   PacketHeader,
@@ -11,19 +11,15 @@ import {
   PacketCarSetupData,
   PacketCarTelemetryData,
   PacketCarStatusData
-} from './parsers/packets'
+} from "./parsers/packets";
 
 import {
-  MOTION,
-  SESSION,
-  LAP_DATA,
-  EVENT,
-  PARTICIPANTS,
-  CAR_SETUPS,
-  CAR_TELEMETRY,
-  CAR_STATUS,
+  PacketTypes,
   PACKET_TYPES,
-} from './constants/packetTypes';
+  DRIVERS,
+  TRACKS,
+  TEAMS
+} from "./constants";
 
 /**
  *
@@ -32,11 +28,11 @@ class F1TelemetryClient extends EventEmitter {
   constructor(opts = {}) {
     super(opts);
     const {
-      port = 20777,
+      port = 20777
     } = opts;
 
     this.port = port;
-    this.client = dgram.createSocket('udp4');
+    this.client = dgram.createSocket("udp4");
   }
 
   /**
@@ -53,35 +49,37 @@ class F1TelemetryClient extends EventEmitter {
    * @param {Number} packetId
    */
   static getParserByPacketId(packetId) {
-    if (packetId === SESSION) {
+    const packetType = PACKET_TYPES[packetId];
+
+    if (packetType === PacketTypes.SESSION) {
       return PacketSessionData;
     }
 
-    if (packetId === MOTION) {
+    if (packetType === PacketTypes.MOTION) {
       return PacketMotionData;
     }
 
-    if (packetId === LAP_DATA) {
+    if (packetType === PacketTypes.LAP_DATA) {
       return PacketLapData;
     }
 
-    if (packetId === EVENT) {
+    if (packetType === PacketTypes.EVENT) {
       return PacketEventData;
     }
 
-    if (packetId === PARTICIPANTS) {
+    if (packetType === PacketTypes.PARTICIPANTS) {
       return PacketParticipantsData;
     }
 
-    if (packetId === CAR_SETUPS) {
+    if (packetType === PacketTypes.CAR_SETUPS) {
       return PacketCarSetupData;
     }
 
-    if (packetId === CAR_TELEMETRY) {
+    if (packetType === PacketTypes.CAR_TELEMETRY) {
       return PacketCarTelemetryData;
     }
 
-    if (packetId === CAR_STATUS) {
+    if (packetType === PacketTypes.CAR_STATUS) {
       return PacketCarStatusData;
     }
 
@@ -110,13 +108,13 @@ class F1TelemetryClient extends EventEmitter {
    * Method to start listening for packets
    */
   start() {
-    this.client.on('listening', () => {
+    this.client.on("listening", () => {
       const address = this.client.address();
-      console.log(`UDP Client listening on ${address.address}:${address.port}`);
+      console.log(`UDP Client listening on ${address.address}:${address.port} 🏎`);
       this.client.setBroadcast(true);
     });
 
-    this.client.on('message', m => this.parseMessage(m));
+    this.client.on("message", m => this.parseMessage(m));
     this.client.bind(this.port);
   }
 
@@ -124,8 +122,16 @@ class F1TelemetryClient extends EventEmitter {
    * Method to close the client
    */
   stop() {
-    return this.client.close();
+    return this.client.close(() => {
+      console.log(`UDP Client closed 🏁`);
+    });
   }
 }
 
-export default F1TelemetryClient;
+export {
+  F1TelemetryClient,
+  PacketTypes,
+  DRIVERS,
+  TRACKS,
+  TEAMS
+};
