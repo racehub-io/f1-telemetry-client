@@ -17,7 +17,8 @@ import {
   PacketTypes,
   PACKET_TYPES,
   DRIVERS,
-  TRACKS
+  TRACKS,
+  TEAMS
 } from "./constants";
 
 /**
@@ -109,7 +110,7 @@ class F1TelemetryClient extends EventEmitter {
   start() {
     this.client.on("listening", () => {
       const address = this.client.address();
-      console.log(`UDP Client listening on ${address.address}:${address.port}`);
+      console.log(`UDP Client listening on ${address.address}:${address.port} 🏎`);
       this.client.setBroadcast(true);
     });
 
@@ -122,7 +123,7 @@ class F1TelemetryClient extends EventEmitter {
    */
   stop() {
     return this.client.close(() => {
-      console.log(`UDP Client closed`);
+      console.log(`UDP Client closed 🏁`);
     });
   }
 }
@@ -131,5 +132,6 @@ export {
   F1TelemetryClient,
   PacketTypes,
   DRIVERS,
-  TRACKS
+  TRACKS,
+  TEAMS
 };
