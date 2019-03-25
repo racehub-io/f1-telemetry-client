@@ -5,12 +5,16 @@
 
 The F1 series of games support the outputting of key game data via a UDP data stream. This data can be interpreted by external apps or connected peripherals for a range of different uses, including providing additional telemetry information, customised HUD displays, motion platform hardware support or providing force feedback data for custom steering wheels.
 
-This is a Javascript UDP client and telemetry parser for Codemaster's F1 2018 game that enables the consumption of such information.
+This is a TypeScript UDP client and telemetry parser for Codemaster's F1 2018 game that enables the consumption of such information.
 
 ## Installing
 
 ```
 $ npm install f1-telemetry-client
+```
+or
+```
+$ yarn add f1-telemetry-client
 ```
 
 ## Usage
