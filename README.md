@@ -12,26 +12,41 @@ This is a TypeScript UDP client and telemetry parser for Codemaster's F1 2018 ga
 ```
 $ npm install f1-telemetry-client
 ```
+
 or
+
 ```
 $ yarn add f1-telemetry-client
+```
+
+## Running the playground
+
+```
+$ npm run start:playground
+```
+
+or
+
+```
+$ yarn start:playground
 ```
 
 ## Usage
 
 ```
-import { F1TelemetryClient, Packets } from "f1-telemetry-client";
-// or: const { F1TelemetryClient, Packets } = require('f1-telemetry-client');
+import { F1TelemetryClient, Constants } from "f1-telemetry-client";
+// or: const { F1TelemetryClient, Constants } = require('f1-telemetry-client');
+const { PACKETS } = Constants;
 
 const client = new F1TelemetryClient();
-client.on(packets.session, m => console.log(m));
-client.on(packets.motion, m => console.log(m));
-client.on(packets.lapData, m => console.log(m));
-client.on(packets.event, m => console.log(m));
-client.on(packets.participants, m => console.log(m));
-client.on(packets.carSetups, m => console.log(m));
-client.on(packets.carTelemetry, m => console.log(m));
-client.on(packets.carStatus, m => console.log(m));
+client.on(PACKETS.session, m => console.log(m));
+client.on(PACKETS.motion, m => console.log(m));
+client.on(PACKETS.lapData, m => console.log(m));
+client.on(PACKETS.event, m => console.log(m));
+client.on(PACKETS.participants, m => console.log(m));
+client.on(PACKETS.carSetups, m => console.log(m));
+client.on(PACKETS.carTelemetry, m => console.log(m));
+client.on(PACKETS.carStatus, m => console.log(m));
 
 // to start listening:
 client.start();
