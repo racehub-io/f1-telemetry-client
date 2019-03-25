@@ -1,14 +1,16 @@
-export interface ITeam {
+export interface Team {
   name: string;
   color: string;
 }
 
-export interface IDriver {
+export interface Driver {
   firstName: string;
   lastName: string;
   abbreviation: string;
 }
 
-export interface ITrack {
+export interface Track {
   name: string;
 }
+
+export type Packet = string;

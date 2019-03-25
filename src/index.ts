@@ -13,10 +13,10 @@ import {
   PacketCarStatusData
 } from "./parsers/packets";
 
-import * as Constants from "./constants";
+import Constants from "./constants";
 import * as ConstantsTypes from "./constants/types";
 
-import { IOptions } from "./types";
+import { Options } from "./types";
 import { Parser } from "binary-parser";
 import { AddressInfo } from "net";
 
@@ -25,9 +25,9 @@ import { AddressInfo } from "net";
  */
 class F1TelemetryClient extends EventEmitter {
   port: number;
-  client: Socket;
+  client?: Socket;
 
-  constructor(opts: IOptions = {}) {
+  constructor(opts: Options = {}) {
     super();
 
     const { port = 20777 } = opts;
@@ -50,43 +50,39 @@ class F1TelemetryClient extends EventEmitter {
    * @param {Number} packetId
    */
   static getParserByPacketId(packetId: number) {
-    const { PACKETS, Packets } = Constants;
+    const { PACKETS } = Constants;
 
-    const packetType = PACKETS[packetId];
+    const packetKeys = Object.keys(PACKETS);
+    const packetType = packetKeys[packetId];
 
-    if (packetType === Packets.SESSION) {
-      return PacketSessionData;
+    switch (packetType) {
+      case PACKETS.session:
+        return PacketSessionData;
+
+      case PACKETS.motion:
+        return PacketMotionData;
+
+      case PACKETS.lapData:
+        return PacketLapData;
+
+      case PACKETS.event:
+        return PacketEventData;
+
+      case PACKETS.participants:
+        return PacketParticipantsData;
+
+      case PACKETS.carSetups:
+        return PacketCarSetupData;
+
+      case PACKETS.carTelemetry:
+        return PacketCarTelemetryData;
+
+      case PACKETS.carStatus:
+        return PacketCarStatusData;
+
+      default:
+        return null;
     }
-
-    if (packetType === Packets.MOTION) {
-      return PacketMotionData;
-    }
-
-    if (packetType === Packets.LAP_DATA) {
-      return PacketLapData;
-    }
-
-    if (packetType === Packets.EVENT) {
-      return PacketEventData;
-    }
-
-    if (packetType === Packets.PARTICIPANTS) {
-      return PacketParticipantsData;
-    }
-
-    if (packetType === Packets.CAR_SETUPS) {
-      return PacketCarSetupData;
-    }
-
-    if (packetType === Packets.CAR_TELEMETRY) {
-      return PacketCarTelemetryData;
-    }
-
-    if (packetType === Packets.CAR_STATUS) {
-      return PacketCarStatusData;
-    }
-
-    return null;
   }
 
   /**
@@ -101,7 +97,8 @@ class F1TelemetryClient extends EventEmitter {
 
     if (Parser !== null) {
       const packetData = new Parser(buffer);
-      this.emit(Constants.PACKETS[m_packetId], packetData.data);
+      const packetKeys = Object.keys(Constants.PACKETS);
+      this.emit(packetKeys[m_packetId], packetData.data);
     }
   }
 
@@ -109,7 +106,15 @@ class F1TelemetryClient extends EventEmitter {
    * Method to start listening for packets
    */
   start() {
+    if (!this.client) {
+      return;
+    }
+
     this.client.on("listening", () => {
+      if (!this.client) {
+        return;
+      }
+
       const address = this.client.address() as AddressInfo;
       console.log(
         `UDP Client listening on ${address.address}:${address.port} 🏎`
@@ -125,8 +130,13 @@ class F1TelemetryClient extends EventEmitter {
    * Method to close the client
    */
   stop() {
+    if (!this.client) {
+      return;
+    }
+
     return this.client.close(() => {
       console.log(`UDP Client closed 🏁`);
+      this.client = undefined;
     });
   }
 }

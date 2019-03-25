@@ -20,14 +20,14 @@ import { F1TelemetryClient, Packets } from "f1-telemetry-client";
 // or: const { F1TelemetryClient, Packets } = require('f1-telemetry-client');
 
 const client = new F1TelemetryClient();
-client.on(Packets.SESSION, m => console.log(m));
-client.on(Packets.MOTION, m => console.log(m));
-client.on(Packets.LAP_DATA, m => console.log(m));
-client.on(Packets.EVENT, m => console.log(m));
-client.on(Packets.PARTICIPANTS, m => console.log(m));
-client.on(Packets.CAR_SETUPS, m => console.log(m));
-client.on(Packets.CAR_TELEMETRY, m => console.log(m));
-client.on(Packets.CAR_STATUS, m => console.log(m));
+client.on(packets.session, m => console.log(m));
+client.on(packets.motion, m => console.log(m));
+client.on(packets.lapData, m => console.log(m));
+client.on(packets.event, m => console.log(m));
+client.on(packets.participants, m => console.log(m));
+client.on(packets.carSetups, m => console.log(m));
+client.on(packets.carTelemetry, m => console.log(m));
+client.on(packets.carStatus, m => console.log(m));
 
 // to start listening:
 client.start();

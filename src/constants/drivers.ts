@@ -1,6 +1,6 @@
-import { IDriver } from "./types";
+import { Driver } from "./types";
 
-export const DRIVERS: { [index: number]: IDriver } = {
+export const DRIVERS: { [index: number]: Driver } = {
   0: {
     abbreviation: "SAI",
     firstName: "Carlos",

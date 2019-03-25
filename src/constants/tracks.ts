@@ -1,6 +1,6 @@
-import { ITrack } from "./types";
+import { Track } from "./types";
 
-export const TRACKS: ITrack[] = [
+export const TRACKS: Track[] = [
   { name: "Melbourne" },
   { name: "Paul Ricard" },
   { name: "Shanghai" },

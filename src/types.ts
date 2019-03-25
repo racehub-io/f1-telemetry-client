@@ -1,3 +1,3 @@
-export interface IOptions {
+export interface Options {
   port?: number;
 }
