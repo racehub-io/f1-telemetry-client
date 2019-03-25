@@ -18,4 +18,4 @@ export {
   PacketCarSetupData,
   PacketCarStatusData,
   PacketCarTelemetryData
-}
+};

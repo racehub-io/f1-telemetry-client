@@ -48,6 +48,6 @@ export default class LapData extends F1Parser {
       .uint8("m_penalties") // Accumulated time penalties in seconds to be added
       .uint8("m_gridPosition") // Grid position the vehicle started the race in
       .uint8("m_driverStatus") // Status of driver - 0 = in garage, 1 = flying lap 2 = in lap, 3 = out lap, 4 = on track
-      .uint8("m_resultStatus") // Result status - 0 = invalid, 1 = inactive, 2 = active 3 = finished, 4 = disqualified, 5 = not classified 6 = retired
+      .uint8("m_resultStatus"); // Result status - 0 = invalid, 1 = inactive, 2 = active 3 = finished, 4 = disqualified, 5 = not classified 6 = retired
   }
 }

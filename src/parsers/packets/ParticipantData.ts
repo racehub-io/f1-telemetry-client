@@ -22,6 +22,6 @@ export default class ParticipantData extends F1Parser {
       .string('m_name', {
         length: 48,
         stripNull: true
-      })
+      });
   }
 }

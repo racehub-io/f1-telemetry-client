@@ -17,7 +17,8 @@
     "eslint": "^5.3.0",
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-plugin-import": "^2.14.0",
-    "typescript": "^3.3.4000"
+    "typescript": "~3.1.0",
+    "gts": "^0.9.0"
   },
   "scripts": {
     "lint": "eslint src/**/*.ts",
@@ -27,7 +28,14 @@
     "build:types": "tsc",
     "build:link": "npm run build && npm link",
     "type-check:watch": "npm run type-check -- --watch",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "check": "gts check",
+    "clean": "gts clean",
+    "compile": "tsc -p .",
+    "fix": "gts fix",
+    "prepare": "npm run compile",
+    "pretest": "npm run compile",
+    "posttest": "npm run check"
   },
   "keywords": [
     "f12018",
