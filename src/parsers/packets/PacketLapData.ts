@@ -1,6 +1,6 @@
 import { F1Parser } from "../F1Parser";
-import LapData from "./LapData";
-import PacketHeader from "./PacketHeader";
+import { LapData } from "./LapData";
+import { PacketHeader } from "./PacketHeader";
 
 /*
 struct PacketLapData
@@ -11,6 +11,7 @@ struct PacketLapData
 */
 
 export class PacketLapData extends F1Parser {
+  // tslint:disable-next-line:no-any
   data: any;
 
   constructor(buffer: Buffer) {

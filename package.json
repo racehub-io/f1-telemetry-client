@@ -23,7 +23,7 @@
   "scripts": {
     "lint": "eslint src/**/*.ts",
     "prepublishOnly": "npm run build",
-    "start": "npm run build && node dist/playground/index.js",
+    "start": "npm run build && node dist/src/playground/index.js",
     "build": "npm run build:types",
     "build:types": "tsc",
     "build:link": "npm run build && npm link",

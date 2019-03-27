@@ -1,6 +1,6 @@
 import { F1Parser } from "../F1Parser";
-import ParticipantData from "./ParticipantData";
-import PacketHeader from "./PacketHeader";
+import { ParticipantData } from "./ParticipantData";
+import { PacketHeader } from "./PacketHeader";
 
 /*
 struct PacketParticipantsData

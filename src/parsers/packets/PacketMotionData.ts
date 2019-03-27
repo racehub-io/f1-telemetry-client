@@ -1,6 +1,6 @@
 import { F1Parser } from "../F1Parser";
-import CarMotionData from "./CarMotionData";
-import PacketHeader from "./PacketHeader";
+import { CarMotionData } from "./CarMotionData";
+import { PacketHeader } from "./PacketHeader";
 import { Parser } from "binary-parser";
 
 /*
@@ -30,6 +30,7 @@ struct PacketMotionData
 */
 
 export class PacketMotionData extends F1Parser {
+  // tslint:disable-next-line:no-any
   data: any;
 
   constructor(buffer: Buffer) {

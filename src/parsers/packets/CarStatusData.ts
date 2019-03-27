@@ -39,7 +39,7 @@ struct CarStatusData
 };
 */
 
-export class CarSetupData extends F1Parser {
+export class CarStatusData extends F1Parser {
   constructor() {
     super();
     this.uint8("m_tractionControl")

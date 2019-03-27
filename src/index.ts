@@ -14,7 +14,7 @@ import {
   PacketCarStatusData
 } from "./parsers/packets";
 
-import constants from "./constants";
+import * as constants from "./constants";
 import * as constantsTypes from "./constants/types";
 
 import { Options } from "./types";
