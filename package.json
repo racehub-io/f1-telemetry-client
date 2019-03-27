@@ -1,8 +1,11 @@
 {
   "name": "f1-telemetry-client",
-  "version": "0.1.3",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "version": "0.1.4",
+  "main": "build/src/index.js",
+  "types": "build/src/index.d.ts",
+  "files": [
+    "build"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -23,7 +26,7 @@
   "scripts": {
     "lint": "eslint src/**/*.ts",
     "prepublishOnly": "npm run build",
-    "start": "npm run build && node dist/src/playground/index.js",
+    "start": "npm run build && node build/src/playground/index.js",
     "build": "npm run build:types",
     "build:types": "tsc",
     "build:link": "npm run build && npm link",
