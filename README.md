@@ -23,13 +23,13 @@ $ yarn add f1-telemetry-client
 ## Running the playground
 
 ```
-$ npm run start:playground
+$ npm run start
 ```
 
 or
 
 ```
-$ yarn start:playground
+$ yarn start
 ```
 
 ## Usage
