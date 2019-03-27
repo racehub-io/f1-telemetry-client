@@ -1,4 +1,4 @@
-import F1Parser from "../F1Parser";
+import { F1Parser } from "../F1Parser";
 import { Parser } from "binary-parser";
 
 /*
@@ -22,7 +22,7 @@ struct CarTelemetryData
 };
 */
 
-export default class CarTelemetryData extends F1Parser {
+export class CarTelemetryData extends F1Parser {
   constructor() {
     super();
     this.uint16le("m_speed")

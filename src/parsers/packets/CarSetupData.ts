@@ -1,4 +1,4 @@
-import F1Parser from "../F1Parser";
+import { F1Parser } from "../F1Parser";
 
 /*
 struct CarSetupData
@@ -26,7 +26,7 @@ struct CarSetupData
 };
 */
 
-export default class CarSetupData extends F1Parser {
+export class CarSetupData extends F1Parser {
   constructor() {
     super();
     this.uint8("m_frontWing")

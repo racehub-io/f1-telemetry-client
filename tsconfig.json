@@ -1,15 +1,8 @@
 {
+  "extends": "./node_modules/gts/tsconfig-google.json",
   "compilerOptions": {
-    "moduleResolution": "node",
-    "allowJs": true,
-    "strict": true,
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "outDir": "dist",
-    "module": "commonjs",
-    "target": "es6"
+    "rootDir": ".",
+    "outDir": "dist"
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src/*.ts", "src/**/*.ts", "test/*.ts", "test/**/*.ts"]
 }

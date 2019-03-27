@@ -1,7 +1,7 @@
-import F1Parser from "../F1Parser";
-import MarshalZone from "./MarshalZone";
-import WEATHER from "../../constants/weather";
-import PacketHeader from "./PacketHeader";
+import { F1Parser } from "../F1Parser";
+import { MarshalZone } from "./MarshalZone";
+import { WEATHER } from "../../constants/weather";
+import { PacketHeader } from "./PacketHeader";
 
 /**
  *
@@ -29,7 +29,8 @@ import PacketHeader from "./PacketHeader";
  *    uint8           m_safetyCarStatus;        // constants/satefyCarStatuses.js
  *    unint8          m_networkGame;            // 0 = offline, 1 = online
  */
-export default class PacketSessionData extends F1Parser {
+export class PacketSessionData extends F1Parser {
+  // tslint:disable-next-line:no-any
   data: any;
 
   constructor(buffer: Buffer) {

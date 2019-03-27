@@ -1,6 +1,6 @@
-import F1Parser from "../F1Parser";
-import CarTelemetryData from "./CarTelemetryData";
-import PacketHeader from "./PacketHeader";
+import { F1Parser } from "../F1Parser";
+import { CarTelemetryData } from "./CarTelemetryData";
+import { PacketHeader } from "./PacketHeader";
 
 /*
 struct PacketCarTelemetryData
@@ -12,7 +12,8 @@ struct PacketCarTelemetryData
 };
 */
 
-export default class PacketCarTelemetryData extends F1Parser {
+export class PacketCarTelemetryData extends F1Parser {
+  // tslint:disable-next-line:no-any
   data: any;
 
   constructor(buffer: Buffer) {

@@ -1,5 +1,5 @@
-import F1Parser from "../F1Parser";
-import PacketHeader from "./PacketHeader";
+import { F1Parser } from "../F1Parser";
+import { PacketHeader } from "./PacketHeader";
 
 /*
 struct PacketEventData
@@ -9,7 +9,8 @@ struct PacketEventData
 };
 */
 
-export default class PacketEventData extends F1Parser {
+export class PacketEventData extends F1Parser {
+  // tslint:disable-next-line:no-any
   data: any;
 
   constructor(buffer: Buffer) {
