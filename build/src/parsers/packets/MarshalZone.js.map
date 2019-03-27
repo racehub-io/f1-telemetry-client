@@ -1,1 +1,0 @@
-{"version":3,"file":"MarshalZone.js","sourceRoot":"","sources":["../../../../src/parsers/packets/MarshalZone.ts"],"names":[],"mappings":";;AAAA,0CAAmC;AAEnC;;;;;;;;;;;GAWG;AACH,MAAqB,WAAY,SAAQ,kBAAQ;IAC/C;QACE,KAAK,EAAE,CAAC;QACR,IAAI,CAAC,SAAS,CAAC,QAAQ,CAAC;aACrB,OAAO,CAAC,aAAa,CAAC;aACtB,IAAI,CAAC,YAAY,CAAC,CAAC;IACxB,CAAC;CACF;AAPD,8BAOC"}
