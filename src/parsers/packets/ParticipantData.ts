@@ -1,4 +1,4 @@
-import F1Parser from '../F1Parser';
+import { F1Parser } from "../F1Parser";
 
 /*
 struct ParticipantData
@@ -11,15 +11,15 @@ struct ParticipantData
   char       m_name[48];               // Name of participant in UTF-8 format – null terminated                                       // Will be truncated with … (U+2026) if too long
 };
 */
-export default class ParticipantData extends F1Parser {
+export class ParticipantData extends F1Parser {
   constructor() {
     super();
-    this.uint8('m_aiControlled')
-      .uint8('m_driverId')
-      .uint8('m_teamId')
-      .uint8('m_raceNumber')
-      .uint8('m_nationality')
-      .string('m_name', {
+    this.uint8("m_aiControlled")
+      .uint8("m_driverId")
+      .uint8("m_teamId")
+      .uint8("m_raceNumber")
+      .uint8("m_nationality")
+      .string("m_name", {
         length: 48,
         stripNull: true
       });

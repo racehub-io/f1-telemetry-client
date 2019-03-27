@@ -2,6 +2,7 @@
 
 <a href='https://travis-ci.org/jonybur/f1-telemetry-client' ><img src='https://travis-ci.org/jonybur/f1-telemetry-client.svg?branch=master'></a>
 <a href="https://snyk.io/test/github/jonybur/f1-telemetry-client?targetFile=package.json"><img src="https://snyk.io/test/github/jonybur/f1-telemetry-client/badge.svg?targetFile=package.json" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/github/jonybur/f1-telemetry-client?targetFile=package.json" style="max-width:100%;"></a>
+[![Code Style: Google](https://img.shields.io/badge/code%20style-google-blueviolet.svg)](https://github.com/google/gts)
 
 The F1 series of games support the outputting of key game data via a UDP data stream. This data can be interpreted by external apps or connected peripherals for a range of different uses, including providing additional telemetry information, customised HUD displays, motion platform hardware support or providing force feedback data for custom steering wheels.
 

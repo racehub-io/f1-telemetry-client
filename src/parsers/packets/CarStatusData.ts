@@ -1,4 +1,4 @@
-import F1Parser from "../F1Parser";
+import { F1Parser } from "../F1Parser";
 import { Parser } from "binary-parser";
 
 /*
@@ -39,7 +39,7 @@ struct CarStatusData
 };
 */
 
-export default class CarSetupData extends F1Parser {
+export class CarSetupData extends F1Parser {
   constructor() {
     super();
     this.uint8("m_tractionControl")

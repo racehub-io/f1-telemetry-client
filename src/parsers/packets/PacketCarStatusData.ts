@@ -1,4 +1,4 @@
-import F1Parser from "../F1Parser";
+import { F1Parser } from "../F1Parser";
 import CarStatusData from "./CarStatusData";
 import PacketHeader from "./PacketHeader";
 
@@ -10,7 +10,7 @@ struct PacketCarStatusData
 };
 */
 
-export default class PacketCarStatusData extends F1Parser {
+export class PacketCarStatusData extends F1Parser {
   data: any;
 
   constructor(buffer: Buffer) {

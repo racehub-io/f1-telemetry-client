@@ -1,4 +1,4 @@
-import F1Parser from '../F1Parser';
+import { F1Parser } from "../F1Parser";
 
 /**
  *  struct MarshalZone
@@ -12,11 +12,11 @@ import F1Parser from '../F1Parser';
  *                          // 4 = red
  *  };
  */
-export default class MarshalZone extends F1Parser {
+export class MarshalZone extends F1Parser {
   constructor() {
     super();
-    this.endianess('little')
-      .floatle('m_zoneStart')
-      .int8('m_zoneFlag');
+    this.endianess("little")
+      .floatle("m_zoneStart")
+      .int8("m_zoneFlag");
   }
 }
