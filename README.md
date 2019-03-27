@@ -35,9 +35,9 @@ $ yarn start:playground
 ## Usage
 
 ```
-import { F1TelemetryClient, Constants } from "f1-telemetry-client";
-// or: const { F1TelemetryClient, Constants } = require('f1-telemetry-client');
-const { PACKETS } = Constants;
+import { F1TelemetryClient, constants } from "f1-telemetry-client";
+// or: const { F1TelemetryClient, constants } = require('f1-telemetry-client');
+const { PACKETS } = constants;
 
 const client = new F1TelemetryClient();
 client.on(PACKETS.session, m => console.log(m));

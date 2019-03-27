@@ -1,5 +1,4 @@
-import { F1TelemetryClient } from "..";
-import { constants } from "..";
+import { F1TelemetryClient, constants } from "..";
 const { PACKETS } = constants;
 
 const client = new F1TelemetryClient({
