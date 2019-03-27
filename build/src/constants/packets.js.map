@@ -1,0 +1,1 @@
+{"version":3,"file":"packets.js","sourceRoot":"","sources":["../../../src/constants/packets.ts"],"names":[],"mappings":";;AAAa,QAAA,OAAO,GAAG;IACrB,MAAM,EAAE,QAAQ;IAChB,OAAO,EAAE,SAAS;IAClB,OAAO,EAAE,SAAS;IAClB,KAAK,EAAE,OAAO;IACd,YAAY,EAAE,cAAc;IAC5B,SAAS,EAAE,WAAW;IACtB,YAAY,EAAE,cAAc;IAC5B,SAAS,EAAE,WAAW;CACvB,CAAC"}

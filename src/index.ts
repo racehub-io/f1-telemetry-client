@@ -1,5 +1,6 @@
-import dgram, { Socket } from "dgram";
-import EventEmitter from "events";
+// tslint:disable-next-line
+import * as dgram from "dgram";
+import * as EventEmitter from "events";
 
 import {
   PacketHeader,
@@ -13,8 +14,8 @@ import {
   PacketCarStatusData
 } from "./parsers/packets";
 
-import Constants from "./constants";
-import * as ConstantsTypes from "./constants/types";
+import constants from "./constants";
+import * as constantsTypes from "./constants/types";
 
 import { Options } from "./types";
 import { Parser } from "binary-parser";
@@ -25,7 +26,7 @@ import { AddressInfo } from "net";
  */
 class F1TelemetryClient extends EventEmitter {
   port: number;
-  client?: Socket;
+  client?: dgram.Socket;
 
   constructor(opts: Options = {}) {
     super();
@@ -40,6 +41,7 @@ class F1TelemetryClient extends EventEmitter {
    *
    * @param {Buffer} buffer
    */
+  // tslint:disable-next-line:no-any
   static parsePacketHeader(buffer: Buffer): Parser.Parsed<any> {
     const ph = new PacketHeader();
     return ph.fromBuffer(buffer);
@@ -50,7 +52,7 @@ class F1TelemetryClient extends EventEmitter {
    * @param {Number} packetId
    */
   static getParserByPacketId(packetId: number) {
-    const { PACKETS } = Constants;
+    const { PACKETS } = constants;
 
     const packetKeys = Object.keys(PACKETS);
     const packetType = packetKeys[packetId];
@@ -93,11 +95,11 @@ class F1TelemetryClient extends EventEmitter {
     const buffer = Buffer.from(message.buffer);
 
     const { m_packetId } = F1TelemetryClient.parsePacketHeader(buffer); // eslint-disable-line
-    const Parser = F1TelemetryClient.getParserByPacketId(m_packetId);
+    const parser = F1TelemetryClient.getParserByPacketId(m_packetId);
 
-    if (Parser !== null) {
-      const packetData = new Parser(buffer);
-      const packetKeys = Object.keys(Constants.PACKETS);
+    if (parser !== null) {
+      const packetData = new parser(buffer);
+      const packetKeys = Object.keys(constants.PACKETS);
       this.emit(packetKeys[m_packetId], packetData.data);
     }
   }
@@ -141,4 +143,4 @@ class F1TelemetryClient extends EventEmitter {
   }
 }
 
-export { F1TelemetryClient, Constants, ConstantsTypes };
+export { F1TelemetryClient, constants, constantsTypes };
