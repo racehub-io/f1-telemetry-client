@@ -9,6 +9,8 @@ import * as constantsTypes from './constants/types';
 import {PacketCarSetupData, PacketCarStatusData, PacketCarTelemetryData, PacketEventData, PacketHeader, PacketLapData, PacketMotionData, PacketParticipantsData, PacketSessionData} from './parsers/packets';
 import {Options} from './types';
 
+const DEFAULT_PORT = 20777;
+
 /**
  *
  */
@@ -19,7 +21,7 @@ class F1TelemetryClient extends EventEmitter {
   constructor(opts: Options = {}) {
     super();
 
-    const {port = 20777} = opts;
+    const {port = DEFAULT_PORT} = opts;
 
     this.port = port;
     this.client = dgram.createSocket('udp4');
@@ -31,6 +33,15 @@ class F1TelemetryClient extends EventEmitter {
    */
   // tslint:disable-next-line:no-any
   static parsePacketHeader(buffer: Buffer): Parser.Parsed<any> {
+    const fs = require('fs');
+    // tslint:disable-next-line:no-any
+    fs.writeFile('buffer_mock.json', JSON.stringify(buffer), (err: any) => {
+      if (err) {
+        return console.log(err);
+      }
+      console.log('The file was saved!');
+    });
+
     const ph = new PacketHeader();
     return ph.fromBuffer(buffer);
   }
@@ -131,4 +142,4 @@ class F1TelemetryClient extends EventEmitter {
   }
 }
 
-export {F1TelemetryClient, constants, constantsTypes};
+export {F1TelemetryClient, constants, constantsTypes, DEFAULT_PORT};
