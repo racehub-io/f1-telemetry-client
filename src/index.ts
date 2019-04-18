@@ -33,15 +33,6 @@ class F1TelemetryClient extends EventEmitter {
    */
   // tslint:disable-next-line:no-any
   static parsePacketHeader(buffer: Buffer): Parser.Parsed<any> {
-    const fs = require('fs');
-    // tslint:disable-next-line:no-any
-    fs.writeFile('buffer_mock.json', JSON.stringify(buffer), (err: any) => {
-      if (err) {
-        return console.log(err);
-      }
-      console.log('The file was saved!');
-    });
-
     const ph = new PacketHeader();
     return ph.fromBuffer(buffer);
   }
@@ -91,15 +82,26 @@ class F1TelemetryClient extends EventEmitter {
    * @param {Buffer} message
    */
   parseMessage(message: Buffer) {
-    const buffer = Buffer.from(message.buffer);
+    console.log('--------- PRINTING BUFFER ---------');
+    console.log(JSON.stringify(message.buffer));
+    console.log('-------------- DONE --------------');
 
+    const buffer = Buffer.from(message.buffer);
     const {m_packetId} =
         F1TelemetryClient.parsePacketHeader(buffer);  // eslint-disable-line
     const parser = F1TelemetryClient.getParserByPacketId(m_packetId);
 
+    console.log(m_packetId);
+
     if (parser !== null) {
       const packetData = new parser(buffer);
       const packetKeys = Object.keys(constants.PACKETS);
+
+      console.log('--------- PARSER_BY_PACKET_ID ---------');
+      console.log(parser);
+      console.log('-------------- DONE --------------');
+
+      console.log('EMITS');
       this.emit(packetKeys[m_packetId], packetData.data);
     }
   }
