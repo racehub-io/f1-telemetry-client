@@ -15,8 +15,6 @@ import {F1Parser} from '../F1Parser';
 export class MarshalZone extends F1Parser {
   constructor() {
     super();
-    this.endianess('little')
-      .floatle('m_zoneStart')
-      .int8('m_zoneFlag');
+    this.endianess('little').floatle('m_zoneStart').int8('m_zoneFlag');
   }
 }

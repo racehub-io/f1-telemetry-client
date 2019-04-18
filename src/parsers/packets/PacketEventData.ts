@@ -16,8 +16,8 @@ export class PacketEventData extends F1Parser {
   constructor(buffer: Buffer) {
     super();
     this.endianess('little')
-      .nest('m_header', {type: new PacketHeader()})
-      .string('m_eventStringCode', {length: 4});
+        .nest('m_header', {type: new PacketHeader()})
+        .string('m_eventStringCode', {length: 4});
 
     this.data = this.fromBuffer(buffer);
   }
