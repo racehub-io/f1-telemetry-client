@@ -1,6 +1,7 @@
-import { F1Parser } from "../F1Parser";
-import { ParticipantData } from "./ParticipantData";
-import { PacketHeader } from "./PacketHeader";
+import {F1Parser} from '../F1Parser';
+
+import {PacketHeader} from './PacketHeader';
+import {ParticipantData} from './ParticipantData';
 
 /*
 struct PacketParticipantsData
@@ -12,20 +13,16 @@ struct PacketParticipantsData
 */
 
 export class PacketParticipantsData extends F1Parser {
+  // tslint:disable-next-line:no-any
   data: any;
 
   constructor(buffer: Buffer) {
     super();
 
-    this.endianess("little")
-      .nest("m_header", {
-        type: new PacketHeader()
-      })
-      .uint8("m_numCars")
-      .array("m_participants", {
-        length: 20,
-        type: new ParticipantData()
-      });
+    this.endianess('little')
+        .nest('m_header', {type: new PacketHeader()})
+        .uint8('m_numCars')
+        .array('m_participants', {length: 20, type: new ParticipantData()});
 
     this.data = this.fromBuffer(buffer);
   }

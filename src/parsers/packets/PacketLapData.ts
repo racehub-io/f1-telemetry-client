@@ -1,6 +1,6 @@
-import { F1Parser } from "../F1Parser";
-import { LapData } from "./LapData";
-import { PacketHeader } from "./PacketHeader";
+import {F1Parser} from '../F1Parser';
+import {LapData} from './LapData';
+import {PacketHeader} from './PacketHeader';
 
 /*
 struct PacketLapData
@@ -16,14 +16,9 @@ export class PacketLapData extends F1Parser {
 
   constructor(buffer: Buffer) {
     super();
-    this.endianess("little")
-      .nest("m_header", {
-        type: new PacketHeader()
-      })
-      .array("m_lapData", {
-        length: 20,
-        type: new LapData()
-      });
+    this.endianess('little')
+        .nest('m_header', {type: new PacketHeader()})
+        .array('m_lapData', {length: 20, type: new LapData()});
 
     this.data = this.fromBuffer(buffer);
   }

@@ -1,9 +1,8 @@
-import { F1TelemetryClient, constants } from "..";
-const { PACKETS } = constants;
+import {constants, F1TelemetryClient} from '..';
 
-const client = new F1TelemetryClient({
-  port: 20777
-});
+const {PACKETS} = constants;
+
+const client = new F1TelemetryClient({port: 20777});
 
 client.on(PACKETS.session, m => console.log(m));
 client.on(PACKETS.motion, m => console.log(m));
@@ -17,13 +16,12 @@ client.on(PACKETS.carStatus, m => console.log(m));
 client.start();
 
 // stops the client
-[
-  `exit`,
-  `SIGINT`,
-  `SIGUSR1`,
-  `SIGUSR2`,
-  `uncaughtException`,
-  `SIGTERM`
+[`exit`,
+ `SIGINT`,
+ `SIGUSR1`,
+ `SIGUSR2`,
+ `uncaughtException`,
+ `SIGTERM`,
 ].forEach(eventType => {
   (process as NodeJS.EventEmitter).on(eventType, () => client.stop());
 });
