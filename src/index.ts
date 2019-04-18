@@ -1,25 +1,13 @@
 // tslint:disable-next-line
-import * as dgram from "dgram";
-import * as EventEmitter from "events";
+import {Parser} from 'binary-parser';
+import * as dgram from 'dgram';
+import * as EventEmitter from 'events';
+import {AddressInfo} from 'net';
 
-import {
-  PacketHeader,
-  PacketSessionData,
-  PacketMotionData,
-  PacketLapData,
-  PacketEventData,
-  PacketParticipantsData,
-  PacketCarSetupData,
-  PacketCarTelemetryData,
-  PacketCarStatusData
-} from "./parsers/packets";
-
-import * as constants from "./constants";
-import * as constantsTypes from "./constants/types";
-
-import { Options } from "./types";
-import { Parser } from "binary-parser";
-import { AddressInfo } from "net";
+import * as constants from './constants';
+import * as constantsTypes from './constants/types';
+import {PacketCarSetupData, PacketCarStatusData, PacketCarTelemetryData, PacketEventData, PacketHeader, PacketLapData, PacketMotionData, PacketParticipantsData, PacketSessionData} from './parsers/packets';
+import {Options} from './types';
 
 /**
  *
@@ -31,10 +19,10 @@ class F1TelemetryClient extends EventEmitter {
   constructor(opts: Options = {}) {
     super();
 
-    const { port = 20777 } = opts;
+    const {port = 20777} = opts;
 
     this.port = port;
-    this.client = dgram.createSocket("udp4");
+    this.client = dgram.createSocket('udp4');
   }
 
   /**
@@ -52,7 +40,7 @@ class F1TelemetryClient extends EventEmitter {
    * @param {Number} packetId
    */
   static getParserByPacketId(packetId: number) {
-    const { PACKETS } = constants;
+    const {PACKETS} = constants;
 
     const packetKeys = Object.keys(PACKETS);
     const packetType = packetKeys[packetId];
@@ -94,7 +82,8 @@ class F1TelemetryClient extends EventEmitter {
   parseMessage(message: Buffer) {
     const buffer = Buffer.from(message.buffer);
 
-    const { m_packetId } = F1TelemetryClient.parsePacketHeader(buffer); // eslint-disable-line
+    const {m_packetId} =
+        F1TelemetryClient.parsePacketHeader(buffer);  // eslint-disable-line
     const parser = F1TelemetryClient.getParserByPacketId(m_packetId);
 
     if (parser !== null) {
@@ -112,19 +101,18 @@ class F1TelemetryClient extends EventEmitter {
       return;
     }
 
-    this.client.on("listening", () => {
+    this.client.on('listening', () => {
       if (!this.client) {
         return;
       }
 
       const address = this.client.address() as AddressInfo;
       console.log(
-        `UDP Client listening on ${address.address}:${address.port} 🏎`
-      );
+          `UDP Client listening on ${address.address}:${address.port} 🏎`);
       this.client.setBroadcast(true);
     });
 
-    this.client.on("message", m => this.parseMessage(m));
+    this.client.on('message', m => this.parseMessage(m));
     this.client.bind(this.port);
   }
 
@@ -143,4 +131,4 @@ class F1TelemetryClient extends EventEmitter {
   }
 }
 
-export { F1TelemetryClient, constants, constantsTypes };
+export {F1TelemetryClient, constants, constantsTypes};

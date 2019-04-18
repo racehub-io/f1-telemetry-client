@@ -1,6 +1,6 @@
-import { DRIVERS } from "./drivers";
-import { TRACKS } from "./tracks";
-import { TEAMS } from "./teams";
-import { PACKETS } from "./packets";
+import {DRIVERS} from './drivers';
+import {PACKETS} from './packets';
+import {TEAMS} from './teams';
+import {TRACKS} from './tracks';
 
-export { PACKETS, TRACKS, DRIVERS, TEAMS };
+export {DRIVERS, PACKETS, TEAMS, TRACKS};
