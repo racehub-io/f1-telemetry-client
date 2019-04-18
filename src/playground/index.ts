@@ -16,13 +16,12 @@ client.on(PACKETS.carStatus, m => console.log(m));
 client.start();
 
 // stops the client
-[
-  `exit`,
-  `SIGINT`,
-  `SIGUSR1`,
-  `SIGUSR2`,
-  `uncaughtException`,
-  `SIGTERM`,
+[`exit`,
+ `SIGINT`,
+ `SIGUSR1`,
+ `SIGUSR2`,
+ `uncaughtException`,
+ `SIGTERM`,
 ].forEach(eventType => {
   (process as NodeJS.EventEmitter).on(eventType, () => client.stop());
 });
