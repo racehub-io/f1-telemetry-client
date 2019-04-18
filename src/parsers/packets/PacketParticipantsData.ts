@@ -20,9 +20,9 @@ export class PacketParticipantsData extends F1Parser {
     super();
 
     this.endianess('little')
-        .nest('m_header', {type: new PacketHeader()})
-        .uint8('m_numCars')
-        .array('m_participants', {length: 20, type: new ParticipantData()});
+      .nest('m_header', {type: new PacketHeader()})
+      .uint8('m_numCars')
+      .array('m_participants', {length: 20, type: new ParticipantData()});
 
     this.data = this.fromBuffer(buffer);
   }

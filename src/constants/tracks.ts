@@ -25,5 +25,5 @@ export const TRACKS: Track[] = [
   {name: 'Sakhir (Short)'},
   {name: 'Silverstone (Short)'},
   {name: 'Texas (Short)'},
-  {name: 'Suzuka (Short)'}
+  {name: 'Suzuka (Short)'},
 ];

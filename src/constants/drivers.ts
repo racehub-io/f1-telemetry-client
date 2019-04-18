@@ -37,5 +37,5 @@ export const DRIVERS: {[index: number]: Driver} = {
   58: {abbreviation: 'LEC', firstName: 'Charles', lastName: 'Leclerc'},
   59: {abbreviation: 'GAS', firstName: 'Pierre', lastName: 'Gasly'},
   60: {abbreviation: 'HAR', firstName: 'Brendon', lastName: 'Hatley'},
-  61: {abbreviation: 'SIR', firstName: 'Sergey', lastName: 'Sirotkin'}
+  61: {abbreviation: 'SIR', firstName: 'Sergey', lastName: 'Sirotkin'},
 };

@@ -6,7 +6,17 @@ import {AddressInfo} from 'net';
 
 import * as constants from './constants';
 import * as constantsTypes from './constants/types';
-import {PacketCarSetupData, PacketCarStatusData, PacketCarTelemetryData, PacketEventData, PacketHeader, PacketLapData, PacketMotionData, PacketParticipantsData, PacketSessionData} from './parsers/packets';
+import {
+  PacketCarSetupData,
+  PacketCarStatusData,
+  PacketCarTelemetryData,
+  PacketEventData,
+  PacketHeader,
+  PacketLapData,
+  PacketMotionData,
+  PacketParticipantsData,
+  PacketSessionData,
+} from './parsers/packets';
 import {Options} from './types';
 
 /**
@@ -82,8 +92,7 @@ class F1TelemetryClient extends EventEmitter {
   parseMessage(message: Buffer) {
     const buffer = Buffer.from(message.buffer);
 
-    const {m_packetId} =
-        F1TelemetryClient.parsePacketHeader(buffer);  // eslint-disable-line
+    const {m_packetId} = F1TelemetryClient.parsePacketHeader(buffer); // eslint-disable-line
     const parser = F1TelemetryClient.getParserByPacketId(m_packetId);
 
     if (parser !== null) {
@@ -108,7 +117,8 @@ class F1TelemetryClient extends EventEmitter {
 
       const address = this.client.address() as AddressInfo;
       console.log(
-          `UDP Client listening on ${address.address}:${address.port} 🏎`);
+        `UDP Client listening on ${address.address}:${address.port} 🏎`
+      );
       this.client.setBroadcast(true);
     });
 

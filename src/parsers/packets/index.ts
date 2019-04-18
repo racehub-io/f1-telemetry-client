@@ -17,5 +17,5 @@ export {
   PacketLapData,
   PacketMotionData,
   PacketParticipantsData,
-  PacketSessionData
+  PacketSessionData,
 };

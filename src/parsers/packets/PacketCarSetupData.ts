@@ -17,8 +17,8 @@ export class PacketCarSetupData extends F1Parser {
   constructor(buffer: Buffer) {
     super();
     this.endianess('little')
-        .nest('m_header', {type: new PacketHeader()})
-        .array('m_carSetups', {length: 20, type: new CarSetupData()});
+      .nest('m_header', {type: new PacketHeader()})
+      .array('m_carSetups', {length: 20, type: new CarSetupData()});
 
     this.data = this.fromBuffer(buffer);
   }

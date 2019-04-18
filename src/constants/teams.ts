@@ -20,5 +20,5 @@ export const TEAMS: Team[] = [
   {name: 'Ferrari 2002', color: '#b01c20'},
   {name: 'Ferrari 2004', color: '#b01c20'},
   {name: 'Renault 2006', color: '#f7e979'},
-  {name: 'Ferrari 2007', color: '#b01c20'}
+  {name: 'Ferrari 2007', color: '#b01c20'},
 ];

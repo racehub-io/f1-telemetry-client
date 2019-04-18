@@ -6,5 +6,5 @@ export const PACKETS = {
   participants: 'participants',
   carSetups: 'carSetups',
   carTelemetry: 'carTelemetry',
-  carStatus: 'carStatus'
+  carStatus: 'carStatus',
 };
