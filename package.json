@@ -1,6 +1,6 @@
 {
   "name": "f1-telemetry-client",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
   "files": [
@@ -20,6 +20,7 @@
     "eslint": "^5.3.0",
     "eslint-plugin-import": "^2.14.0",
     "gts": "^0.9.0",
+    "pre-commit": "^1.2.2",
     "typescript": "~3.1.0"
   },
   "scripts": {
@@ -36,8 +37,13 @@
     "fix": "gts fix",
     "prepare": "npm run compile",
     "pretest": "npm run compile",
-    "posttest": "npm run check"
+    "posttest": "npm run check",
+    "precommit-msg": "echo 'Running linter...' && exit 0"
   },
+  "pre-commit": [
+    "precommit-msg",
+    "fix"
+  ],
   "keywords": [
     "f12018",
     "formula 1",
