@@ -7,8 +7,11 @@ import * as packetCarStatusDataParsed from './mocks/PacketCarStatusDataParsed.js
 import * as packetCarTelemetryBuffer from './mocks/PacketCarTelemetryDataBuffer.json';
 import * as packetCarTelemetryParsed from './mocks/PacketCarTelemetryDataParsed.json';
 import * as packetHeaderBuffer from './mocks/PacketHeaderBuffer.json';
+import * as packetHeaderParsed from './mocks/PacketHeaderParsed.json';
 import * as packetLapDataBuffer from './mocks/PacketLapDataBuffer.json';
 import * as packetLapDataParsed from './mocks/PacketLapDataParsed.json';
+import * as packetMotionDataBuffer from './mocks/PacketMotionDataBuffer.json';
+import * as packetMotionDataParsed from './mocks/PacketMotionDataParsed.json';
 
 describe('F1TelemetryClient', () => {
   describe('constructor', () => {
@@ -59,14 +62,7 @@ describe('F1TelemetryClient', () => {
     });
 
     it('should parse buffer and return parsed packet header', () => {
-      expect(parsedPacketHeader).toEqual({
-        m_packetFormat: 2018,
-        m_packetVersion: 1,
-        m_packetId: 7,
-        m_sessionTime: 7.6248016357421875,
-        m_frameIdentifier: 157,
-        m_playerCarIndex: 0,
-      });
+      expect(parsedPacketHeader).toEqual(packetHeaderParsed);
     });
   });
 
@@ -112,6 +108,20 @@ describe('F1TelemetryClient', () => {
       it('should parse PacketLapData package', () => {
         expect(EventEmitter.prototype.emit)
             .toHaveBeenCalledWith('lapData', packetLapDataParsed);
+      });
+    });
+
+    describe('PacketMotionData', () => {
+      beforeAll(() => {
+        f1TelemetryClient = new F1TelemetryClient();
+        spyOn(EventEmitter.prototype, 'emit');
+        const buffer = new Buffer(packetMotionDataBuffer.data);
+        f1TelemetryClient.parseMessage(buffer);
+      });
+
+      it('should parse PacketMotionData package', () => {
+        expect(EventEmitter.prototype.emit)
+            .toHaveBeenCalledWith('motion', packetMotionDataParsed);
       });
     });
   });

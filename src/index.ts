@@ -51,6 +51,7 @@ class F1TelemetryClient extends EventEmitter {
       case PACKETS.session:
         return PacketSessionData;
 
+      // tested
       case PACKETS.motion:
         return PacketMotionData;
 
