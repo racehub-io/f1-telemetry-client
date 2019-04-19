@@ -54,6 +54,7 @@ class F1TelemetryClient extends EventEmitter {
       case PACKETS.motion:
         return PacketMotionData;
 
+      // tested
       case PACKETS.lapData:
         return PacketLapData;
 
@@ -66,9 +67,11 @@ class F1TelemetryClient extends EventEmitter {
       case PACKETS.carSetups:
         return PacketCarSetupData;
 
+      // tested
       case PACKETS.carTelemetry:
         return PacketCarTelemetryData;
 
+      // tested
       case PACKETS.carStatus:
         return PacketCarStatusData;
 
@@ -82,28 +85,27 @@ class F1TelemetryClient extends EventEmitter {
    * @param {Buffer} message
    */
   parseMessage(message: Buffer) {
-    console.log('--------- PRINTING BUFFER ---------');
-    console.log(JSON.stringify(message.buffer));
-    console.log('-------------- DONE --------------');
-
-    const buffer = Buffer.from(message.buffer);
-    const {m_packetId} =
-        F1TelemetryClient.parsePacketHeader(buffer);  // eslint-disable-line
+    const {m_packetId} = F1TelemetryClient.parsePacketHeader(message);
     const parser = F1TelemetryClient.getParserByPacketId(m_packetId);
 
-    console.log(m_packetId);
-
-    if (parser !== null) {
-      const packetData = new parser(buffer);
-      const packetKeys = Object.keys(constants.PACKETS);
-
-      console.log('--------- PARSER_BY_PACKET_ID ---------');
-      console.log(parser);
-      console.log('-------------- DONE --------------');
-
-      console.log('EMITS');
-      this.emit(packetKeys[m_packetId], packetData.data);
+    if (!parser) {
+      return;
     }
+
+    const packetData = new parser(message);
+    const packetKeys = Object.keys(constants.PACKETS);
+
+    /*
+    console.log('--------- PRINTING BUFFER ---------');
+    console.log(JSON.stringify(message));
+    console.log('-------------- DONE --------------');
+    console.log('--------- PARSER_BY_PACKET_ID ---------');
+    console.log(parser);
+    console.log('-------------- DONE --------------');
+    console.log(JSON.stringify(packetData.data));
+    */
+
+    this.emit(packetKeys[m_packetId], packetData.data);
   }
 
   /**

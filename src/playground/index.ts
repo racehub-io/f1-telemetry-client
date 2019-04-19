@@ -4,6 +4,7 @@ const {PACKETS} = constants;
 
 const client = new F1TelemetryClient({port: 20778});
 
+/*
 client.on(PACKETS.session, m => console.log(m));
 client.on(PACKETS.motion, m => console.log(m));
 client.on(PACKETS.lapData, m => console.log(m));
@@ -12,6 +13,7 @@ client.on(PACKETS.participants, m => console.log(m));
 client.on(PACKETS.carSetups, m => console.log(m));
 client.on(PACKETS.carTelemetry, m => console.log(m));
 client.on(PACKETS.carStatus, m => console.log(m));
+*/
 
 client.start();
 

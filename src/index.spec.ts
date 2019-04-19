@@ -2,10 +2,13 @@ import {Parser} from 'binary-parser';
 import * as EventEmitter from 'events';
 
 import {DEFAULT_PORT, F1TelemetryClient} from './index';
+import * as packetCarStatusDataBuffer from './mocks/PacketCarStatusDataBuffer.json';
+import * as packetCarStatusDataParsed from './mocks/PacketCarStatusDataParsed.json';
+import * as packetCarTelemetryBuffer from './mocks/PacketCarTelemetryDataBuffer.json';
+import * as packetCarTelemetryParsed from './mocks/PacketCarTelemetryDataParsed.json';
 import * as packetHeaderBuffer from './mocks/PacketHeaderBuffer.json';
-
-// import * as packetCarStatusDataBuffer from
-// './mocks/PacketCarStatusDataBuffer.json';
+import * as packetLapDataBuffer from './mocks/PacketLapDataBuffer.json';
+import * as packetLapDataParsed from './mocks/PacketLapDataParsed.json';
 
 describe('F1TelemetryClient', () => {
   describe('constructor', () => {
@@ -67,11 +70,24 @@ describe('F1TelemetryClient', () => {
     });
   });
 
-  /*
   describe('parseMessage', () => {
-    describe('PacketCarStatusData', () => {
-      let f1TelemetryClient: F1TelemetryClient;
+    let f1TelemetryClient: F1TelemetryClient;
 
+    describe('PacketCarTelemetryData', () => {
+      beforeAll(() => {
+        f1TelemetryClient = new F1TelemetryClient();
+        spyOn(EventEmitter.prototype, 'emit');
+        const buffer = new Buffer(packetCarTelemetryBuffer.data);
+        f1TelemetryClient.parseMessage(buffer);
+      });
+
+      it('should parse PacketCarTelemetryData package', () => {
+        expect(EventEmitter.prototype.emit)
+            .toHaveBeenCalledWith('carTelemetry', packetCarTelemetryParsed);
+      });
+    });
+
+    describe('PacketCarStatusData', () => {
       beforeAll(() => {
         f1TelemetryClient = new F1TelemetryClient();
         spyOn(EventEmitter.prototype, 'emit');
@@ -80,9 +96,23 @@ describe('F1TelemetryClient', () => {
       });
 
       it('should parse PacketCarStatusData package', () => {
-        expect(EventEmitter.prototype.emit).toHaveBeenCalled();
+        expect(EventEmitter.prototype.emit)
+            .toHaveBeenCalledWith('carStatus', packetCarStatusDataParsed);
+      });
+    });
+
+    describe('PacketLapData', () => {
+      beforeAll(() => {
+        f1TelemetryClient = new F1TelemetryClient();
+        spyOn(EventEmitter.prototype, 'emit');
+        const buffer = new Buffer(packetLapDataBuffer.data);
+        f1TelemetryClient.parseMessage(buffer);
+      });
+
+      it('should parse PacketLapData package', () => {
+        expect(EventEmitter.prototype.emit)
+            .toHaveBeenCalledWith('lapData', packetLapDataParsed);
       });
     });
   });
-  */
 });
