@@ -3,6 +3,9 @@ node_js:
   - '8'
   - '10'
 script:
-  - 'npm run build'
-  - 'npm run check'
-  - 'npm run test'
+  - npm install codecov -g
+  - npm run build
+  - npm run check
+  - npm run test
+after_success:
+  - codecov
