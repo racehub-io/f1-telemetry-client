@@ -1,6 +1,8 @@
 # F1 Telemetry Client
 
+<img src="https://img.shields.io/npm/v/f1-telemetry-client.svg">
 <a href='https://travis-ci.org/jonybur/f1-telemetry-client' ><img src='https://travis-ci.org/jonybur/f1-telemetry-client.svg?branch=master'></a>
+<img src="https://img.shields.io/github/license/jonybur/f1-telemetry-client.svg">
 <a href="https://snyk.io/test/github/jonybur/f1-telemetry-client?targetFile=package.json"><img src="https://snyk.io/test/github/jonybur/f1-telemetry-client/badge.svg?targetFile=package.json" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/github/jonybur/f1-telemetry-client?targetFile=package.json" style="max-width:100%;"></a>
 [![Code Style: Google](https://img.shields.io/badge/code%20style-google-blueviolet.svg)](https://github.com/google/gts)
 

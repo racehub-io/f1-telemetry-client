@@ -9,6 +9,8 @@ import * as constantsTypes from './constants/types';
 import {PacketCarSetupData, PacketCarStatusData, PacketCarTelemetryData, PacketEventData, PacketHeader, PacketLapData, PacketMotionData, PacketParticipantsData, PacketSessionData,} from './parsers/packets';
 import {Options} from './types';
 
+const DEFAULT_PORT = 20777;
+
 /**
  *
  */
@@ -19,7 +21,7 @@ class F1TelemetryClient extends EventEmitter {
   constructor(opts: Options = {}) {
     super();
 
-    const {port = 20777} = opts;
+    const {port = DEFAULT_PORT} = opts;
 
     this.port = port;
     this.client = dgram.createSocket('udp4');
@@ -80,17 +82,17 @@ class F1TelemetryClient extends EventEmitter {
    * @param {Buffer} message
    */
   parseMessage(message: Buffer) {
-    const buffer = Buffer.from(message.buffer);
-
-    const {m_packetId} =
-        F1TelemetryClient.parsePacketHeader(buffer);  // eslint-disable-line
+    const {m_packetId} = F1TelemetryClient.parsePacketHeader(message);
     const parser = F1TelemetryClient.getParserByPacketId(m_packetId);
 
-    if (parser !== null) {
-      const packetData = new parser(buffer);
-      const packetKeys = Object.keys(constants.PACKETS);
-      this.emit(packetKeys[m_packetId], packetData.data);
+    if (!parser) {
+      return;
     }
+
+    const packetData = new parser(message);
+    const packetKeys = Object.keys(constants.PACKETS);
+
+    this.emit(packetKeys[m_packetId], packetData.data);
   }
 
   /**
@@ -131,4 +133,4 @@ class F1TelemetryClient extends EventEmitter {
   }
 }
 
-export {F1TelemetryClient, constants, constantsTypes};
+export {F1TelemetryClient, constants, constantsTypes, DEFAULT_PORT};
