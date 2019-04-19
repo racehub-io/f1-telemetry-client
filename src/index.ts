@@ -51,11 +51,9 @@ class F1TelemetryClient extends EventEmitter {
       case PACKETS.session:
         return PacketSessionData;
 
-      // tested
       case PACKETS.motion:
         return PacketMotionData;
 
-      // tested
       case PACKETS.lapData:
         return PacketLapData;
 
@@ -68,11 +66,9 @@ class F1TelemetryClient extends EventEmitter {
       case PACKETS.carSetups:
         return PacketCarSetupData;
 
-      // tested
       case PACKETS.carTelemetry:
         return PacketCarTelemetryData;
 
-      // tested
       case PACKETS.carStatus:
         return PacketCarStatusData;
 
@@ -95,16 +91,6 @@ class F1TelemetryClient extends EventEmitter {
 
     const packetData = new parser(message);
     const packetKeys = Object.keys(constants.PACKETS);
-
-    /*
-    console.log('--------- PRINTING BUFFER ---------');
-    console.log(JSON.stringify(message));
-    console.log('-------------- DONE --------------');
-    console.log('--------- PARSER_BY_PACKET_ID ---------');
-    console.log(parser);
-    console.log('-------------- DONE --------------');
-    console.log(JSON.stringify(packetData.data));
-    */
 
     this.emit(packetKeys[m_packetId], packetData.data);
   }

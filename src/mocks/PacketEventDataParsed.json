@@ -1,0 +1,11 @@
+{
+  "m_header": {
+    "m_packetFormat": 2018,
+    "m_packetVersion": 1,
+    "m_packetId": 3,
+    "m_sessionTime": 0,
+    "m_frameIdentifier": 0,
+    "m_playerCarIndex": 19
+  },
+  "m_eventStringCode": "SSTA"
+}
