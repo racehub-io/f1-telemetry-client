@@ -2,10 +2,10 @@ import {constants, F1TelemetryClient} from '..';
 
 const {PACKETS} = constants;
 
-const client = new F1TelemetryClient({port: 20778});
+const client = new F1TelemetryClient({port: 20777});
 
-/*
 client.on(PACKETS.session, m => console.log(m));
+/*
 client.on(PACKETS.motion, m => console.log(m));
 client.on(PACKETS.lapData, m => console.log(m));
 client.on(PACKETS.event, m => console.log(m));
