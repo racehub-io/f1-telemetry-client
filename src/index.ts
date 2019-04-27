@@ -7,6 +7,7 @@ import {AddressInfo} from 'net';
 import * as constants from './constants';
 import * as constantsTypes from './constants/types';
 import {PacketCarSetupDataParser, PacketCarStatusDataParser, PacketCarTelemetryDataParser, PacketEventDataParser, PacketHeaderParser, PacketLapDataParser, PacketMotionDataParser, PacketParticipantsDataParser, PacketSessionDataParser,} from './parsers/packets';
+import * as packetTypes from './parsers/packets/types';
 import {Options} from './types';
 
 const DEFAULT_PORT = 20777;
@@ -133,4 +134,10 @@ class F1TelemetryClient extends EventEmitter {
   }
 }
 
-export {F1TelemetryClient, constants, constantsTypes, DEFAULT_PORT};
+export {
+  F1TelemetryClient,
+  constants,
+  constantsTypes,
+  packetTypes,
+  DEFAULT_PORT,
+};
