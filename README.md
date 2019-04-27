@@ -38,14 +38,14 @@ import { F1TelemetryClient, constants } from "f1-telemetry-client";
 const { PACKETS } = constants;
 
 const client = new F1TelemetryClient();
-client.on(PACKETS.session, m => console.log(m));
-client.on(PACKETS.motion, m => console.log(m));
-client.on(PACKETS.lapData, m => console.log(m));
-client.on(PACKETS.event, m => console.log(m));
-client.on(PACKETS.participants, m => console.log(m));
-client.on(PACKETS.carSetups, m => console.log(m));
-client.on(PACKETS.carTelemetry, m => console.log(m));
-client.on(PACKETS.carStatus, m => console.log(m));
+client.on(PACKETS.session, console.log);
+client.on(PACKETS.motion, console.log);
+client.on(PACKETS.lapData, console.log);
+client.on(PACKETS.event, console.log);
+client.on(PACKETS.participants, console.log);
+client.on(PACKETS.carSetups, console.log);
+client.on(PACKETS.carTelemetry, console.log);
+client.on(PACKETS.carStatus, console.log);
 
 // to start listening:
 client.start();
