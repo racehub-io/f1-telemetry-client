@@ -3,10 +3,10 @@ import {F1Parser} from '../F1Parser';
 
 import {MarshalZoneParser} from './MarshalZoneParser';
 import {PacketHeaderParser} from './PacketHeaderParser';
+import {PacketSessionData} from './types';
 
 export class PacketSessionDataParser extends F1Parser {
-  // tslint:disable-next-line:no-any
-  data: any;
+  data: PacketSessionData;
 
   constructor(buffer: Buffer) {
     super();

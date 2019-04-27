@@ -1,10 +1,10 @@
 import {F1Parser} from '../F1Parser';
 import {LapDataParser} from './LapDataParser';
 import {PacketHeaderParser} from './PacketHeaderParser';
+import {PacketLapData} from './types';
 
 export class PacketLapDataParser extends F1Parser {
-  // tslint:disable-next-line:no-any
-  data: any;
+  data: PacketLapData;
 
   constructor(buffer: Buffer) {
     super();

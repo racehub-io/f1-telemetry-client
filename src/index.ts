@@ -7,6 +7,7 @@ import {AddressInfo} from 'net';
 import * as constants from './constants';
 import * as constantsTypes from './constants/types';
 import {PacketCarSetupDataParser, PacketCarStatusDataParser, PacketCarTelemetryDataParser, PacketEventDataParser, PacketHeaderParser, PacketLapDataParser, PacketMotionDataParser, PacketParticipantsDataParser, PacketSessionDataParser,} from './parsers/packets';
+import {PacketSessionData} from './parsers/packets/types';
 import {Options} from './types';
 
 const DEFAULT_PORT = 20777;
@@ -47,7 +48,6 @@ class F1TelemetryClient extends EventEmitter {
     const packetKeys = Object.keys(PACKETS);
     const packetType = packetKeys[packetId];
 
-    // this should return { parser, interface }
     switch (packetType) {
       case PACKETS.session:
         return PacketSessionDataParser;

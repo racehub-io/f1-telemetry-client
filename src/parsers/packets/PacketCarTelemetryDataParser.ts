@@ -1,10 +1,10 @@
 import {F1Parser} from '../F1Parser';
 import {CarTelemetryDataParser} from './CarTelemetryDataParser';
 import {PacketHeaderParser} from './PacketHeaderParser';
+import {PacketCarTelemetryData} from './types';
 
 export class PacketCarTelemetryDataParser extends F1Parser {
-  // tslint:disable-next-line:no-any
-  data: any;
+  data: PacketCarTelemetryData;
 
   constructor(buffer: Buffer) {
     super();

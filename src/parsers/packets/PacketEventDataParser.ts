@@ -1,9 +1,9 @@
 import {F1Parser} from '../F1Parser';
 import {PacketHeaderParser} from './PacketHeaderParser';
+import {PacketEventData} from './types';
 
 export class PacketEventDataParser extends F1Parser {
-  // tslint:disable-next-line:no-any
-  data: any;
+  data: PacketEventData;
 
   constructor(buffer: Buffer) {
     super();

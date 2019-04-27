@@ -4,10 +4,10 @@ import {F1Parser} from '../F1Parser';
 
 import {CarMotionDataParser} from './CarMotionDataParser';
 import {PacketHeaderParser} from './PacketHeaderParser';
+import {PacketMotionData} from './types';
 
 export class PacketMotionDataParser extends F1Parser {
-  // tslint:disable-next-line:no-any
-  data: any;
+  data: PacketMotionData;
 
   constructor(buffer: Buffer) {
     super();
