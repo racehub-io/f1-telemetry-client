@@ -13,4 +13,9 @@ export interface Track {
   name: string;
 }
 
+export interface Coordinate {
+  x: number;
+  y: number;
+}
+
 export type Packet = string;

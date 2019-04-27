@@ -7,7 +7,7 @@
     "m_frameIdentifier": 382,
     "m_playerCarIndex": 0
   },
-  "m_carSetups": [
+  "m_carStatusData": [
     {
       "m_tractionControl": 1,
       "m_antiLockBrakes": 1,

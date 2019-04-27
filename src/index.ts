@@ -6,7 +6,8 @@ import {AddressInfo} from 'net';
 
 import * as constants from './constants';
 import * as constantsTypes from './constants/types';
-import {PacketCarSetupData, PacketCarStatusData, PacketCarTelemetryData, PacketEventData, PacketHeader, PacketLapData, PacketMotionData, PacketParticipantsData, PacketSessionData,} from './parsers/packets';
+import {PacketCarSetupDataParser, PacketCarStatusDataParser, PacketCarTelemetryDataParser, PacketEventDataParser, PacketHeaderParser, PacketLapDataParser, PacketMotionDataParser, PacketParticipantsDataParser, PacketSessionDataParser,} from './parsers/packets';
+import * as packetTypes from './parsers/packets/types';
 import {Options} from './types';
 
 const DEFAULT_PORT = 20777;
@@ -33,7 +34,7 @@ class F1TelemetryClient extends EventEmitter {
    */
   // tslint:disable-next-line:no-any
   static parsePacketHeader(buffer: Buffer): Parser.Parsed<any> {
-    const ph = new PacketHeader();
+    const ph = new PacketHeaderParser();
     return ph.fromBuffer(buffer);
   }
 
@@ -49,28 +50,28 @@ class F1TelemetryClient extends EventEmitter {
 
     switch (packetType) {
       case PACKETS.session:
-        return PacketSessionData;
+        return PacketSessionDataParser;
 
       case PACKETS.motion:
-        return PacketMotionData;
+        return PacketMotionDataParser;
 
       case PACKETS.lapData:
-        return PacketLapData;
+        return PacketLapDataParser;
 
       case PACKETS.event:
-        return PacketEventData;
+        return PacketEventDataParser;
 
       case PACKETS.participants:
-        return PacketParticipantsData;
+        return PacketParticipantsDataParser;
 
       case PACKETS.carSetups:
-        return PacketCarSetupData;
+        return PacketCarSetupDataParser;
 
       case PACKETS.carTelemetry:
-        return PacketCarTelemetryData;
+        return PacketCarTelemetryDataParser;
 
       case PACKETS.carStatus:
-        return PacketCarStatusData;
+        return PacketCarStatusDataParser;
 
       default:
         return null;
@@ -133,4 +134,10 @@ class F1TelemetryClient extends EventEmitter {
   }
 }
 
-export {F1TelemetryClient, constants, constantsTypes, DEFAULT_PORT};
+export {
+  F1TelemetryClient,
+  constants,
+  constantsTypes,
+  packetTypes,
+  DEFAULT_PORT,
+};
