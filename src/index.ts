@@ -6,7 +6,7 @@ import {AddressInfo} from 'net';
 
 import * as constants from './constants';
 import * as constantsTypes from './constants/types';
-import {PacketCarSetupDataParser, PacketCarStatusDataParser, PacketCarTelemetryDataParser, PacketEventDataParser, PacketHeaderParser, PacketLapDataParser, PacketMotionDataParser, PacketParticipantsDataParser, PacketSessionDataParser,} from './parsers/packets';
+import {PacketCarSetupDataParser, PacketCarStatusDataParser, PacketCarTelemetryDataParser, PacketEventDataParser, PacketFormatParser, PacketHeaderParser, PacketLapDataParser, PacketMotionDataParser, PacketParticipantsDataParser, PacketSessionDataParser,} from './parsers/packets';
 import * as packetTypes from './parsers/packets/types';
 import {Options} from './types';
 
@@ -34,8 +34,10 @@ class F1TelemetryClient extends EventEmitter {
    */
   // tslint:disable-next-line:no-any
   static parsePacketHeader(buffer: Buffer): Parser.Parsed<any> {
-    const ph = new PacketHeaderParser();
-    return ph.fromBuffer(buffer);
+    const packetFormatParser = new PacketFormatParser();
+    const {m_packetFormat} = packetFormatParser.fromBuffer(buffer);
+    const packetHeaderParser = new PacketHeaderParser(m_packetFormat);
+    return packetHeaderParser.fromBuffer(buffer);
   }
 
   /**
@@ -83,14 +85,16 @@ class F1TelemetryClient extends EventEmitter {
    * @param {Buffer} message
    */
   parseMessage(message: Buffer) {
-    const {m_packetId} = F1TelemetryClient.parsePacketHeader(message);
+    const {m_packetFormat, m_packetId} =
+        F1TelemetryClient.parsePacketHeader(message);
+
     const parser = F1TelemetryClient.getParserByPacketId(m_packetId);
 
     if (!parser) {
       return;
     }
 
-    const packetData = new parser(message);
+    const packetData = new parser(message, m_packetFormat);
     const packetKeys = Object.keys(constants.PACKETS);
 
     this.emit(packetKeys[m_packetId], packetData.data);

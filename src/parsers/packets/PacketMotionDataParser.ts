@@ -9,10 +9,10 @@ import {PacketMotionData} from './types';
 export class PacketMotionDataParser extends F1Parser {
   data: PacketMotionData;
 
-  constructor(buffer: Buffer) {
+  constructor(buffer: Buffer, packetFormat: number) {
     super();
     this.endianess('little')
-        .nest('m_header', {type: new PacketHeaderParser()})
+        .nest('m_header', {type: new PacketHeaderParser(packetFormat)})
         .array('m_carMotionData', {length: 20, type: new CarMotionDataParser()})
         .array('m_suspensionPosition', {
           length: 4,

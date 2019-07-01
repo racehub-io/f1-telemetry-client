@@ -7,11 +7,11 @@ import {PacketParticipantsData} from './types';
 export class PacketParticipantsDataParser extends F1Parser {
   data: PacketParticipantsData;
 
-  constructor(buffer: Buffer) {
+  constructor(buffer: Buffer, packetFormat: number) {
     super();
 
     this.endianess('little')
-        .nest('m_header', {type: new PacketHeaderParser()})
+        .nest('m_header', {type: new PacketHeaderParser(packetFormat)})
         .uint8('m_numCars')
         .array(
             'm_participants', {length: 20, type: new ParticipantDataParser()});

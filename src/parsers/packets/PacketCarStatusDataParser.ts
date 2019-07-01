@@ -6,10 +6,10 @@ import {PacketCarStatusData} from './types';
 export class PacketCarStatusDataParser extends F1Parser {
   data: PacketCarStatusData;
 
-  constructor(buffer: Buffer) {
+  constructor(buffer: Buffer, packetFormat: number) {
     super();
     this.endianess('little')
-        .nest('m_header', {type: new PacketHeaderParser()})
+        .nest('m_header', {type: new PacketHeaderParser(packetFormat)})
         .array(
             'm_carStatusData', {length: 20, type: new CarStatusDataParser()});
 
