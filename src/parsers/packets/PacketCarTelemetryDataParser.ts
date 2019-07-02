@@ -9,7 +9,7 @@ export class PacketCarTelemetryDataParser extends F1Parser {
   constructor(buffer: Buffer, packetFormat: number) {
     super();
     this.endianess('little')
-        .nest('m_header', {type: new PacketHeaderParser(packetFormat)})
+        .nest('m_header', {type: new PacketHeaderParser()})
         .array('m_carTelemetryData', {
           length: 20,
           type: new CarTelemetryDataParser(),

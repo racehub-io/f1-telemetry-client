@@ -1,4 +1,3 @@
-import {WEATHER} from '../../constants/weather';
 import {F1Parser} from '../F1Parser';
 
 import {MarshalZoneParser} from './MarshalZoneParser';
@@ -22,7 +21,7 @@ export class PacketSessionDataParser extends F1Parser {
 
   unpack2018Format = () => {
     this.endianess('little')
-        .nest('m_header', {type: new PacketHeaderParser(2018)})
+        .nest('m_header', {type: new PacketHeaderParser()})
         .uint8('m_weather')
         .int8('m_trackTemperature')
         .int8('m_airTemperature')
@@ -46,7 +45,7 @@ export class PacketSessionDataParser extends F1Parser {
 
   unpack2019Format = () => {
     this.endianess('little')
-        .nest('m_header', {type: new PacketHeaderParser(2019)})
+        .nest('m_header', {type: new PacketHeaderParser()})
         .uint8('m_weather')
         .int8('m_trackTemperature')
         .int8('m_airTemperature')

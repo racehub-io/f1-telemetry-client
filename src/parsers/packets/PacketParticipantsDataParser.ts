@@ -11,7 +11,7 @@ export class PacketParticipantsDataParser extends F1Parser {
     super();
 
     this.endianess('little')
-        .nest('m_header', {type: new PacketHeaderParser(packetFormat)})
+        .nest('m_header', {type: new PacketHeaderParser()})
         .uint8('m_numCars')
         .array(
             'm_participants', {length: 20, type: new ParticipantDataParser()});

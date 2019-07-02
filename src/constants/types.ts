@@ -13,6 +13,8 @@ export interface Track {
   name: string;
 }
 
+export type EventCode = string;
+
 export interface Coordinate {
   x: number;
   y: number;

@@ -34,9 +34,7 @@ class F1TelemetryClient extends EventEmitter {
    */
   // tslint:disable-next-line:no-any
   static parsePacketHeader(buffer: Buffer): Parser.Parsed<any> {
-    const packetFormatParser = new PacketFormatParser();
-    const {m_packetFormat} = packetFormatParser.fromBuffer(buffer);
-    const packetHeaderParser = new PacketHeaderParser(m_packetFormat);
+    const packetHeaderParser = new PacketHeaderParser();
     return packetHeaderParser.fromBuffer(buffer);
   }
 
