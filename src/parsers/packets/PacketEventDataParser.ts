@@ -12,12 +12,14 @@ export class PacketEventDataParser extends F1Parser {
   constructor(buffer: Buffer, packetFormat: number) {
     super();
 
-    this.endianess('little').nest('m_header', {type: new PacketHeaderParser()});
+    this.endianess('little').nest('m_header', {
+      type: new PacketHeaderParser(packetFormat),
+    });
 
     if (packetFormat === 2018) {
       this.unpack2018Format();
     } else if (packetFormat === 2019) {
-      this.unpack2019Format(buffer);
+      this.unpack2019Format(buffer, packetFormat);
     }
 
     this.data = this.fromBuffer(buffer);
@@ -27,8 +29,8 @@ export class PacketEventDataParser extends F1Parser {
     this.string('m_eventStringCode', {length: 4});
   };
 
-  unpack2019Format = (buffer: Buffer) => {
-    const eventStringCode = this.getEventStringCode(buffer);
+  unpack2019Format = (buffer: Buffer, packetFormat: number) => {
+    const eventStringCode = this.getEventStringCode(buffer, packetFormat);
 
     this.string('m_eventStringCode', {length: 4});
 
@@ -42,11 +44,12 @@ export class PacketEventDataParser extends F1Parser {
     }
   };
 
-  getEventStringCode = (buffer: Buffer) => {
-    const headerParser = new Parser()
-                             .endianess('little')
-                             .nest('m_header', {type: new PacketHeaderParser()})
-                             .string('m_eventStringCode', {length: 4});
+  getEventStringCode = (buffer: Buffer, packetFormat: number) => {
+    const headerParser =
+        new Parser()
+            .endianess('little')
+            .nest('m_header', {type: new PacketHeaderParser(packetFormat)})
+            .string('m_eventStringCode', {length: 4});
     const {m_eventStringCode} = headerParser.parse(buffer);
     return m_eventStringCode;
   };

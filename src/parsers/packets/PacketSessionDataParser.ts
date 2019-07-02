@@ -11,7 +11,7 @@ export class PacketSessionDataParser extends F1Parser {
     super();
 
     this.endianess('little')
-        .nest('m_header', {type: new PacketHeaderParser()})
+        .nest('m_header', {type: new PacketHeaderParser(packetFormat)})
         .uint8('m_weather')
         .int8('m_trackTemperature')
         .int8('m_airTemperature')

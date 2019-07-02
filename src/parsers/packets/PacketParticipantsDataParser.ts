@@ -10,7 +10,9 @@ export class PacketParticipantsDataParser extends F1Parser {
   constructor(buffer: Buffer, packetFormat: number) {
     super();
 
-    this.endianess('little').nest('m_header', {type: new PacketHeaderParser()});
+    this.endianess('little').nest('m_header', {
+      type: new PacketHeaderParser(packetFormat),
+    });
 
     if (packetFormat === 2018) {
       this.uint8('m_numCars');
