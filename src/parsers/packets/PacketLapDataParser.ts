@@ -6,7 +6,7 @@ import {PacketLapData} from './types';
 export class PacketLapDataParser extends F1Parser {
   data: PacketLapData;
 
-  constructor(buffer: Buffer, packetFormat: number) {
+  constructor(buffer: Buffer, packetFormat?: number) {
     super();
     this.endianess('little')
         .nest('m_header', {type: new PacketHeaderParser()})
