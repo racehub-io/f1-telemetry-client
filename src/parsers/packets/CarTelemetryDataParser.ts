@@ -3,7 +3,7 @@ import {Parser} from 'binary-parser';
 import {F1Parser} from '../F1Parser';
 
 export class CarTelemetryDataParser extends F1Parser {
-  constructor() {
+  constructor(packetFormat: number) {
     super();
     this.uint16le('m_speed')
         .uint8('m_throttle')
@@ -31,5 +31,12 @@ export class CarTelemetryDataParser extends F1Parser {
           length: 4,
           type: new Parser().floatle('m_tyresPressure'),
         });
+
+    if (packetFormat === 2019) {
+      this.array('m_surfaceType', {
+        length: 4,
+        type: new Parser().uint8('m_surfaceType'),
+      });
+    }
   }
 }

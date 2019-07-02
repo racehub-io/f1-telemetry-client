@@ -12,7 +12,7 @@ export class PacketCarTelemetryDataParser extends F1Parser {
         .nest('m_header', {type: new PacketHeaderParser()})
         .array('m_carTelemetryData', {
           length: 20,
-          type: new CarTelemetryDataParser(),
+          type: new CarTelemetryDataParser(packetFormat),
         })
         .uint32le('m_buttonStatus');
 

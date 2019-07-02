@@ -10,8 +10,10 @@ export class PacketCarStatusDataParser extends F1Parser {
     super();
     this.endianess('little')
         .nest('m_header', {type: new PacketHeaderParser()})
-        .array(
-            'm_carStatusData', {length: 20, type: new CarStatusDataParser()});
+        .array('m_carStatusData', {
+          length: 20,
+          type: new CarStatusDataParser(packetFormat),
+        });
 
     this.data = this.fromBuffer(buffer);
   }
