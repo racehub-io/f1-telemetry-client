@@ -1,0 +1,195 @@
+{
+  "m_header": {
+    "m_frameIdentifier": 232,
+    "m_gameMajorVersion": 1,
+    "m_gameMinorVersion": 3,
+    "m_packetFormat": 2019,
+    "m_packetId": 4,
+    "m_packetVersion": 1,
+    "m_playerCarIndex": 19,
+    "m_sessionTime": 11.229784965515137
+  },
+  "m_numActiveCars": 20,
+  "m_participants": [
+    {
+      "m_aiControlled": 1,
+      "m_driverId": 62,
+      "m_name": "A. ALBON",
+      "m_nationality": 81,
+      "m_raceNumber": 23,
+      "m_teamId": 6,
+      "m_yourTelemetry": 0
+    },
+    {
+      "m_aiControlled": 1,
+      "m_driverId": 10,
+      "m_name": "N. HÜLKENBERG",
+      "m_nationality": 29,
+      "m_raceNumber": 27,
+      "m_teamId": 5,
+      "m_yourTelemetry": 0
+    },
+    {
+      "m_aiControlled": 1,
+      "m_driverId": 7,
+      "m_name": "L. HAMILTON",
+      "m_nationality": 10,
+      "m_raceNumber": 44,
+      "m_teamId": 0,
+      "m_yourTelemetry": 0
+    },
+    {
+      "m_aiControlled": 1,
+      "m_driverId": 59,
+      "m_name": "P. GASLY",
+      "m_nationality": 28,
+      "m_raceNumber": 10,
+      "m_teamId": 2,
+      "m_yourTelemetry": 0
+    },
+    {
+      "m_aiControlled": 1,
+      "m_driverId": 9,
+      "m_name": "M. VERSTAPPEN",
+      "m_nationality": 22,
+      "m_raceNumber": 33,
+      "m_teamId": 2,
+      "m_yourTelemetry": 0
+    },
+    {
+      "m_aiControlled": 1,
+      "m_driverId": 6,
+      "m_name": "K. RÄIKKÖNEN",
+      "m_nationality": 27,
+      "m_raceNumber": 7,
+      "m_teamId": 9,
+      "m_yourTelemetry": 0
+    },
+    {
+      "m_aiControlled": 1,
+      "m_driverId": 12,
+      "m_name": "R. GROSJEAN",
+      "m_nationality": 28,
+      "m_raceNumber": 8,
+      "m_teamId": 7,
+      "m_yourTelemetry": 0
+    },
+    {
+      "m_aiControlled": 1,
+      "m_driverId": 19,
+      "m_name": "L. STROLL",
+      "m_nationality": 13,
+      "m_raceNumber": 18,
+      "m_teamId": 4,
+      "m_yourTelemetry": 0
+    },
+    {
+      "m_aiControlled": 1,
+      "m_driverId": 15,
+      "m_name": "V. BOTTAS",
+      "m_nationality": 27,
+      "m_raceNumber": 77,
+      "m_teamId": 0,
+      "m_yourTelemetry": 0
+    },
+    {
+      "m_aiControlled": 1,
+      "m_driverId": 0,
+      "m_name": "C. SAINZ",
+      "m_nationality": 78,
+      "m_raceNumber": 55,
+      "m_teamId": 8,
+      "m_yourTelemetry": 0
+    },
+    {
+      "m_aiControlled": 1,
+      "m_driverId": 58,
+      "m_name": "C. LECLERC",
+      "m_nationality": 53,
+      "m_raceNumber": 16,
+      "m_teamId": 1,
+      "m_yourTelemetry": 0
+    },
+    {
+      "m_aiControlled": 1,
+      "m_driverId": 13,
+      "m_name": "S. VETTEL",
+      "m_nationality": 29,
+      "m_raceNumber": 5,
+      "m_teamId": 1,
+      "m_yourTelemetry": 0
+    },
+    {
+      "m_aiControlled": 1,
+      "m_driverId": 1,
+      "m_name": "D. KVYAT",
+      "m_nationality": 68,
+      "m_raceNumber": 26,
+      "m_teamId": 6,
+      "m_yourTelemetry": 0
+    },
+    {
+      "m_aiControlled": 1,
+      "m_driverId": 75,
+      "m_name": "R. KUBICA",
+      "m_nationality": 64,
+      "m_raceNumber": 88,
+      "m_teamId": 3,
+      "m_yourTelemetry": 0
+    },
+    {
+      "m_aiControlled": 1,
+      "m_driverId": 2,
+      "m_name": "D. RICCIARDO",
+      "m_nationality": 3,
+      "m_raceNumber": 3,
+      "m_teamId": 5,
+      "m_yourTelemetry": 0
+    },
+    {
+      "m_aiControlled": 1,
+      "m_driverId": 50,
+      "m_name": "G. RUSSELL",
+      "m_nationality": 10,
+      "m_raceNumber": 63,
+      "m_teamId": 3,
+      "m_yourTelemetry": 0
+    },
+    {
+      "m_aiControlled": 1,
+      "m_driverId": 74,
+      "m_name": "A. GIOVINAZZI",
+      "m_nationality": 41,
+      "m_raceNumber": 99,
+      "m_teamId": 9,
+      "m_yourTelemetry": 0
+    },
+    {
+      "m_aiControlled": 1,
+      "m_driverId": 14,
+      "m_name": "S. PEREZ",
+      "m_nationality": 52,
+      "m_raceNumber": 11,
+      "m_teamId": 4,
+      "m_yourTelemetry": 0
+    },
+    {
+      "m_aiControlled": 1,
+      "m_driverId": 54,
+      "m_name": "L. NORRIS",
+      "m_nationality": 10,
+      "m_raceNumber": 4,
+      "m_teamId": 8,
+      "m_yourTelemetry": 0
+    },
+    {
+      "m_aiControlled": 0,
+      "m_driverId": 11,
+      "m_name": "K. MAGNUSSEN",
+      "m_nationality": 21,
+      "m_raceNumber": 20,
+      "m_teamId": 7,
+      "m_yourTelemetry": 0
+    }
+  ]
+}
