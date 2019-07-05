@@ -18,7 +18,5 @@ export class PacketCarTelemetryDataParser extends F1Parser {
         .uint32le('m_buttonStatus');
 
     this.data = this.fromBuffer(buffer);
-
-    console.log(JSON.stringify(this.data));
   }
 }
