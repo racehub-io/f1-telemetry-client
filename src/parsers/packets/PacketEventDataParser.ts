@@ -16,23 +16,19 @@ export class PacketEventDataParser extends F1Parser {
       type: new PacketHeaderParser(packetFormat),
     });
 
-    if (packetFormat === 2018) {
-      this.unpack2018Format();
-    } else if (packetFormat === 2019) {
+    this.string('m_eventStringCode', {length: 4});
+
+    if (packetFormat === 2019) {
       this.unpack2019Format(buffer, packetFormat);
     }
 
     this.data = this.fromBuffer(buffer);
-  }
 
-  unpack2018Format = () => {
-    this.string('m_eventStringCode', {length: 4});
-  };
+    console.log(JSON.stringify(this.data));
+  }
 
   unpack2019Format = (buffer: Buffer, packetFormat: number) => {
     const eventStringCode = this.getEventStringCode(buffer, packetFormat);
-
-    this.string('m_eventStringCode', {length: 4});
 
     if (eventStringCode === EVENT_CODES.FastestLap) {
       this.uint8('vehicleIdx').float('lapTime');

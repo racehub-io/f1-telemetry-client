@@ -8,6 +8,7 @@ export class PacketLapDataParser extends F1Parser {
 
   constructor(buffer: Buffer, packetFormat: number) {
     super();
+
     this.endianess('little')
         .nest('m_header', {type: new PacketHeaderParser(packetFormat)})
         .array('m_lapData', {length: 20, type: new LapDataParser()});
