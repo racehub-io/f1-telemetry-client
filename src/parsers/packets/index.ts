@@ -2,6 +2,7 @@ import {PacketCarSetupDataParser} from './PacketCarSetupDataParser';
 import {PacketCarStatusDataParser} from './PacketCarStatusDataParser';
 import {PacketCarTelemetryDataParser} from './PacketCarTelemetryDataParser';
 import {PacketEventDataParser} from './PacketEventDataParser';
+import {PacketFormatParser} from './PacketFormatParser';
 import {PacketHeaderParser} from './PacketHeaderParser';
 import {PacketLapDataParser} from './PacketLapDataParser';
 import {PacketMotionDataParser} from './PacketMotionDataParser';
@@ -13,6 +14,7 @@ export {
   PacketCarStatusDataParser,
   PacketCarTelemetryDataParser,
   PacketEventDataParser,
+  PacketFormatParser,
   PacketHeaderParser,
   PacketLapDataParser,
   PacketMotionDataParser,

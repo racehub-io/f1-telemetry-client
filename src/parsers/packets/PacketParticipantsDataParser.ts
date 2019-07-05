@@ -7,14 +7,23 @@ import {PacketParticipantsData} from './types';
 export class PacketParticipantsDataParser extends F1Parser {
   data: PacketParticipantsData;
 
-  constructor(buffer: Buffer) {
+  constructor(buffer: Buffer, packetFormat: number) {
     super();
 
-    this.endianess('little')
-        .nest('m_header', {type: new PacketHeaderParser()})
-        .uint8('m_numCars')
-        .array(
-            'm_participants', {length: 20, type: new ParticipantDataParser()});
+    this.endianess('little').nest('m_header', {
+      type: new PacketHeaderParser(packetFormat),
+    });
+
+    if (packetFormat === 2018) {
+      this.uint8('m_numCars');
+    } else if (packetFormat === 2019) {
+      this.uint8('m_numActiveCars');
+    }
+
+    this.array('m_participants', {
+      length: 20,
+      type: new ParticipantDataParser(packetFormat),
+    });
 
     this.data = this.fromBuffer(buffer);
   }

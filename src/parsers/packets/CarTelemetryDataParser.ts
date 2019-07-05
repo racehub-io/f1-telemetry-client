@@ -3,13 +3,17 @@ import {Parser} from 'binary-parser';
 import {F1Parser} from '../F1Parser';
 
 export class CarTelemetryDataParser extends F1Parser {
-  constructor() {
+  constructor(packetFormat: number) {
     super();
-    this.uint16le('m_speed')
-        .uint8('m_throttle')
-        .int8('m_steer')
-        .uint8('m_brake')
-        .uint8('m_clutch')
+    this.uint16le('m_speed');
+
+    if (packetFormat === 2018) {
+      this.uint8('m_throttle').int8('m_steer').uint8('m_brake');
+    } else if (packetFormat === 2019) {
+      this.floatle('m_throttle').floatle('m_steer').floatle('m_brake');
+    }
+
+    this.uint8('m_clutch')
         .int8('m_gear')
         .uint16le('m_engineRPM')
         .uint8('m_drs')
@@ -31,5 +35,12 @@ export class CarTelemetryDataParser extends F1Parser {
           length: 4,
           type: new Parser().floatle('m_tyresPressure'),
         });
+
+    if (packetFormat === 2019) {
+      this.array('m_surfaceType', {
+        length: 4,
+        type: new Parser().uint8('m_surfaceType'),
+      });
+    }
   }
 }

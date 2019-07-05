@@ -1,4 +1,3 @@
-import {WEATHER} from '../../constants/weather';
 import {F1Parser} from '../F1Parser';
 
 import {MarshalZoneParser} from './MarshalZoneParser';
@@ -8,20 +7,26 @@ import {PacketSessionData} from './types';
 export class PacketSessionDataParser extends F1Parser {
   data: PacketSessionData;
 
-  constructor(buffer: Buffer) {
+  constructor(buffer: Buffer, packetFormat: number) {
     super();
 
     this.endianess('little')
-        .nest('m_header', {type: new PacketHeaderParser()})
+        .nest('m_header', {type: new PacketHeaderParser(packetFormat)})
         .uint8('m_weather')
         .int8('m_trackTemperature')
         .int8('m_airTemperature')
         .uint8('m_totalLaps')
-        .uint16('m_trackLength')  // meters
+        .uint16('m_trackLength')
         .uint8('m_sessionType')
-        .int8('m_trackId')
-        .uint8('m_era')
-        .uint16('m_sessionTimeLeft')
+        .int8('m_trackId');
+
+    if (packetFormat === 2018) {
+      this.uint8('m_era');
+    } else if (packetFormat === 2019) {
+      this.uint8('m_formula');
+    }
+
+    this.uint16('m_sessionTimeLeft')
         .uint16('m_sessionDuration')
         .uint8('m_pitSpeedLimit')
         .uint8('m_gamePaused')
@@ -34,9 +39,5 @@ export class PacketSessionDataParser extends F1Parser {
         .uint8('m_networkGame');
 
     this.data = this.fromBuffer(buffer);
-  }
-
-  getWeather() {
-    return WEATHER[this.data.m_weather];
   }
 }
