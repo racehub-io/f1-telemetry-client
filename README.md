@@ -56,8 +56,8 @@ client.stop();
 
 ## Documentation
 
-For the F1 2019 UDP specifications, please refer to [this post](https://forums.codemasters.com/topic/38920-f1-2019-udp-specification/) from the official Codemaster's forum.
-For F1 2018, you can find the documentation [here](https://forums.codemasters.com/discussion/136948/f1-2018-udp-specification).
+For the F1 2019 UDP specifications, please refer to [this post](https://forums.codemasters.com/topic/38920-f1-2019-udp-specification/) from the official Codemaster's forum.  
+For F1 2018, you can find the documentation [here](https://forums.codemasters.com/discussion/136948/f1-2018-udp-specification).  
 You will find the same information in this repository's Wiki.
 
 ## License
