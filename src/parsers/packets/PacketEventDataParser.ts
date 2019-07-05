@@ -23,8 +23,6 @@ export class PacketEventDataParser extends F1Parser {
     }
 
     this.data = this.fromBuffer(buffer);
-
-    console.log(JSON.stringify(this.data));
   }
 
   unpack2019Format = (buffer: Buffer, packetFormat: number) => {
