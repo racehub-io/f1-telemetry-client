@@ -188,7 +188,6 @@ describe('F1TelemetryClient', () => {
       });
 
       it('should parse buffer and return parsed packet header', () => {
-        console.log(packetHeaderParsed2019);
         expect(parsedPacketHeader).toEqual(packetHeaderParsed2019);
       });
     });
