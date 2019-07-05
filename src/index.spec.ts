@@ -43,7 +43,7 @@ describe('F1TelemetryClient', () => {
     });
   });
 
-  xdescribe('2018 format', () => {
+  describe('2018 format', () => {
     describe('parsePacketHeader', () => {
       // tslint:disable-next-line:no-any
       let parsedPacketHeader: Parser.Parsed<any>;
