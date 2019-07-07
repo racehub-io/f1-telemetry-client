@@ -10,7 +10,7 @@ export const DRIVERS: {[index: number]: Driver} = {
   9: {abbreviation: 'VER', firstName: 'Max', lastName: 'Verstappen'},
   10: {abbreviation: 'HUL', firstName: 'Nico', lastName: 'Hulkenberg'},
   11: {abbreviation: 'MAG', firstName: 'Kevin', lastName: 'Magnussen'},
-  12: {abbreviation: 'GRO', firstName: 'Roman', lastName: 'Grosjean'},
+  12: {abbreviation: 'GRO', firstName: 'Romain', lastName: 'Grosjean'},
   13: {abbreviation: 'VET', firstName: 'Sebastian', lastName: 'Vettel'},
   14: {abbreviation: 'PER', firstName: 'Sergio', lastName: 'Perez'},
   15: {abbreviation: 'BOT', firstName: 'Valtteri', lastName: 'Bottas'},
