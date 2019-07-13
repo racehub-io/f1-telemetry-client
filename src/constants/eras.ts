@@ -1,2 +1,1 @@
-export const MODERN = 0;
-export const CLASSIC = 1;
+export const ERAS: string[] = ['Modern', 'Classic'];

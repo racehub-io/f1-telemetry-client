@@ -1,3 +1,5 @@
-export const NO_SAFETY_CAR = 0;
-export const FULL_SAFETY_CAR = 1;
-export const VIRTUAL_SAFETY_CAR = 2;
+export const SAFETY_CAR_STATUSES: string[] = [
+  'No Safety Car',
+  'Full Safety Car',
+  'Virtual Safety Car',
+];

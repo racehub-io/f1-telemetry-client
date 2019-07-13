@@ -1,8 +1,8 @@
-export const WEATHER = [
-  'CLEAR',
-  'LIGHT_CLOUD',
-  'OVERCAST',
-  'LIGHT_RAIN',
-  'HEAVY_RAIN',
-  'STORM',
+export const WEATHER: string[] = [
+  'Clear',
+  'Light Cloud',
+  'Overcast',
+  'Light Rain',
+  'Heavy Rain',
+  'Storm',
 ];
