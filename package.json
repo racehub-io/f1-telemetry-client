@@ -1,6 +1,6 @@
 {
   "name": "f1-telemetry-client",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
   "files": [
@@ -55,12 +55,18 @@
     ]
   },
   "keywords": [
+    "automotive",
+    "grand prix",
     "f12018",
+    "f1 2018",
+    "f12019",
+    "f1 2019",
     "formula 1",
     "f1",
     "codemasters",
     "udp",
     "telemetry",
+    "racing",
     "simracing",
     "gaming",
     "formula",
@@ -71,6 +77,7 @@
     "playstation 4",
     "esports",
     "e sports",
-    "e-sports"
+    "e-sports",
+    "videogame"
   ]
 }

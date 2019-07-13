@@ -1,13 +1,15 @@
-export const UNKNOWN = 0;
-export const P1 = 1;
-export const P2 = 2;
-export const P3 = 3;
-export const P_SHORT = 4;
-export const Q1 = 5;
-export const Q2 = 6;
-export const Q3 = 7;
-export const Q_SHORT = 8;
-export const OSQ = 9;
-export const R = 10;
-export const R2 = 11;
-export const TIME_TRAIL = 12;
+export const SESSION_TYPES: string[] = [
+  'Unknown',
+  'P1',
+  'P2',
+  'P3',
+  'Short P',
+  'Q1',
+  'Q2',
+  'Q3',
+  'Short Q',
+  'OSQ',
+  'R',
+  'R2',
+  'Time Trial',
+];
