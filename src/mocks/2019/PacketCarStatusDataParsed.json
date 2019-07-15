@@ -23,20 +23,10 @@
       "m_idleRPM": 3499,
       "m_maxGears": 9,
       "m_drsAllowed": 0,
-      "m_tyresWear": [
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0}
-      ],
+      "m_tyresWear": [0, 0, 0, 0],
       "m_actualTyreCompound": 16,
       "m_tyreVisualCompound": 16,
-      "m_tyresDamage": [
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0}
-      ],
+      "m_tyresDamage": [0, 0, 0, 0],
       "m_frontLeftWingDamage": 0,
       "m_frontRightWingDamage": 0,
       "m_rearWingDamage": 0,
@@ -62,20 +52,10 @@
       "m_idleRPM": 3799,
       "m_maxGears": 9,
       "m_drsAllowed": 0,
-      "m_tyresWear": [
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0}
-      ],
+      "m_tyresWear": [0, 0, 0, 0],
       "m_actualTyreCompound": 16,
       "m_tyreVisualCompound": 16,
-      "m_tyresDamage": [
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0}
-      ],
+      "m_tyresDamage": [0, 0, 0, 0],
       "m_frontLeftWingDamage": 0,
       "m_frontRightWingDamage": 0,
       "m_rearWingDamage": 0,
@@ -101,20 +81,10 @@
       "m_idleRPM": 4300,
       "m_maxGears": 9,
       "m_drsAllowed": 0,
-      "m_tyresWear": [
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0}
-      ],
+      "m_tyresWear": [0, 0, 0, 0],
       "m_actualTyreCompound": 16,
       "m_tyreVisualCompound": 16,
-      "m_tyresDamage": [
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0}
-      ],
+      "m_tyresDamage": [0, 0, 0, 0],
       "m_frontLeftWingDamage": 0,
       "m_frontRightWingDamage": 0,
       "m_rearWingDamage": 0,
@@ -140,20 +110,10 @@
       "m_idleRPM": 3799,
       "m_maxGears": 9,
       "m_drsAllowed": 0,
-      "m_tyresWear": [
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0}
-      ],
+      "m_tyresWear": [0, 0, 0, 0],
       "m_actualTyreCompound": 16,
       "m_tyreVisualCompound": 16,
-      "m_tyresDamage": [
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0}
-      ],
+      "m_tyresDamage": [0, 0, 0, 0],
       "m_frontLeftWingDamage": 0,
       "m_frontRightWingDamage": 0,
       "m_rearWingDamage": 0,
@@ -179,20 +139,10 @@
       "m_idleRPM": 3799,
       "m_maxGears": 9,
       "m_drsAllowed": 0,
-      "m_tyresWear": [
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0}
-      ],
+      "m_tyresWear": [0, 0, 0, 0],
       "m_actualTyreCompound": 16,
       "m_tyreVisualCompound": 16,
-      "m_tyresDamage": [
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0}
-      ],
+      "m_tyresDamage": [0, 0, 0, 0],
       "m_frontLeftWingDamage": 0,
       "m_frontRightWingDamage": 0,
       "m_rearWingDamage": 0,
@@ -218,20 +168,10 @@
       "m_idleRPM": 4300,
       "m_maxGears": 9,
       "m_drsAllowed": 0,
-      "m_tyresWear": [
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0}
-      ],
+      "m_tyresWear": [0, 0, 0, 0],
       "m_actualTyreCompound": 16,
       "m_tyreVisualCompound": 16,
-      "m_tyresDamage": [
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0}
-      ],
+      "m_tyresDamage": [0, 0, 0, 0],
       "m_frontLeftWingDamage": 0,
       "m_frontRightWingDamage": 0,
       "m_rearWingDamage": 0,
@@ -257,20 +197,10 @@
       "m_idleRPM": 4300,
       "m_maxGears": 9,
       "m_drsAllowed": 0,
-      "m_tyresWear": [
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0}
-      ],
+      "m_tyresWear": [0, 0, 0, 0],
       "m_actualTyreCompound": 16,
       "m_tyreVisualCompound": 16,
-      "m_tyresDamage": [
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0}
-      ],
+      "m_tyresDamage": [0, 0, 0, 0],
       "m_frontLeftWingDamage": 0,
       "m_frontRightWingDamage": 0,
       "m_rearWingDamage": 0,
@@ -296,20 +226,10 @@
       "m_idleRPM": 4300,
       "m_maxGears": 9,
       "m_drsAllowed": 0,
-      "m_tyresWear": [
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0}
-      ],
+      "m_tyresWear": [0, 0, 0, 0],
       "m_actualTyreCompound": 16,
       "m_tyreVisualCompound": 16,
-      "m_tyresDamage": [
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0}
-      ],
+      "m_tyresDamage": [0, 0, 0, 0],
       "m_frontLeftWingDamage": 0,
       "m_frontRightWingDamage": 0,
       "m_rearWingDamage": 0,
@@ -335,20 +255,10 @@
       "m_idleRPM": 4300,
       "m_maxGears": 9,
       "m_drsAllowed": 0,
-      "m_tyresWear": [
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0}
-      ],
+      "m_tyresWear": [0, 0, 0, 0],
       "m_actualTyreCompound": 16,
       "m_tyreVisualCompound": 16,
-      "m_tyresDamage": [
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0}
-      ],
+      "m_tyresDamage": [0, 0, 0, 0],
       "m_frontLeftWingDamage": 0,
       "m_frontRightWingDamage": 0,
       "m_rearWingDamage": 0,
@@ -374,20 +284,10 @@
       "m_idleRPM": 3499,
       "m_maxGears": 9,
       "m_drsAllowed": 0,
-      "m_tyresWear": [
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0}
-      ],
+      "m_tyresWear": [0, 0, 0, 0],
       "m_actualTyreCompound": 16,
       "m_tyreVisualCompound": 16,
-      "m_tyresDamage": [
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0}
-      ],
+      "m_tyresDamage": [0, 0, 0, 0],
       "m_frontLeftWingDamage": 0,
       "m_frontRightWingDamage": 0,
       "m_rearWingDamage": 0,
@@ -413,20 +313,10 @@
       "m_idleRPM": 4300,
       "m_maxGears": 9,
       "m_drsAllowed": 0,
-      "m_tyresWear": [
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0}
-      ],
+      "m_tyresWear": [0, 0, 0, 0],
       "m_actualTyreCompound": 16,
       "m_tyreVisualCompound": 16,
-      "m_tyresDamage": [
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0}
-      ],
+      "m_tyresDamage": [0, 0, 0, 0],
       "m_frontLeftWingDamage": 0,
       "m_frontRightWingDamage": 0,
       "m_rearWingDamage": 0,
@@ -452,20 +342,10 @@
       "m_idleRPM": 4300,
       "m_maxGears": 9,
       "m_drsAllowed": 0,
-      "m_tyresWear": [
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0}
-      ],
+      "m_tyresWear": [0, 0, 0, 0],
       "m_actualTyreCompound": 16,
       "m_tyreVisualCompound": 16,
-      "m_tyresDamage": [
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0}
-      ],
+      "m_tyresDamage": [0, 0, 0, 0],
       "m_frontLeftWingDamage": 0,
       "m_frontRightWingDamage": 0,
       "m_rearWingDamage": 0,
@@ -491,20 +371,10 @@
       "m_idleRPM": 3499,
       "m_maxGears": 9,
       "m_drsAllowed": 0,
-      "m_tyresWear": [
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0}
-      ],
+      "m_tyresWear": [0, 0, 0, 0],
       "m_actualTyreCompound": 16,
       "m_tyreVisualCompound": 16,
-      "m_tyresDamage": [
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0}
-      ],
+      "m_tyresDamage": [0, 0, 0, 0],
       "m_frontLeftWingDamage": 0,
       "m_frontRightWingDamage": 0,
       "m_rearWingDamage": 0,
@@ -530,20 +400,10 @@
       "m_idleRPM": 4300,
       "m_maxGears": 9,
       "m_drsAllowed": 0,
-      "m_tyresWear": [
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0}
-      ],
+      "m_tyresWear": [0, 0, 0, 0],
       "m_actualTyreCompound": 16,
       "m_tyreVisualCompound": 16,
-      "m_tyresDamage": [
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0}
-      ],
+      "m_tyresDamage": [0, 0, 0, 0],
       "m_frontLeftWingDamage": 0,
       "m_frontRightWingDamage": 0,
       "m_rearWingDamage": 0,
@@ -569,20 +429,10 @@
       "m_idleRPM": 3799,
       "m_maxGears": 9,
       "m_drsAllowed": 0,
-      "m_tyresWear": [
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0}
-      ],
+      "m_tyresWear": [0, 0, 0, 0],
       "m_actualTyreCompound": 16,
       "m_tyreVisualCompound": 16,
-      "m_tyresDamage": [
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0}
-      ],
+      "m_tyresDamage": [0, 0, 0, 0],
       "m_frontLeftWingDamage": 0,
       "m_frontRightWingDamage": 0,
       "m_rearWingDamage": 0,
@@ -608,20 +458,10 @@
       "m_idleRPM": 4300,
       "m_maxGears": 9,
       "m_drsAllowed": 0,
-      "m_tyresWear": [
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0}
-      ],
+      "m_tyresWear": [0, 0, 0, 0],
       "m_actualTyreCompound": 16,
       "m_tyreVisualCompound": 16,
-      "m_tyresDamage": [
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0}
-      ],
+      "m_tyresDamage": [0, 0, 0, 0],
       "m_frontLeftWingDamage": 0,
       "m_frontRightWingDamage": 0,
       "m_rearWingDamage": 0,
@@ -647,20 +487,10 @@
       "m_idleRPM": 4300,
       "m_maxGears": 9,
       "m_drsAllowed": 0,
-      "m_tyresWear": [
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0}
-      ],
+      "m_tyresWear": [0, 0, 0, 0],
       "m_actualTyreCompound": 16,
       "m_tyreVisualCompound": 16,
-      "m_tyresDamage": [
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0}
-      ],
+      "m_tyresDamage": [0, 0, 0, 0],
       "m_frontLeftWingDamage": 0,
       "m_frontRightWingDamage": 0,
       "m_rearWingDamage": 0,
@@ -686,20 +516,10 @@
       "m_idleRPM": 4300,
       "m_maxGears": 9,
       "m_drsAllowed": 0,
-      "m_tyresWear": [
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0}
-      ],
+      "m_tyresWear": [0, 0, 0, 0],
       "m_actualTyreCompound": 16,
       "m_tyreVisualCompound": 16,
-      "m_tyresDamage": [
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0}
-      ],
+      "m_tyresDamage": [0, 0, 0, 0],
       "m_frontLeftWingDamage": 0,
       "m_frontRightWingDamage": 100,
       "m_rearWingDamage": 0,
@@ -725,20 +545,10 @@
       "m_idleRPM": 3499,
       "m_maxGears": 9,
       "m_drsAllowed": 0,
-      "m_tyresWear": [
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0}
-      ],
+      "m_tyresWear": [0, 0, 0, 0],
       "m_actualTyreCompound": 16,
       "m_tyreVisualCompound": 16,
-      "m_tyresDamage": [
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0}
-      ],
+      "m_tyresDamage": [0, 0, 0, 0],
       "m_frontLeftWingDamage": 0,
       "m_frontRightWingDamage": 0,
       "m_rearWingDamage": 0,
@@ -764,20 +574,10 @@
       "m_idleRPM": 4300,
       "m_maxGears": 9,
       "m_drsAllowed": 0,
-      "m_tyresWear": [
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0},
-        {"m_tyresWear": 0}
-      ],
+      "m_tyresWear": [0, 0, 0, 0],
       "m_actualTyreCompound": 16,
       "m_tyreVisualCompound": 16,
-      "m_tyresDamage": [
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0},
-        {"m_tyresDamage": 0}
-      ],
+      "m_tyresDamage": [0, 0, 0, 0],
       "m_frontLeftWingDamage": 0,
       "m_frontRightWingDamage": 0,
       "m_rearWingDamage": 0,

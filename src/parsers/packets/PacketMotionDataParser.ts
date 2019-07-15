@@ -17,15 +17,15 @@ export class PacketMotionDataParser extends F1Parser {
         .array('m_carMotionData', {length: 20, type: new CarMotionDataParser()})
         .array('m_suspensionPosition', {
           length: 4,
-          type: new Parser().floatle('m_suspensionPosition'),
+          type: new Parser().floatle(''),
         })
         .array('m_suspensionVelocity', {
           length: 4,
-          type: new Parser().floatle('m_suspensionVelocity'),
+          type: new Parser().floatle(''),
         })
         .array('m_suspensionAcceleration', {
           length: 4,
-          type: new Parser().floatle('m_suspensionAcceleration'),
+          type: new Parser().floatle(''),
         })
         .array('m_wheelSpeed', {
           length: 4,

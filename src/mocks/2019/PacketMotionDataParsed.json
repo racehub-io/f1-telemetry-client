@@ -412,22 +412,22 @@
     }
   ],
   "m_suspensionPosition": [
-    {"m_suspensionPosition": 18.09786605834961},
-    {"m_suspensionPosition": 12.898736953735352},
-    {"m_suspensionPosition": -0.9559913873672485},
-    {"m_suspensionPosition": 7.457873344421387}
+    18.09786605834961,
+    12.898736953735352,
+    -0.9559913873672485,
+    7.457873344421387
   ],
   "m_suspensionVelocity": [
-    {"m_suspensionVelocity": 409.8130798339844},
-    {"m_suspensionVelocity": 256.5057067871094},
-    {"m_suspensionVelocity": -156.33770751953125},
-    {"m_suspensionVelocity": -564.3325805664062}
+    409.8130798339844,
+    256.5057067871094,
+    -156.33770751953125,
+    -564.3325805664062
   ],
   "m_suspensionAcceleration": [
-    {"m_suspensionAcceleration": -16981.49609375},
-    {"m_suspensionAcceleration": 11444.9599609375},
-    {"m_suspensionAcceleration": -23358.91015625},
-    {"m_suspensionAcceleration": -68101.96875}
+    -16981.49609375,
+    11444.9599609375,
+    -23358.91015625,
+    -68101.96875
   ],
   "m_wheelSpeed": [
     34.70710372924805,
