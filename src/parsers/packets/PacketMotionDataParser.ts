@@ -29,11 +29,11 @@ export class PacketMotionDataParser extends F1Parser {
         })
         .array('m_wheelSpeed', {
           length: 4,
-          type: new Parser().floatle('m_wheelSpeed'),
+          type: new Parser().floatle(''),
         })
         .array('m_wheelSlip', {
           length: 4,
-          type: new Parser().floatle('m_wheelSlip'),
+          type: new Parser().floatle(''),
         })
         .floatle('m_localVelocityX')        // Velocity in local space
         .floatle('m_localVelocityY')        // Velocity in local space
