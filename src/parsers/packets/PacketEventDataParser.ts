@@ -29,7 +29,7 @@ export class PacketEventDataParser extends F1Parser {
     const eventStringCode = this.getEventStringCode(buffer, packetFormat);
 
     if (eventStringCode === EVENT_CODES.FastestLap) {
-      this.uint8('vehicleIdx').float('lapTime');
+      this.uint8('vehicleIdx').floatle('lapTime');
     } else if (
         eventStringCode === EVENT_CODES.Retirement ||
         eventStringCode === EVENT_CODES.TeammateInPits ||
