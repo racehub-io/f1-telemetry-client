@@ -20,4 +20,9 @@ export interface Coordinate {
   y: number;
 }
 
+export interface Tyre {
+  color: string;
+  name: string;
+}
+
 export type Packet = string;
