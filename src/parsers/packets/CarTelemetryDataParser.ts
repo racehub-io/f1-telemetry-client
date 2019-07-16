@@ -20,26 +20,26 @@ export class CarTelemetryDataParser extends F1Parser {
         .uint8('m_revLightsPercent')
         .array('m_brakesTemperature', {
           length: 4,
-          type: new Parser().uint16le('m_brakesTemperature'),
+          type: new Parser().uint16le(''),
         })
         .array('m_tyresSurfaceTemperature', {
           length: 4,
-          type: new Parser().uint16le('m_tyresSurfaceTemperature'),
+          type: new Parser().uint16le(''),
         })
         .array('m_tyresInnerTemperature', {
           length: 4,
-          type: new Parser().uint16le('m_tyresInnerTemperature'),
+          type: new Parser().uint16le(''),
         })
         .uint16le('m_engineTemperature')
         .array('m_tyresPressure', {
           length: 4,
-          type: new Parser().floatle('m_tyresPressure'),
+          type: new Parser().floatle(''),
         });
 
     if (packetFormat === 2019) {
       this.array('m_surfaceType', {
         length: 4,
-        type: new Parser().uint8('m_surfaceType'),
+        type: new Parser().uint8(''),
       });
     }
   }

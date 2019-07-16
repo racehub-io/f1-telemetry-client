@@ -23,7 +23,7 @@ export class CarStatusDataParser extends F1Parser {
         .uint8('m_drsAllowed')
         .array('m_tyresWear', {
           length: 4,
-          type: new Parser().uint8('m_tyresWear'),
+          type: new Parser().uint8(''),
         });
 
     if (packetFormat === 2019) {
@@ -34,7 +34,7 @@ export class CarStatusDataParser extends F1Parser {
 
     this.array('m_tyresDamage', {
           length: 4,
-          type: new Parser().uint8('m_tyresDamage'),
+          type: new Parser().uint8(''),
         })
         .uint8('m_frontLeftWingDamage')
         .uint8('m_frontRightWingDamage')
