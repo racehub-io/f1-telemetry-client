@@ -25,7 +25,7 @@
     "jest": "^24.7.1",
     "lint-staged": ">=8",
     "ts-jest": "^24.0.2",
-    "typescript": "~3.1.0"
+    "typescript": "3.7.5"
   },
   "scripts": {
     "prepublishOnly": "npm run build",
