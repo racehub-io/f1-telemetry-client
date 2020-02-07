@@ -14,7 +14,8 @@ export class PacketHeaderParser extends F1Parser {
       this.uint8('m_gameMajorVersion')
           .uint8('m_gameMinorVersion')
           .uint8('m_packetVersion')
-          .uint8('m_packetId');
+          .uint8('m_packetId')
+          .biguint64('m_sessionUID');
     }
 
     this.skip(8)

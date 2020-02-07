@@ -39,6 +39,7 @@ export interface PacketSessionData {
   m_sessionType: number;
   m_trackId: number;
   m_era: number;
+  m_formula: number;
   m_sessionTimeLeft: number;
   m_sessionDuration: number;
   m_pitSpeedLimit: number;
