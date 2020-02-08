@@ -15,11 +15,10 @@ export class PacketHeaderParser extends F1Parser {
           .uint8('m_gameMinorVersion')
           .uint8('m_packetVersion')
           .uint8('m_packetId')
-          .uint64('m_sessionUID');
+          .uint64('m_sessionID');
     }
 
-    this.skip(8)
-        .floatle('m_sessionTime')
+    this.floatle('m_sessionTime')
         .uint32('m_frameIdentifier')
         .uint8('m_playerCarIndex');
   }
