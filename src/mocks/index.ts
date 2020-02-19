@@ -16,60 +16,78 @@ import packetParticipantsDataBuffer2018 from './2018/PacketParticipantsDataBuffe
 import packetParticipantsDataParsed2018 from './2018/PacketParticipantsDataParsed.json';
 import packetSessionDataBuffer2018 from './2018/PacketSessionDataBuffer.json';
 import packetSessionDataParsed2018 from './2018/PacketSessionDataParsed.json';
-import packetCarSetupDataBuffer2019 from './2019/PacketCarSetupDataBuffer.json';
-import packetCarSetupDataParsed2019 from './2019/PacketCarSetupDataParsed.json';
-import packetCarStatusDataBuffer2019 from './2019/PacketCarStatusDataBuffer.json';
-import packetCarStatusDataParsed2019 from './2019/PacketCarStatusDataParsed.json';
-import packetCarTelemetryBuffer2019 from './2019/PacketCarTelemetryDataBuffer.json';
-import packetCarTelemetryParsed2019 from './2019/PacketCarTelemetryDataParsed.json';
-import packetEventDataBuffer2019 from './2019/PacketEventDataBuffer.json';
-import packetEventDataParsed2019 from './2019/PacketEventDataParsed.json';
-import packetHeaderBuffer2019 from './2019/PacketHeaderBuffer.json';
-import packetHeaderParsed2019 from './2019/PacketHeaderParsed.json';
-import packetLapDataBuffer2019 from './2019/PacketLapDataBuffer.json';
-import packetLapDataParsed2019 from './2019/PacketLapDataParsed.json';
-import packetMotionDataBuffer2019 from './2019/PacketMotionDataBuffer.json';
-import packetMotionDataParsed2019 from './2019/PacketMotionDataParsed.json';
-import packetParticipantsDataBuffer2019 from './2019/PacketParticipantsDataBuffer.json';
-import packetParticipantsDataParsed2019 from './2019/PacketParticipantsDataParsed.json';
-import packetSessionDataBuffer2019 from './2019/PacketSessionDataBuffer.json';
-import packetSessionDataParsed2019 from './2019/PacketSessionDataParsed.json';
+import {
+  PACKET_CAR_SETUP_DATA_BUFFER_2019,
+  PACKET_CAR_SETUP_DATA_PARSED_2019,
+} from './2019/PacketCarSetupData';
+import {
+  PACKET_CAR_STATUS_DATA_BUFFER_2019,
+  PACKET_CAR_STATUS_DATA_PARSED_2019,
+} from './2019/PacketCarStatusData';
+import {
+  PACKET_CAR_TELEMETRY_DATA_BUFFER_2019,
+  PACKET_CAR_TELEMETRY_DATA_PARSED_2019,
+} from './2019/PacketCarTelemetryData';
+import {
+  PACKET_EVENT_DATA_BUFFER_2019,
+  PACKET_EVENT_DATA_PARSED_2019,
+} from './2019/PacketEventData';
+import {
+  PACKET_HEADER_BUFFER_2019,
+  PACKET_HEADER_PARSED_2019,
+} from './2019/PacketHeader';
+import {
+  PACKET_LAP_DATA_BUFFER_2019,
+  PACKET_LAP_DATA_PARSED_2019,
+} from './2019/PacketLapData';
+import {
+  PACKET_MOTION_DATA_BUFFER_2019,
+  PACKET_MOTION_DATA_PARSED_2019,
+} from './2019/PacketMotionData';
+import {
+  PACKET_PARTICIPANTS_DATA_BUFFER_2019,
+  PACKET_PARTICIPANTS_DATA_PARSED_2019,
+} from './2019/PacketParticipantsData';
+import {
+  PACKET_SESSION_DATA_BUFFER_2019,
+  PACKET_SESSION_DATA_PARSED_2019,
+} from './2019/PacketSessionData';
 
 export {
   packetCarSetupDataBuffer2018,
-  packetCarSetupDataBuffer2019,
   packetCarSetupDataParsed2018,
-  packetCarSetupDataParsed2019,
   packetCarStatusDataBuffer2018,
-  packetCarStatusDataBuffer2019,
   packetCarStatusDataParsed2018,
-  packetCarStatusDataParsed2019,
   packetCarTelemetryBuffer2018,
-  packetCarTelemetryBuffer2019,
   packetCarTelemetryParsed2018,
-  packetCarTelemetryParsed2019,
   packetEventDataBuffer2018,
-  packetEventDataBuffer2019,
   packetEventDataParsed2018,
-  packetEventDataParsed2019,
   packetHeaderBuffer2018,
-  packetHeaderBuffer2019,
   packetHeaderParsed2018,
-  packetHeaderParsed2019,
   packetLapDataBuffer2018,
-  packetLapDataBuffer2019,
   packetLapDataParsed2018,
-  packetLapDataParsed2019,
   packetMotionDataBuffer2018,
-  packetMotionDataBuffer2019,
   packetMotionDataParsed2018,
-  packetMotionDataParsed2019,
   packetParticipantsDataBuffer2018,
-  packetParticipantsDataBuffer2019,
   packetParticipantsDataParsed2018,
-  packetParticipantsDataParsed2019,
   packetSessionDataBuffer2018,
-  packetSessionDataBuffer2019,
   packetSessionDataParsed2018,
-  packetSessionDataParsed2019,
+  PACKET_HEADER_BUFFER_2019,
+  PACKET_HEADER_PARSED_2019,
+  PACKET_CAR_SETUP_DATA_BUFFER_2019,
+  PACKET_CAR_SETUP_DATA_PARSED_2019,
+  PACKET_CAR_STATUS_DATA_BUFFER_2019,
+  PACKET_CAR_STATUS_DATA_PARSED_2019,
+  PACKET_CAR_TELEMETRY_DATA_BUFFER_2019,
+  PACKET_CAR_TELEMETRY_DATA_PARSED_2019,
+  PACKET_MOTION_DATA_BUFFER_2019,
+  PACKET_MOTION_DATA_PARSED_2019,
+  PACKET_EVENT_DATA_BUFFER_2019,
+  PACKET_EVENT_DATA_PARSED_2019,
+  PACKET_LAP_DATA_BUFFER_2019,
+  PACKET_LAP_DATA_PARSED_2019,
+  PACKET_PARTICIPANTS_DATA_BUFFER_2019,
+  PACKET_PARTICIPANTS_DATA_PARSED_2019,
+  PACKET_SESSION_DATA_BUFFER_2019,
+  PACKET_SESSION_DATA_PARSED_2019,
 };
