@@ -39,7 +39,6 @@ export interface PacketSessionData {
   m_sessionType: number;
   m_trackId: number;
   m_era: number;
-  m_formula: number;
   m_sessionTimeLeft: number;
   m_sessionDuration: number;
   m_pitSpeedLimit: number;
@@ -169,7 +168,7 @@ export interface PacketHeader {
   m_packetFormat: number;
   m_packetVersion: number;
   m_packetId: number;
-  m_sessionUID: bigint;
+  m_sessionUID: number;
   m_sessionTime: number;
   m_frameIdentifier: number;
   m_playerCarIndex: number;

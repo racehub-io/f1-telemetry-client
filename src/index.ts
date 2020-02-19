@@ -1,7 +1,7 @@
 // tslint:disable-next-line
 import {Parser} from 'binary-parser';
 import * as dgram from 'dgram';
-import {EventEmitter} from 'events';
+import EventEmitter from 'events';
 import {AddressInfo} from 'net';
 
 import * as constants from './constants';
