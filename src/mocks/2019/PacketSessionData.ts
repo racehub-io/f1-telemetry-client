@@ -187,6 +187,7 @@ export const PACKET_SESSION_DATA_PARSED_2019 = {
     {m_zoneFlag: 0, m_zoneStart: 0},
     {m_zoneFlag: 0, m_zoneStart: 0},
     {m_zoneFlag: 0, m_zoneStart: 0},
+    {m_zoneFlag: 0, m_zoneStart: 0},
   ],
   m_networkGame: 0,
   m_numMarshalZones: 15,

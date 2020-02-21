@@ -26,6 +26,7 @@ import {
   PACKET_HEADER_BUFFER_2019,
   PACKET_HEADER_PARSED_2019,
   PACKET_SESSION_DATA_BUFFER_2019,
+  PACKET_SESSION_DATA_PARSED_2019,
   PACKET_PARTICIPANTS_DATA_BUFFER_2019,
   PACKET_CAR_TELEMETRY_DATA_BUFFER_2019,
   PACKET_CAR_STATUS_DATA_BUFFER_2019,
@@ -256,7 +257,7 @@ describe('F1TelemetryClient', () => {
         it('should parse PacketSessionData buffer', () => {
           expect(EventEmitter.prototype.emit).toHaveBeenCalledWith(
             'session',
-            PACKET_CAR_SETUP_DATA_PARSED_2019
+            PACKET_SESSION_DATA_PARSED_2019
           );
         });
       });
