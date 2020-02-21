@@ -95,7 +95,7 @@ describe('F1TelemetryClient', () => {
       });
     });
 
-    xdescribe('parseMessage', () => {
+    describe('parseMessage', () => {
       let f1TelemetryClient: F1TelemetryClient;
 
       describe('PacketSessionData', () => {

@@ -1417,6 +1417,6 @@ export const PACKET_CAR_TELEMETRY_DATA_PARSED_2018 = {
     m_packetVersion: 1,
     m_playerCarIndex: 0,
     m_sessionTime: 0.6844401955604553,
-    m_sessionUID: 11493542495172851079,
+    m_sessionUID: 9725525456203886083n,
   },
 };

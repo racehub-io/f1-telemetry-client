@@ -1070,7 +1070,7 @@ export const PACKET_CAR_STATUS_DATA_PARSED_2018 = {
     m_sessionTime: 18.05220603942871,
     m_frameIdentifier: 382,
     m_playerCarIndex: 0,
-    m_sessionUID: 11493542495172851079n,
+    m_sessionUID: 9725525456203886083n,
   },
   m_carStatusData: [
     {

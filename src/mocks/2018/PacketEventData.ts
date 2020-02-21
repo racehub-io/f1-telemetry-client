@@ -34,6 +34,7 @@ export const PACKET_EVENT_DATA_PARSED_2018 = {
     m_sessionTime: 0,
     m_frameIdentifier: 0,
     m_playerCarIndex: 19,
+    m_sessionUID: 11493542495172851079n,
   },
   m_eventStringCode: 'SSTA',
 };
