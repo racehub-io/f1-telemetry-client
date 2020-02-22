@@ -2,7 +2,7 @@ import {Parser} from 'binary-parser';
 import {EventEmitter} from 'events';
 
 import {DEFAULT_PORT, F1TelemetryClient} from './index';
-import {packetCarSetupDataBuffer2018, packetCarSetupDataBuffer2019, packetCarSetupDataParsed2018, packetCarSetupDataParsed2019, packetCarStatusDataBuffer2018, packetCarStatusDataBuffer2019, packetCarStatusDataParsed2018, packetCarStatusDataParsed2019, packetCarTelemetryBuffer2018, packetCarTelemetryBuffer2019, packetCarTelemetryParsed2018, packetCarTelemetryParsed2019, packetEventDataBuffer2018, packetEventDataBuffer2019, packetEventDataParsed2018, packetEventDataParsed2019, packetHeaderBuffer2018, packetHeaderBuffer2019, packetHeaderParsed2018, packetHeaderParsed2019, packetLapDataBuffer2018, packetLapDataBuffer2019, packetLapDataParsed2018, packetLapDataParsed2019, packetMotionDataBuffer2018, packetMotionDataBuffer2019, packetMotionDataParsed2018, packetMotionDataParsed2019, packetParticipantsDataBuffer2018, packetParticipantsDataBuffer2019, packetParticipantsDataParsed2018, packetParticipantsDataParsed2019, packetSessionDataBuffer2018, packetSessionDataBuffer2019, packetSessionDataParsed2018, packetSessionDataParsed2019,} from './mocks';
+import {PACKET_CAR_SETUP_DATA_BUFFER_2018, PACKET_CAR_SETUP_DATA_BUFFER_2019, PACKET_CAR_SETUP_DATA_PARSED_2018, PACKET_CAR_SETUP_DATA_PARSED_2019, PACKET_CAR_STATUS_DATA_BUFFER_2018, PACKET_CAR_STATUS_DATA_BUFFER_2019, PACKET_CAR_STATUS_DATA_PARSED_2018, PACKET_CAR_STATUS_DATA_PARSED_2019, PACKET_CAR_TELEMETRY_DATA_BUFFER_2018, PACKET_CAR_TELEMETRY_DATA_BUFFER_2019, PACKET_CAR_TELEMETRY_DATA_PARSED_2018, PACKET_CAR_TELEMETRY_DATA_PARSED_2019, PACKET_EVENT_DATA_BUFFER_2018, PACKET_EVENT_DATA_BUFFER_2019, PACKET_EVENT_DATA_PARSED_2018, PACKET_EVENT_DATA_PARSED_2019, PACKET_HEADER_BUFFER_2018, PACKET_HEADER_BUFFER_2019, PACKET_HEADER_PARSED_2018, PACKET_HEADER_PARSED_2019, PACKET_LAP_DATA_BUFFER_2018, PACKET_LAP_DATA_BUFFER_2019, PACKET_LAP_DATA_PARSED_2018, PACKET_LAP_DATA_PARSED_2019, PACKET_MOTION_DATA_BUFFER_2018, PACKET_MOTION_DATA_BUFFER_2019, PACKET_MOTION_DATA_PARSED_2018, PACKET_MOTION_DATA_PARSED_2019, PACKET_PARTICIPANTS_DATA_BUFFER_2018, PACKET_PARTICIPANTS_DATA_BUFFER_2019, PACKET_PARTICIPANTS_DATA_PARSED_2018, PACKET_PARTICIPANTS_DATA_PARSED_2019, PACKET_SESSION_DATA_BUFFER_2018, PACKET_SESSION_DATA_BUFFER_2019, PACKET_SESSION_DATA_PARSED_2018, PACKET_SESSION_DATA_PARSED_2019,} from './mocks';
 
 describe('F1TelemetryClient', () => {
   describe('constructor', () => {
@@ -49,12 +49,12 @@ describe('F1TelemetryClient', () => {
       let parsedPacketHeader: Parser.Parsed<any>;
 
       beforeAll(() => {
-        const buffer = new Buffer(packetHeaderBuffer2018.data);
+        const buffer = new Buffer(PACKET_HEADER_BUFFER_2018);
         parsedPacketHeader = F1TelemetryClient.parsePacketHeader(buffer);
       });
 
       it('should parse buffer and return parsed packet header', () => {
-        expect(parsedPacketHeader).toEqual(packetHeaderParsed2018);
+        expect(parsedPacketHeader).toEqual(PACKET_HEADER_PARSED_2018);
       });
     });
 
@@ -65,13 +65,13 @@ describe('F1TelemetryClient', () => {
         beforeAll(() => {
           f1TelemetryClient = new F1TelemetryClient();
           spyOn(EventEmitter.prototype, 'emit');
-          const buffer = new Buffer(packetSessionDataBuffer2018.data);
+          const buffer = new Buffer(PACKET_SESSION_DATA_BUFFER_2018);
           f1TelemetryClient.parseMessage(buffer);
         });
 
         it('should parse PacketSessionData buffer', () => {
           expect(EventEmitter.prototype.emit)
-              .toHaveBeenCalledWith('session', packetSessionDataParsed2018);
+              .toHaveBeenCalledWith('session', PACKET_SESSION_DATA_PARSED_2018);
         });
       });
 
@@ -79,14 +79,14 @@ describe('F1TelemetryClient', () => {
         beforeAll(() => {
           f1TelemetryClient = new F1TelemetryClient();
           spyOn(EventEmitter.prototype, 'emit');
-          const buffer = new Buffer(packetParticipantsDataBuffer2018.data);
+          const buffer = new Buffer(PACKET_PARTICIPANTS_DATA_BUFFER_2018);
           f1TelemetryClient.parseMessage(buffer);
         });
 
         it('should parse PacketParticipantsData buffer and emit result', () => {
           expect(EventEmitter.prototype.emit)
               .toHaveBeenCalledWith(
-                  'participants', packetParticipantsDataParsed2018);
+                  'participants', PACKET_PARTICIPANTS_DATA_PARSED_2018);
         });
       });
 
@@ -94,14 +94,14 @@ describe('F1TelemetryClient', () => {
         beforeAll(() => {
           f1TelemetryClient = new F1TelemetryClient();
           spyOn(EventEmitter.prototype, 'emit');
-          const buffer = new Buffer(packetCarTelemetryBuffer2018.data);
+          const buffer = new Buffer(PACKET_CAR_TELEMETRY_DATA_BUFFER_2018);
           f1TelemetryClient.parseMessage(buffer);
         });
 
         it('should parse PacketCarTelemetryData buffer and emit result', () => {
           expect(EventEmitter.prototype.emit)
               .toHaveBeenCalledWith(
-                  'carTelemetry', packetCarTelemetryParsed2018);
+                  'carTelemetry', PACKET_CAR_TELEMETRY_DATA_PARSED_2018);
         });
       });
 
@@ -109,13 +109,14 @@ describe('F1TelemetryClient', () => {
         beforeAll(() => {
           f1TelemetryClient = new F1TelemetryClient();
           spyOn(EventEmitter.prototype, 'emit');
-          const buffer = new Buffer(packetCarStatusDataBuffer2018.data);
+          const buffer = new Buffer(PACKET_CAR_STATUS_DATA_BUFFER_2018);
           f1TelemetryClient.parseMessage(buffer);
         });
 
         it('should parse PacketCarStatusData buffer and emit result', () => {
           expect(EventEmitter.prototype.emit)
-              .toHaveBeenCalledWith('carStatus', packetCarStatusDataParsed2018);
+              .toHaveBeenCalledWith(
+                  'carStatus', PACKET_CAR_STATUS_DATA_PARSED_2018);
         });
       });
 
@@ -123,13 +124,13 @@ describe('F1TelemetryClient', () => {
         beforeAll(() => {
           f1TelemetryClient = new F1TelemetryClient();
           spyOn(EventEmitter.prototype, 'emit');
-          const buffer = new Buffer(packetLapDataBuffer2018.data);
+          const buffer = new Buffer(PACKET_LAP_DATA_BUFFER_2018);
           f1TelemetryClient.parseMessage(buffer);
         });
 
         it('should parse PacketLapData buffer and emit result', () => {
           expect(EventEmitter.prototype.emit)
-              .toHaveBeenCalledWith('lapData', packetLapDataParsed2018);
+              .toHaveBeenCalledWith('lapData', PACKET_LAP_DATA_PARSED_2018);
         });
       });
 
@@ -137,13 +138,13 @@ describe('F1TelemetryClient', () => {
         beforeAll(() => {
           f1TelemetryClient = new F1TelemetryClient();
           spyOn(EventEmitter.prototype, 'emit');
-          const buffer = new Buffer(packetMotionDataBuffer2018.data);
+          const buffer = new Buffer(PACKET_MOTION_DATA_BUFFER_2018);
           f1TelemetryClient.parseMessage(buffer);
         });
 
         it('should parse PacketMotionData buffer and emit result', () => {
           expect(EventEmitter.prototype.emit)
-              .toHaveBeenCalledWith('motion', packetMotionDataParsed2018);
+              .toHaveBeenCalledWith('motion', PACKET_MOTION_DATA_PARSED_2018);
         });
       });
 
@@ -151,13 +152,14 @@ describe('F1TelemetryClient', () => {
         beforeAll(() => {
           f1TelemetryClient = new F1TelemetryClient();
           spyOn(EventEmitter.prototype, 'emit');
-          const buffer = new Buffer(packetCarSetupDataBuffer2018.data);
+          const buffer = new Buffer(PACKET_CAR_SETUP_DATA_BUFFER_2018);
           f1TelemetryClient.parseMessage(buffer);
         });
 
         it('should parse PacketCarSetupData buffer and emit result', () => {
           expect(EventEmitter.prototype.emit)
-              .toHaveBeenCalledWith('carSetups', packetCarSetupDataParsed2018);
+              .toHaveBeenCalledWith(
+                  'carSetups', PACKET_CAR_SETUP_DATA_PARSED_2018);
         });
       });
 
@@ -165,13 +167,13 @@ describe('F1TelemetryClient', () => {
         beforeAll(() => {
           f1TelemetryClient = new F1TelemetryClient();
           spyOn(EventEmitter.prototype, 'emit');
-          const buffer = new Buffer(packetEventDataBuffer2018.data);
+          const buffer = new Buffer(PACKET_EVENT_DATA_BUFFER_2018);
           f1TelemetryClient.parseMessage(buffer);
         });
 
         it('should parse PacketEventData buffer and emit result', () => {
           expect(EventEmitter.prototype.emit)
-              .toHaveBeenCalledWith('event', packetEventDataParsed2018);
+              .toHaveBeenCalledWith('event', PACKET_EVENT_DATA_PARSED_2018);
         });
       });
     });
@@ -183,12 +185,12 @@ describe('F1TelemetryClient', () => {
       let parsedPacketHeader: Parser.Parsed<any>;
 
       beforeAll(() => {
-        const buffer = new Buffer(packetHeaderBuffer2019.data);
+        const buffer = new Buffer(PACKET_HEADER_BUFFER_2019);
         parsedPacketHeader = F1TelemetryClient.parsePacketHeader(buffer);
       });
 
       it('should parse buffer and return parsed packet header', () => {
-        expect(parsedPacketHeader).toEqual(packetHeaderParsed2019);
+        expect(parsedPacketHeader).toEqual(PACKET_HEADER_PARSED_2019);
       });
     });
 
@@ -199,13 +201,13 @@ describe('F1TelemetryClient', () => {
         beforeAll(() => {
           f1TelemetryClient = new F1TelemetryClient();
           spyOn(EventEmitter.prototype, 'emit');
-          const buffer = new Buffer(packetSessionDataBuffer2019.data);
+          const buffer = new Buffer(PACKET_SESSION_DATA_BUFFER_2019);
           f1TelemetryClient.parseMessage(buffer);
         });
 
         it('should parse PacketSessionData buffer', () => {
           expect(EventEmitter.prototype.emit)
-              .toHaveBeenCalledWith('session', packetSessionDataParsed2019);
+              .toHaveBeenCalledWith('session', PACKET_SESSION_DATA_PARSED_2019);
         });
       });
 
@@ -213,14 +215,14 @@ describe('F1TelemetryClient', () => {
         beforeAll(() => {
           f1TelemetryClient = new F1TelemetryClient();
           spyOn(EventEmitter.prototype, 'emit');
-          const buffer = new Buffer(packetParticipantsDataBuffer2019.data);
+          const buffer = new Buffer(PACKET_PARTICIPANTS_DATA_BUFFER_2019);
           f1TelemetryClient.parseMessage(buffer);
         });
 
         it('should parse PacketParticipantsData buffer and emit result', () => {
           expect(EventEmitter.prototype.emit)
               .toHaveBeenCalledWith(
-                  'participants', packetParticipantsDataParsed2019);
+                  'participants', PACKET_PARTICIPANTS_DATA_PARSED_2019);
         });
       });
 
@@ -228,14 +230,14 @@ describe('F1TelemetryClient', () => {
         beforeAll(() => {
           f1TelemetryClient = new F1TelemetryClient();
           spyOn(EventEmitter.prototype, 'emit');
-          const buffer = new Buffer(packetCarTelemetryBuffer2019.data);
+          const buffer = new Buffer(PACKET_CAR_TELEMETRY_DATA_BUFFER_2019);
           f1TelemetryClient.parseMessage(buffer);
         });
 
         it('should parse PacketCarTelemetryData buffer and emit result', () => {
           expect(EventEmitter.prototype.emit)
               .toHaveBeenCalledWith(
-                  'carTelemetry', packetCarTelemetryParsed2019);
+                  'carTelemetry', PACKET_CAR_TELEMETRY_DATA_PARSED_2019);
         });
       });
 
@@ -243,13 +245,14 @@ describe('F1TelemetryClient', () => {
         beforeAll(() => {
           f1TelemetryClient = new F1TelemetryClient();
           spyOn(EventEmitter.prototype, 'emit');
-          const buffer = new Buffer(packetCarStatusDataBuffer2019.data);
+          const buffer = new Buffer(PACKET_CAR_STATUS_DATA_BUFFER_2019);
           f1TelemetryClient.parseMessage(buffer);
         });
 
         it('should parse PacketCarStatusData buffer and emit result', () => {
           expect(EventEmitter.prototype.emit)
-              .toHaveBeenCalledWith('carStatus', packetCarStatusDataParsed2019);
+              .toHaveBeenCalledWith(
+                  'carStatus', PACKET_CAR_STATUS_DATA_PARSED_2019);
         });
       });
 
@@ -257,13 +260,13 @@ describe('F1TelemetryClient', () => {
         beforeAll(() => {
           f1TelemetryClient = new F1TelemetryClient();
           spyOn(EventEmitter.prototype, 'emit');
-          const buffer = new Buffer(packetLapDataBuffer2019.data);
+          const buffer = new Buffer(PACKET_LAP_DATA_BUFFER_2019);
           f1TelemetryClient.parseMessage(buffer);
         });
 
         it('should parse PacketLapData buffer and emit result', () => {
           expect(EventEmitter.prototype.emit)
-              .toHaveBeenCalledWith('lapData', packetLapDataParsed2019);
+              .toHaveBeenCalledWith('lapData', PACKET_LAP_DATA_PARSED_2019);
         });
       });
 
@@ -271,13 +274,13 @@ describe('F1TelemetryClient', () => {
         beforeAll(() => {
           f1TelemetryClient = new F1TelemetryClient();
           spyOn(EventEmitter.prototype, 'emit');
-          const buffer = new Buffer(packetMotionDataBuffer2019.data);
+          const buffer = new Buffer(PACKET_MOTION_DATA_BUFFER_2019);
           f1TelemetryClient.parseMessage(buffer);
         });
 
         it('should parse PacketMotionData buffer and emit result', () => {
           expect(EventEmitter.prototype.emit)
-              .toHaveBeenCalledWith('motion', packetMotionDataParsed2019);
+              .toHaveBeenCalledWith('motion', PACKET_MOTION_DATA_PARSED_2019);
         });
       });
 
@@ -285,13 +288,14 @@ describe('F1TelemetryClient', () => {
         beforeAll(() => {
           f1TelemetryClient = new F1TelemetryClient();
           spyOn(EventEmitter.prototype, 'emit');
-          const buffer = new Buffer(packetCarSetupDataBuffer2019.data);
+          const buffer = new Buffer(PACKET_CAR_SETUP_DATA_BUFFER_2019);
           f1TelemetryClient.parseMessage(buffer);
         });
 
         it('should parse PacketCarSetupData buffer and emit result', () => {
           expect(EventEmitter.prototype.emit)
-              .toHaveBeenCalledWith('carSetups', packetCarSetupDataParsed2019);
+              .toHaveBeenCalledWith(
+                  'carSetups', PACKET_CAR_SETUP_DATA_PARSED_2019);
         });
       });
 
@@ -299,13 +303,13 @@ describe('F1TelemetryClient', () => {
         beforeAll(() => {
           f1TelemetryClient = new F1TelemetryClient();
           spyOn(EventEmitter.prototype, 'emit');
-          const buffer = new Buffer(packetEventDataBuffer2019.data);
+          const buffer = new Buffer(PACKET_EVENT_DATA_BUFFER_2019);
           f1TelemetryClient.parseMessage(buffer);
         });
 
         it('should parse PacketEventData buffer and emit result', () => {
           expect(EventEmitter.prototype.emit)
-              .toHaveBeenCalledWith('event', packetEventDataParsed2019);
+              .toHaveBeenCalledWith('event', PACKET_EVENT_DATA_PARSED_2019);
         });
       });
     });

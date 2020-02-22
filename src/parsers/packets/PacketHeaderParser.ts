@@ -1,5 +1,3 @@
-import {Parser} from 'binary-parser';
-
 import {F1Parser} from '../F1Parser';
 
 export class PacketHeaderParser extends F1Parser {
@@ -17,7 +15,7 @@ export class PacketHeaderParser extends F1Parser {
           .uint8('m_packetId');
     }
 
-    this.skip(8)
+    this.uint64('m_sessionUID')
         .floatle('m_sessionTime')
         .uint32('m_frameIdentifier')
         .uint8('m_playerCarIndex');
