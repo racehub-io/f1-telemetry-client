@@ -6,7 +6,7 @@ import {AddressInfo} from 'net';
 
 import * as constants from './constants';
 import * as constantsTypes from './constants/types';
-import {PacketCarSetupDataParser, PacketCarStatusDataParser, PacketCarTelemetryDataParser, PacketEventDataParser, PacketFormatParser, PacketHeaderParser, PacketLapDataParser, PacketMotionDataParser, PacketParticipantsDataParser, PacketSessionDataParser,} from './parsers/packets';
+import {PacketCarSetupDataParser, PacketCarStatusDataParser, PacketCarTelemetryDataParser, PacketEventDataParser, PacketFinalClassificationDataParser, PacketFormatParser, PacketHeaderParser, PacketLapDataParser, PacketLobbyInfoDataParser, PacketMotionDataParser, PacketParticipantsDataParser, PacketSessionDataParser} from './parsers/packets';
 import * as packetTypes from './parsers/packets/types';
 import {Options} from './types';
 
@@ -74,6 +74,12 @@ class F1TelemetryClient extends EventEmitter {
 
       case PACKETS.carStatus:
         return PacketCarStatusDataParser;
+
+      case PACKETS.finalClassification:
+        return PacketFinalClassificationDataParser;
+
+      case PACKETS.lobbyInfo:
+        return PacketLobbyInfoDataParser;
 
       default:
         return null;
