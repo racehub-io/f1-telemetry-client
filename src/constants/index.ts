@@ -17,7 +17,6 @@ import {WEATHER} from './weather';
 export {
   BUTTON_FLAGS,
   DRIVERS,
-  ERAS,
   ERS_DEPLOY_MODE,
   EVENT_CODES,
   FORMULAS,
