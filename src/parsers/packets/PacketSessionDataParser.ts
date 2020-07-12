@@ -18,15 +18,11 @@ export class PacketSessionDataParser extends F1Parser {
         .uint8('m_totalLaps')
         .uint16('m_trackLength')
         .uint8('m_sessionType')
-        .int8('m_trackId');
+        .int8('m_trackId')
 
-    if (packetFormat === 2018) {
-      this.uint8('m_era');
-    } else if (packetFormat === 2019) {
-      this.uint8('m_formula');
-    }
+        .uint8('m_formula')
 
-    this.uint16('m_sessionTimeLeft')
+        .uint16('m_sessionTimeLeft')
         .uint16('m_sessionDuration')
         .uint8('m_pitSpeedLimit')
         .uint8('m_gamePaused')

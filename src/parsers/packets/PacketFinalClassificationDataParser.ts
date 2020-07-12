@@ -1,17 +1,20 @@
 import {F1Parser} from '../F1Parser';
-import {LapDataParser} from './LapDataParser';
+import {FinalClassificationDataParser} from './FinalClassificationDataParser';
 import {PacketHeaderParser} from './PacketHeaderParser';
-import {PacketLapData} from './types';
+import {PacketFinalClassificationData} from './types';
 
 export class PacketLapDataParser extends F1Parser {
-  data: PacketLapData;
+  data: PacketFinalClassificationData;
 
   constructor(buffer: Buffer, packetFormat: number) {
     super();
 
     this.endianess('little')
         .nest('m_header', {type: new PacketHeaderParser(packetFormat)})
-        .array('m_lapData', {length: 22, type: new LapDataParser()});
+        .uint8('m_numCars')
+        .array(
+            'm_classificationData',
+            {length: 22, type: new FinalClassificationDataParser()});
 
     this.data = this.fromBuffer(buffer);
   }

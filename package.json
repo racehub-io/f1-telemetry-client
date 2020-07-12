@@ -1,6 +1,6 @@
 {
-  "name": "f1-telemetry-client",
-  "version": "0.1.16",
+  "name": "f1-2020-client",
+  "version": "0.1",
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
   "files": [
@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "binary-parser": "^1.5.0",
+    "f1-telemetry-client": "^0.1.16",
     "struct": "^0.0.12"
   },
   "devDependencies": {

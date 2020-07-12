@@ -1,3 +1,5 @@
+import {FinalClassificationDataParser} from './FinalClassificationDataParser';
+
 export interface PacketMotionData {
   m_header: PacketHeader;
   m_carMotionData: MotionData[];
@@ -76,6 +78,41 @@ export interface LapData {
   m_gridPosition: number;
   m_driverStatus: number;
   m_resultStatus: number;
+}
+
+export interface FinalClassificationData {
+  m_position: number;
+  m_numLaps: number;
+  m_gridPosition: number;
+  m_points: number;
+  m_numPitStops: number;
+  m_resultStatus: number;
+  m_bestLapTime: number;
+  m_totalRaceTime: number;
+  m_penaltiesTime: number;
+  m_numPenalties: number;
+  m_tyreStintsActual: number[];
+  m_tyreStintsVisual: number[];
+}
+
+export interface PacketFinalClassificationData {
+  m_header: PacketHeader;
+  m_numCars: number;
+  m_classificationData: FinalClassificationData[];
+}
+
+export interface LobbyInfoData {
+  m_aiController: number;
+  m_teamId: number;
+  m_nationality: number;
+  m_name: string;
+  m_readyStatus: string;
+}
+
+export interface PacketLobbyInfoData {
+  m_header: PacketHeader;
+  m_numPlayers: number;
+  m_lobbyPlayers: LobbyInfoData[];
 }
 
 export interface PacketCarStatusData {

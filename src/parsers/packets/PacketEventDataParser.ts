@@ -1,6 +1,6 @@
 import {Parser} from 'binary-parser';
 
-import {EVENT_CODES} from '../../constants';
+import {EVENT_CODES} from '../../constants/eventCodes';
 import {F1Parser} from '../F1Parser';
 
 import {PacketHeaderParser} from './PacketHeaderParser';

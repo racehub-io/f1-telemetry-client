@@ -21,7 +21,7 @@ export class PacketParticipantsDataParser extends F1Parser {
     }
 
     this.array('m_participants', {
-      length: 20,
+      length: 22,
       type: new ParticipantDataParser(packetFormat),
     });
 

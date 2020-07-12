@@ -1,17 +1,19 @@
 import {F1Parser} from '../F1Parser';
-import {LapDataParser} from './LapDataParser';
+import {LobbyInfoDataParser} from './LobbyInfoDataParser';
 import {PacketHeaderParser} from './PacketHeaderParser';
-import {PacketLapData} from './types';
+import {PacketLobbyInfoData} from './types';
 
-export class PacketLapDataParser extends F1Parser {
-  data: PacketLapData;
+
+export class PacketLobbyInfoDataParser extends F1Parser {
+  data: PacketLobbyInfoData;
 
   constructor(buffer: Buffer, packetFormat: number) {
     super();
 
     this.endianess('little')
         .nest('m_header', {type: new PacketHeaderParser(packetFormat)})
-        .array('m_lapData', {length: 22, type: new LapDataParser()});
+        .uint8('m_numPlayers')
+        .array('m_lobbyPlayers', {length: 22, type: new LobbyInfoDataParser()});
 
     this.data = this.fromBuffer(buffer);
   }

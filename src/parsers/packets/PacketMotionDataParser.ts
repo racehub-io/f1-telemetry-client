@@ -14,7 +14,7 @@ export class PacketMotionDataParser extends F1Parser {
 
     this.endianess('little')
         .nest('m_header', {type: new PacketHeaderParser(packetFormat)})
-        .array('m_carMotionData', {length: 20, type: new CarMotionDataParser()})
+        .array('m_carMotionData', {length: 22, type: new CarMotionDataParser()})
         .array('m_suspensionPosition', {
           length: 4,
           type: new Parser().floatle(''),
