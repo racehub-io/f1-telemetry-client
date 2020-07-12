@@ -1,6 +1,6 @@
 {
   "name": "f1-2020-client",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
   "files": [
@@ -9,7 +9,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jonybur/f1-telemetry-client.git"
+    "url": "https://github.com/mahsoommoosa42/f1-2020-client"
   },
   "dependencies": {
     "binary-parser": "^1.5.0",
