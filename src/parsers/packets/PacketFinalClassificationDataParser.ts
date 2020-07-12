@@ -3,7 +3,7 @@ import {FinalClassificationDataParser} from './FinalClassificationDataParser';
 import {PacketHeaderParser} from './PacketHeaderParser';
 import {PacketFinalClassificationData} from './types';
 
-export class PacketLapDataParser extends F1Parser {
+export class PacketFinalClassificationDataParser extends F1Parser {
   data: PacketFinalClassificationData;
 
   constructor(buffer: Buffer, packetFormat: number) {
