@@ -18,7 +18,13 @@ export class FinalClassificationDataParser extends F1Parser {
         .uint8('m_penaltiesTime')
         .uint8('m_numPenalties')
         .uint8('m_numTyreStints')
-        .array('m_tyreStintsActual', {type: new Parser().uint8(''), length: 8})
-        .array('m_tyreStintsVisual', {type: new Parser().uint8(''), length: 8});
+        .array('m_tyreStintsActual', {
+          length: 4,
+          type: new Parser().uint8(''),
+        })
+        .array('m_tyreStintsVisual', {
+          length: 4,
+          type: new Parser().uint8(''),
+        });
   }
 }

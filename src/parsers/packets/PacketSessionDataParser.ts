@@ -34,7 +34,7 @@ export class PacketSessionDataParser extends F1Parser {
         .array('m_marshalZones', {length: 21, type: new MarshalZoneParser()})
         .uint8('m_safetyCarStatus')
         .uint8('m_networkGame')
-        .uint8('m_numWeatherForecastSampl es')
+        .uint8('m_numWeatherForecastSamples')
         .array(
             'm_weatherForecastSamples',
             {type: new WeatherForecastSampleParser(), length: 20});
