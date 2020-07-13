@@ -35,7 +35,7 @@ $ yarn start
 ## Usage
 
 ```
-import { F1TelemetryClient, constants } from "f1-telemetry-client";
+import { F1TelemetryClient, constants } from "f1-2020-client";
 // or: const { F1TelemetryClient, constants } = require('f1-telemetry-client');
 const { PACKETS } = constants;
 
