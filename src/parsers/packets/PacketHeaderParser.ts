@@ -16,6 +16,7 @@ export class PacketHeaderParser extends F1Parser {
     this.uint64('m_sessionUID')
         .floatle('m_sessionTime')
         .uint32('m_frameIdentifier')
-        .uint8('m_playerCarIndex');
+        .uint8('m_playerCarIndex')
+        .uint8('m_secondaryPlayerCarIndex');
   }
 }
