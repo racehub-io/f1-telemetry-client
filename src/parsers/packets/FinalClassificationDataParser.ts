@@ -16,6 +16,7 @@ export class FinalClassificationDataParser extends F1Parser {
         .floatle('m_bestLapTime')
         .doublele('m_totalRaceTime')
         .uint8('m_penaltiesTime')
+        .uint8('m_numPenalties')
         .uint8('m_numTyreStints')
         .array('m_tyreStintsActual', {type: new Parser().uint8(''), length: 8})
         .array('m_tyreStintsVisual', {type: new Parser().uint8(''), length: 8});

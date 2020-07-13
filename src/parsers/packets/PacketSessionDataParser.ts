@@ -3,6 +3,7 @@ import {F1Parser} from '../F1Parser';
 import {MarshalZoneParser} from './MarshalZoneParser';
 import {PacketHeaderParser} from './PacketHeaderParser';
 import {PacketSessionData} from './types';
+import {WeatherForecastSampleParser} from './WeatherForecastSampleParser';
 
 export class PacketSessionDataParser extends F1Parser {
   data: PacketSessionData;
@@ -32,7 +33,11 @@ export class PacketSessionDataParser extends F1Parser {
         .uint8('m_numMarshalZones')
         .array('m_marshalZones', {length: 21, type: new MarshalZoneParser()})
         .uint8('m_safetyCarStatus')
-        .uint8('m_networkGame');
+        .uint8('m_networkGame')
+        .uint8('m_numWeatherForecastSampl es')
+        .array(
+            'm_weatherForecastSamples',
+            {type: new WeatherForecastSampleParser(), length: 20});
 
     this.data = this.fromBuffer(buffer);
   }

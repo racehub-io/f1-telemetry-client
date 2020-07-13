@@ -6,12 +6,11 @@ export class PacketHeaderParser extends F1Parser {
 
     this.endianess('little').uint16('m_packetFormat');
 
-    if (packetFormat === 2020) {
-      this.uint8('m_gameMajorVersion')
-          .uint8('m_gameMinorVersion')
-          .uint8('m_packetVersion')
-          .uint8('m_packetId');
-    }
+    this.uint8('m_gameMajorVersion')
+        .uint8('m_gameMinorVersion')
+        .uint8('m_packetVersion')
+        .uint8('m_packetId');
+
 
     this.uint64('m_sessionUID')
         .floatle('m_sessionTime')

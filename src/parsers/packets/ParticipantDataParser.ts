@@ -11,8 +11,6 @@ export class ParticipantDataParser extends F1Parser {
         .uint8('m_nationality')
         .string('m_name', {length: 48, stripNull: true});
 
-    if (packetFormat === 2019) {
-      this.uint8('m_yourTelemetry');
-    }
+    this.uint8('m_yourTelemetry');
   }
 }

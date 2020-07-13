@@ -1,4 +1,3 @@
-import {FinalClassificationDataParser} from './FinalClassificationDataParser';
 
 export interface PacketMotionData {
   m_header: PacketHeader;
@@ -31,6 +30,14 @@ export interface PacketLapData {
   m_lapData: LapData[];
 }
 
+export interface WeatherForecastSample {
+  m_sessionType: number;
+  m_timeOffset: number;
+  m_weather: number;
+  m_trackTemperature: number;
+  m_airTemperature: number;
+}
+
 export interface PacketSessionData {
   m_header: PacketHeader;
   m_weather: number;
@@ -53,6 +60,8 @@ export interface PacketSessionData {
   m_marshalZones: MarshalZone[];
   m_safetyCarStatus: number;
   m_networkGame: number;
+  m_numWeatherForecastSamples: number;
+  m_weatherForecastSamples: WeatherForecastSample[];
 }
 
 export interface MarshalZone {
@@ -140,15 +149,18 @@ export interface CarStatusData {
   m_idleRPM: number;
   m_maxGears: number;
   m_drsAllowed: number;
+  m_drsActivationDistance: number;
   m_tyresWear: TyreWear[];
-  m_tyreCompound: number;
+  m_actualTyreCompound: number;
+  m_visualTyreCompound: number;
+  m_tyresAgeLaps: number;
   m_tyresDamage: TyreDamage[];
   m_frontLeftWingDamage: number;
   m_frontRightWingDamage: number;
   m_rearWingDamage: number;
+  m_drsFault: number;
   m_engineDamage: number;
   m_gearBoxDamage: number;
-  m_exhaustDamage: number;
   m_vehicleFiaFlags: number;
   m_ersStoreEnergy: number;
   m_ersDeployMode: number;
@@ -198,8 +210,11 @@ export interface PacketParticipantsData {
 
 export interface PacketCarTelemetryData {
   m_header: PacketHeader;
-  m_buttonStatus: number;
   m_carTelemetryData: CarTelemetryData[];
+  m_buttonStatus: number;
+  m_mfdPanelIndex: number;
+  m_mfdPanelIndexSecondaryPlayer: number;
+  m_suggestedGear: number;
 }
 
 export interface PacketHeader {
@@ -227,6 +242,7 @@ export interface CarTelemetryData {
   m_drs: number;
   m_revLightsPercent: number;
   m_engineTemperature: number;
+  m_surfaceType: number[];
 }
 
 export interface ParticipantData {

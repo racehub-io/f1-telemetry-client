@@ -15,7 +15,10 @@ export class PacketCarTelemetryDataParser extends F1Parser {
           length: 22,
           type: new CarTelemetryDataParser(packetFormat),
         })
-        .uint32le('m_buttonStatus');
+        .uint32le('m_buttonStatus')
+        .uint8('m_mfdPanelIndex')
+        .uint8('m_mfdPanelIndexSecondaryPlayer')
+        .int8('m_suggestedGear');
 
     this.data = this.fromBuffer(buffer);
   }
