@@ -6,6 +6,45 @@ import {F1Parser} from '../F1Parser';
 import {PacketHeaderParser} from './PacketHeaderParser';
 import {PacketEventData} from './types';
 
+export class GenericEventParser extends F1Parser {
+  constructor() {
+    super();
+
+    this.endianess('little').uint8('vehicleIdx');
+  }
+}
+
+export class FastestLapParser extends F1Parser {
+  constructor() {
+    super();
+
+    this.endianess('little').uint8('vehicleIdx').floatle('lapTime');
+  }
+}
+
+export class SpeedTrapParser extends F1Parser {
+  constructor() {
+    super();
+
+    this.endianess('little').uint8('vehicleIdx').floatle('speed');
+  }
+}
+
+export class PenaltyParser extends F1Parser {
+  constructor() {
+    super();
+
+    this.endianess('little')
+        .uint8('penaltyType')
+        .uint8('infringementType')
+        .uint8('vehicleIdx')
+        .uint8('otherVehicleIdx')
+        .uint8('time')
+        .uint8('lapNum')
+        .uint8('placesGained');
+  }
+}
+
 export class PacketEventDataParser extends F1Parser {
   data: PacketEventData;
 
@@ -18,23 +57,25 @@ export class PacketEventDataParser extends F1Parser {
 
     this.string('m_eventStringCode', {length: 4});
 
-    if (packetFormat === 2019) {
-      this.unpack2019Format(buffer, packetFormat);
-    }
+    this.unpack2020Format(buffer, packetFormat);
 
     this.data = this.fromBuffer(buffer);
   }
 
-  unpack2019Format = (buffer: Buffer, packetFormat: number) => {
+  unpack2020Format = (buffer: Buffer, packetFormat: number) => {
     const eventStringCode = this.getEventStringCode(buffer, packetFormat);
 
     if (eventStringCode === EVENT_CODES.FastestLap) {
-      this.uint8('vehicleIdx').floatle('lapTime');
+      this.nest('m_eventDetails', {type: new FastestLapParser()});
     } else if (
         eventStringCode === EVENT_CODES.Retirement ||
         eventStringCode === EVENT_CODES.TeammateInPits ||
         eventStringCode === EVENT_CODES.RaceWinner) {
-      this.uint8('vehicleIdx');
+      this.nest('m_eventDetails', {type: new GenericEventParser()});
+    } else if (eventStringCode === EVENT_CODES.SpeedTrapTriggered) {
+      this.nest('m_eventDetails', {type: new SpeedTrapParser()});
+    } else if (eventStringCode === EVENT_CODES.PenaltyIssued) {
+      this.nest('m_eventDetails', {type: new PenaltyParser()});
     }
   };
 
