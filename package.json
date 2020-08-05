@@ -1,6 +1,6 @@
 {
   "name": "f1-2020-client",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
   "files": [
