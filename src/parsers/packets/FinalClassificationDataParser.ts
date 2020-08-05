@@ -19,11 +19,11 @@ export class FinalClassificationDataParser extends F1Parser {
         .uint8('m_numPenalties')
         .uint8('m_numTyreStints')
         .array('m_tyreStintsActual', {
-          length: 4,
+          length: 8,
           type: new Parser().uint8(''),
         })
         .array('m_tyreStintsVisual', {
-          length: 4,
+          length: 8,
           type: new Parser().uint8(''),
         });
   }
