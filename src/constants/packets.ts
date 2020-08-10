@@ -7,4 +7,6 @@ export const PACKETS = {
   carSetups: 'carSetups',
   carTelemetry: 'carTelemetry',
   carStatus: 'carStatus',
+  finalClassification: 'finalClassification',
+  lobbyInfo: 'lobbyInfo',
 };
