@@ -75,6 +75,12 @@ class F1TelemetryClient extends EventEmitter {
       case PACKETS.carStatus:
         return PacketCarStatusDataParser;
 
+      case PACKETS.finalClassification:
+        return PacketFinalClassificationDataParser;
+
+      case PACKETS.lobbyInfo:
+        return PacketLobbyInfoDataParser;
+
       default:
         return null;
     }
@@ -119,7 +125,7 @@ class F1TelemetryClient extends EventEmitter {
       this.client.setBroadcast(true);
     });
 
-    this.client.on('message', m => this.parseMessage(m));
+    this.client.on('message', (m) => this.parseMessage(m));
     this.client.bind(this.port);
   }
 
