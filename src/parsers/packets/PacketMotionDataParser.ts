@@ -14,7 +14,10 @@ export class PacketMotionDataParser extends F1Parser {
 
     this.endianess('little')
         .nest('m_header', {type: new PacketHeaderParser(packetFormat)})
-        .array('m_carMotionData', {length: 20, type: new CarMotionDataParser()})
+        .array('m_carMotionData', {
+          length: packetFormat === 2020 ? 22 : 20,
+          type: new CarMotionDataParser(),
+        })
         .array('m_suspensionPosition', {
           length: 4,
           type: new Parser().floatle(''),
@@ -35,17 +38,16 @@ export class PacketMotionDataParser extends F1Parser {
           length: 4,
           type: new Parser().floatle(''),
         })
-        .floatle('m_localVelocityX')        // Velocity in local space
-        .floatle('m_localVelocityY')        // Velocity in local space
-        .floatle('m_localVelocityZ')        // Velocity in local space
-        .floatle('m_angularVelocityX')      // Angular velocity x-component
-        .floatle('m_angularVelocityY')      // Angular velocity y-component
-        .floatle('m_angularVelocityZ')      // Angular velocity z-component
-        .floatle('m_angularAccelerationX')  // Angular velocity x-component
-        .floatle('m_angularAccelerationY')  // Angular velocity y-component
-        .floatle('m_angularAccelerationZ')  // Angular velocity z-component
-        .floatle(
-            'm_frontWheelsAngle');  // Current front wheels angle in radians;
+        .floatle('m_localVelocityX')
+        .floatle('m_localVelocityY')
+        .floatle('m_localVelocityZ')
+        .floatle('m_angularVelocityX')
+        .floatle('m_angularVelocityY')
+        .floatle('m_angularVelocityZ')
+        .floatle('m_angularAccelerationX')
+        .floatle('m_angularAccelerationY')
+        .floatle('m_angularAccelerationZ')
+        .floatle('m_frontWheelsAngle');
 
     this.data = this.fromBuffer(buffer);
   }

@@ -19,5 +19,9 @@ export class PacketHeaderParser extends F1Parser {
         .floatle('m_sessionTime')
         .uint32('m_frameIdentifier')
         .uint8('m_playerCarIndex');
+
+    if (packetFormat === 2020) {
+      this.uint8('m_secondaryPlayerCarIndex');
+    }
   }
 }

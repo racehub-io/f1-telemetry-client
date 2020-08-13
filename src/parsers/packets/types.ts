@@ -51,6 +51,8 @@ export interface PacketSessionData {
   m_marshalZones: MarshalZone[];
   m_safetyCarStatus: number;
   m_networkGame: number;
+  m_numWeatherForecastSamples: number;
+  m_weatherForecastSamples: WeatherForecastSample[];
 }
 
 export interface MarshalZone {
@@ -103,12 +105,17 @@ export interface CarStatusData {
   m_idleRPM: number;
   m_maxGears: number;
   m_drsAllowed: number;
+  m_drsActivationDistance: number;
   m_tyresWear: TyreWear[];
+  m_actualTyreCompound: number;
+  m_visualTyreCompound: number;
+  m_tyresAgeLaps: number;
   m_tyreCompound: number;
   m_tyresDamage: TyreDamage[];
   m_frontLeftWingDamage: number;
   m_frontRightWingDamage: number;
   m_rearWingDamage: number;
+  m_drsFault: number;
   m_engineDamage: number;
   m_gearBoxDamage: number;
   m_exhaustDamage: number;
@@ -163,6 +170,9 @@ export interface PacketCarTelemetryData {
   m_header: PacketHeader;
   m_buttonStatus: number;
   m_carTelemetryData: CarTelemetryData[];
+  m_mfdPanelIndex: number;
+  m_mfdPanelIndexSecondaryPlayer: number;
+  m_suggestedGear: number;
 }
 
 export interface PacketHeader {
@@ -173,6 +183,7 @@ export interface PacketHeader {
   m_sessionTime: number;
   m_frameIdentifier: number;
   m_playerCarIndex: number;
+  m_surfaceType: number[];
 }
 
 export interface CarTelemetryData {
@@ -199,4 +210,46 @@ export interface ParticipantData {
   m_nationality: number;
   m_raceNumber: number;
   m_teamId: number;
+}
+
+export interface WeatherForecastSample {
+  m_sessionType: number;
+  m_timeOffset: number;
+  m_weather: number;
+  m_trackTemperature: number;
+  m_airTemperature: number;
+}
+export interface FinalClassificationData {
+  m_position: number;
+  m_numLaps: number;
+  m_gridPosition: number;
+  m_points: number;
+  m_numPitStops: number;
+  m_resultStatus: number;
+  m_bestLapTime: number;
+  m_totalRaceTime: number;
+  m_penaltiesTime: number;
+  m_numPenalties: number;
+  m_tyreStintsActual: number[];
+  m_tyreStintsVisual: number[];
+}
+
+export interface PacketFinalClassificationData {
+  m_header: PacketHeader;
+  m_numCars: number;
+  m_classificationData: FinalClassificationData[];
+}
+
+export interface LobbyInfoData {
+  m_aiController: number;
+  m_teamId: number;
+  m_nationality: number;
+  m_name: string;
+  m_readyStatus: string;
+}
+
+export interface PacketLobbyInfoData {
+  m_header: PacketHeader;
+  m_numPlayers: number;
+  m_lobbyPlayers: LobbyInfoData[];
 }
