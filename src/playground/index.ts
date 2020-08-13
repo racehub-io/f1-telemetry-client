@@ -22,6 +22,6 @@ client.start();
  `SIGUSR2`,
  `uncaughtException`,
  `SIGTERM`,
-].forEach(eventType => {
+].forEach((eventType) => {
   (process as NodeJS.EventEmitter).on(eventType, () => client.stop());
 });

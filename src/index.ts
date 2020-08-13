@@ -75,11 +75,13 @@ class F1TelemetryClient extends EventEmitter {
       case PACKETS.carStatus:
         return PacketCarStatusDataParser;
 
-      case PACKETS.finalClassification:
-        return PacketFinalClassificationDataParser;
+        /*
+        case PACKETS.finalClassification:
+          return PacketFinalClassificationDataParser;
 
-      case PACKETS.lobbyInfo:
-        return PacketLobbyInfoDataParser;
+        case PACKETS.lobbyInfo:
+          return PacketLobbyInfoDataParser;
+          */
 
       default:
         return null;
