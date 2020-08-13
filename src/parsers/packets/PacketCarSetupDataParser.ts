@@ -11,7 +11,10 @@ export class PacketCarSetupDataParser extends F1Parser {
 
     this.endianess('little')
         .nest('m_header', {type: new PacketHeaderParser(packetFormat)})
-        .array('m_carSetups', {length: 20, type: new CarSetupDataParser()});
+        .array('m_carSetups', {
+          length: packetFormat === 2020 ? 22 : 20,
+          type: new CarSetupDataParser(),
+        });
 
     this.data = this.fromBuffer(buffer);
   }
