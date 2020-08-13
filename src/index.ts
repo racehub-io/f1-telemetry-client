@@ -103,6 +103,17 @@ class F1TelemetryClient extends EventEmitter {
     const packetData = new parser(message, m_packetFormat);
     const packetKeys = Object.keys(constants.PACKETS);
 
+    if (Object.keys(constants.PACKETS)[m_packetId] ===
+        constants.PACKETS.carStatus) {
+      // console.log(packetData.data);
+      // console.dir([...message], {maxArrayLength: null});
+    }
+    console.dir(packetData.data, {
+      maxArrayLength: null,
+      showHidden: true,
+      depth: null,
+    });
+
     this.emit(packetKeys[m_packetId], packetData.data);
   }
 
