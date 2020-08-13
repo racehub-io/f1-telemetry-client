@@ -11,7 +11,8 @@ export class PacketLapDataParser extends F1Parser {
 
     this.endianess('little')
         .nest('m_header', {type: new PacketHeaderParser(packetFormat)})
-        .array('m_lapData', {length: 20, type: new LapDataParser()});
+        .array(
+            'm_lapData', {length: 20, type: new LapDataParser(packetFormat)});
 
     this.data = this.fromBuffer(buffer);
   }
