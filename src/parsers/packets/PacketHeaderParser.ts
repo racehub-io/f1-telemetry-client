@@ -8,7 +8,9 @@ export class PacketHeaderParser extends F1Parser {
 
     if (packetFormat === 2018) {
       this.uint8('m_packetVersion').uint8('m_packetId');
-    } else if (packetFormat === 2019) {
+    }
+
+    if (packetFormat === 2019 || packetFormat === 2020) {
       this.uint8('m_gameMajorVersion')
           .uint8('m_gameMinorVersion')
           .uint8('m_packetVersion')
