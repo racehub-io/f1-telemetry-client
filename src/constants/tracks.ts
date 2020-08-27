@@ -26,4 +26,6 @@ export const TRACKS: Track[] = [
   {name: 'Silverstone (Short)'},
   {name: 'Texas (Short)'},
   {name: 'Suzuka (Short)'},
+  {name: 'Hanoi'},
+  {name: 'Zandvoort'},
 ];

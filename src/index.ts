@@ -4,9 +4,11 @@ import * as dgram from 'dgram';
 import {EventEmitter} from 'events';
 import {AddressInfo} from 'net';
 
+const util = require('util');
+
 import * as constants from './constants';
 import * as constantsTypes from './constants/types';
-import {PacketCarSetupDataParser, PacketCarStatusDataParser, PacketCarTelemetryDataParser, PacketEventDataParser, PacketFormatParser, PacketHeaderParser, PacketLapDataParser, PacketMotionDataParser, PacketParticipantsDataParser, PacketSessionDataParser,} from './parsers/packets';
+import {PacketCarSetupDataParser, PacketCarStatusDataParser, PacketCarTelemetryDataParser, PacketEventDataParser, PacketFinalClassificationDataParser, PacketFormatParser, PacketHeaderParser, PacketLapDataParser, PacketLobbyInfoDataParser, PacketMotionDataParser, PacketParticipantsDataParser, PacketSessionDataParser,} from './parsers/packets';
 import * as packetTypes from './parsers/packets/types';
 import {Options} from './types';
 
@@ -75,6 +77,12 @@ class F1TelemetryClient extends EventEmitter {
       case PACKETS.carStatus:
         return PacketCarStatusDataParser;
 
+      case PACKETS.finalClassification:
+        return PacketFinalClassificationDataParser;
+
+      case PACKETS.lobbyInfo:
+        return PacketLobbyInfoDataParser;
+
       default:
         return null;
     }
@@ -119,7 +127,7 @@ class F1TelemetryClient extends EventEmitter {
       this.client.setBroadcast(true);
     });
 
-    this.client.on('message', m => this.parseMessage(m));
+    this.client.on('message', (m) => this.parseMessage(m));
     this.client.bind(this.port);
   }
 

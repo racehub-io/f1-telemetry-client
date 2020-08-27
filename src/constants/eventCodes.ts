@@ -10,4 +10,6 @@ export const EVENT_CODES: {[index: string]: EventCode} = {
   TeammateInPits: 'TMPT',
   ChequeredFlag: 'CHQF',
   RaceWinner: 'RCWN',
+  PenaltyIssued: 'PENA',
+  SpeedTrapTriggered: 'SPTP',
 };

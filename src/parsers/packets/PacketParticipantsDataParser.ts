@@ -16,12 +16,14 @@ export class PacketParticipantsDataParser extends F1Parser {
 
     if (packetFormat === 2018) {
       this.uint8('m_numCars');
-    } else if (packetFormat === 2019) {
+    }
+
+    if (packetFormat === 2019 || packetFormat === 2020) {
       this.uint8('m_numActiveCars');
     }
 
     this.array('m_participants', {
-      length: 20,
+      length: packetFormat === 2020 ? 22 : 20,
       type: new ParticipantDataParser(packetFormat),
     });
 

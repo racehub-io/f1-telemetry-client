@@ -1,7 +1,7 @@
 import {F1Parser} from '../F1Parser';
 
 export class CarSetupDataParser extends F1Parser {
-  constructor() {
+  constructor(packetFormat: number) {
     super();
     this.uint8('m_frontWing')
         .uint8('m_rearWing')
@@ -18,10 +18,17 @@ export class CarSetupDataParser extends F1Parser {
         .uint8('m_frontSuspensionHeight')
         .uint8('m_rearSuspensionHeight')
         .uint8('m_brakePressure')
-        .uint8('m_brakeBias')
-        .floatle('m_frontTyrePressure')
-        .floatle('m_rearTyrePressure')
-        .uint8('m_ballast')
-        .floatle('m_fuelLoad');
+        .uint8('m_brakeBias');
+
+    if (packetFormat === 2020) {
+      this.floatle('m_rearLeftTyrePressure')
+          .floatle('m_rearRightTyrePressure')
+          .floatle('m_frontLeftTyrePressure')
+          .floatle('m_frontRightTyrePressure');
+    } else {
+      this.floatle('m_frontTyrePressure').floatle('m_rearTyrePressure');
+    }
+
+    this.uint8('m_ballast').floatle('m_fuelLoad');
   }
 }
