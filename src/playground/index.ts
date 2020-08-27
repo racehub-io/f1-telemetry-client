@@ -12,7 +12,8 @@ client.on(PACKETS.session, console.log);
 client.on(PACKETS.participants, console.log);
 client.on(PACKETS.carTelemetry, console.log);
 client.on(PACKETS.carStatus, console.log);
-
+client.on(PACKETS.finalClassification, console.log);
+client.on(PACKETS.lobbyInfo, console.log);
 client.start();
 
 // stops the client
