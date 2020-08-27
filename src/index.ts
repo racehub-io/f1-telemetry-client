@@ -105,21 +105,6 @@ class F1TelemetryClient extends EventEmitter {
     const packetData = new parser(message, m_packetFormat);
     const packetKeys = Object.keys(constants.PACKETS);
 
-    if (Object.keys(constants.PACKETS)[m_packetId] ===
-        constants.PACKETS.event) {
-      console.dir([...message], {maxArrayLength: null});
-    }
-
-    /*
-    console.log(
-      util.inspect(packetData.data, {
-        maxArrayLength: null,
-        showHidden: false,
-        depth: null,
-      })
-    );
-    */
-
     this.emit(packetKeys[m_packetId], packetData.data);
   }
 

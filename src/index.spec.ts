@@ -389,7 +389,6 @@ describe('F1TelemetryClient', () => {
           expect(EventEmitter.prototype.emit)
               .toHaveBeenCalledWith(
                   'carStatus', PACKET_CAR_STATUS_DATA_PARSED_2020);
-          console.log(EventEmitter.prototype.emit);
         });
       });
 
