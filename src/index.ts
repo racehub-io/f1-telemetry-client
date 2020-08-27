@@ -4,6 +4,8 @@ import * as dgram from 'dgram';
 import {EventEmitter} from 'events';
 import {AddressInfo} from 'net';
 
+const util = require('util');
+
 import * as constants from './constants';
 import * as constantsTypes from './constants/types';
 import {PacketCarSetupDataParser, PacketCarStatusDataParser, PacketCarTelemetryDataParser, PacketEventDataParser, PacketFinalClassificationDataParser, PacketFormatParser, PacketHeaderParser, PacketLapDataParser, PacketLobbyInfoDataParser, PacketMotionDataParser, PacketParticipantsDataParser, PacketSessionDataParser,} from './parsers/packets';
@@ -104,15 +106,19 @@ class F1TelemetryClient extends EventEmitter {
     const packetKeys = Object.keys(constants.PACKETS);
 
     if (Object.keys(constants.PACKETS)[m_packetId] ===
-        constants.PACKETS.carStatus) {
-      // console.log(packetData.data);
-      // console.dir([...message], {maxArrayLength: null});
+        constants.PACKETS.event) {
+      console.dir([...message], {maxArrayLength: null});
     }
-    console.dir(packetData.data, {
-      maxArrayLength: null,
-      showHidden: true,
-      depth: null,
-    });
+
+    /*
+    console.log(
+      util.inspect(packetData.data, {
+        maxArrayLength: null,
+        showHidden: false,
+        depth: null,
+      })
+    );
+    */
 
     this.emit(packetKeys[m_packetId], packetData.data);
   }

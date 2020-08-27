@@ -13,7 +13,7 @@ export class PacketCarSetupDataParser extends F1Parser {
         .nest('m_header', {type: new PacketHeaderParser(packetFormat)})
         .array('m_carSetups', {
           length: packetFormat === 2020 ? 22 : 20,
-          type: new CarSetupDataParser(),
+          type: new CarSetupDataParser(packetFormat),
         });
 
     this.data = this.fromBuffer(buffer);

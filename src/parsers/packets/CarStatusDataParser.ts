@@ -20,11 +20,16 @@ export class CarStatusDataParser extends F1Parser {
     this.uint16le('m_maxRPM')
         .uint16le('m_idleRPM')
         .uint8('m_maxGears')
-        .uint8('m_drsAllowed')
-        .array('m_tyresWear', {
-          length: 4,
-          type: new Parser().uint8(''),
-        });
+        .uint8('m_drsAllowed');
+
+    if (packetFormat === 2020) {
+      this.uint16('m_drsActivationDistance');
+    }
+
+    this.array('m_tyresWear', {
+      length: 4,
+      type: new Parser().uint8(''),
+    });
 
     if (packetFormat === 2019 || packetFormat === 2020) {
       this.uint8('m_actualTyreCompound').uint8('m_tyreVisualCompound');
