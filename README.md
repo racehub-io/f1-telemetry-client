@@ -4,7 +4,7 @@
 
 The F1 series of games support the outputting of key game data via a UDP data stream. This data can be interpreted by external apps or connected peripherals for a range of different uses, including providing additional telemetry information, customised HUD displays, motion platform hardware support or providing force feedback data for custom steering wheels.
 
-This is a TypeScript UDP client and telemetry parser for Codemaster's F1 2019 and F1 2018 games that enables the consumption of such information.
+This is a TypeScript UDP client and telemetry parser for Codemaster's F1 2020, 2019 and F1 2018 games that enables the consumption of such information.
 
 ## Installing
 
@@ -37,15 +37,18 @@ import { F1TelemetryClient, constants } from "f1-telemetry-client";
 // or: const { F1TelemetryClient, constants } = require('f1-telemetry-client');
 const { PACKETS } = constants;
 
-const client = new F1TelemetryClient();
-client.on(PACKETS.session, console.log);
-client.on(PACKETS.motion, console.log);
-client.on(PACKETS.lapData, console.log);
+// passing 'port' is optional, defaults to 20777
+const client = new F1TelemetryClient({port: 20777});
 client.on(PACKETS.event, console.log);
-client.on(PACKETS.participants, console.log);
+client.on(PACKETS.motion, console.log);
 client.on(PACKETS.carSetups, console.log);
+client.on(PACKETS.lapData, console.log);
+client.on(PACKETS.session, console.log);
+client.on(PACKETS.participants, console.log);
 client.on(PACKETS.carTelemetry, console.log);
 client.on(PACKETS.carStatus, console.log);
+client.on(PACKETS.finalClassification, console.log);
+client.on(PACKETS.lobbyInfo, console.log);
 
 // to start listening:
 client.start();
@@ -56,11 +59,13 @@ client.stop();
 
 ## Documentation
 
-For the F1 2019 UDP specifications, please refer to [this post](https://forums.codemasters.com/topic/44592-f1-2019-udp-specification/) from the official Codemaster's forum.  
-For F1 2018, you can find the documentation [here](https://forums.codemasters.com/discussion/136948/f1-2018-udp-specification).  
-You will find the same information in this repository's Wiki.
+The following links contain information that summarises the UDP data structures so that developers of supporting hardware or software are able to configure these to work correctly with the F1 game.
+
+[F1 2020 UDP Spec](https://forums.codemasters.com/topic/50942-f1-2020-udp-specification/)
+[F1 2019 UDP Spec](https://forums.codemasters.com/topic/44592-f1-2019-udp-specification/)
+[F1 2018 UDP Spec](https://forums.codemasters.com/discussion/136948/f1-2018-udp-specification)
 
 ## License
 
-This project is originally a fork from [irvingswiftj's](https://github.com/irvingswiftj) [f1-2018-udp](https://github.com/irvingswiftj/f1-2018-udp).
+This project is originally a fork of [f1-2018-udp](https://github.com/irvingswiftj/f1-2018-udp).
 Licensed under the MIT License.
