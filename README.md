@@ -39,9 +39,10 @@ const { PACKETS } = constants;
 
 /*
 *   'port' is optional, defaults to 20777
-*   'bigintEnabled' is optional, setting it to false makes the parser skip bigint values, defaults to true.
+*   'bigintEnabled' is optional, setting it to false makes the parser skip bigint values,
+*                   defaults to true
 */
-const client = new F1TelemetryClient({port: 20777, bigintEnabled:true});
+const client = new F1TelemetryClient({ port: 20777, bigintEnabled: true });
 client.on(PACKETS.event, console.log);
 client.on(PACKETS.motion, console.log);
 client.on(PACKETS.carSetups, console.log);
