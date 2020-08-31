@@ -8,11 +8,13 @@ import {WeatherForecastSampleParser} from './WeatherForecastSampleParser';
 export class PacketSessionDataParser extends F1Parser {
   data: PacketSessionData;
 
-  constructor(buffer: Buffer, packetFormat: number) {
+  constructor(buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {
     super();
 
     this.endianess('little')
-        .nest('m_header', {type: new PacketHeaderParser(packetFormat)})
+        .nest('m_header', {
+          type: new PacketHeaderParser(packetFormat, bigintEnabled),
+        })
         .uint8('m_weather')
         .int8('m_trackTemperature')
         .int8('m_airTemperature')

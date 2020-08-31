@@ -9,11 +9,13 @@ import {PacketMotionData} from './types';
 export class PacketMotionDataParser extends F1Parser {
   data: PacketMotionData;
 
-  constructor(buffer: Buffer, packetFormat: number) {
+  constructor(buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {
     super();
 
     this.endianess('little')
-        .nest('m_header', {type: new PacketHeaderParser(packetFormat)})
+        .nest('m_header', {
+          type: new PacketHeaderParser(packetFormat, bigintEnabled),
+        })
         .array('m_carMotionData', {
           length: packetFormat === 2020 ? 22 : 20,
           type: new CarMotionDataParser(),

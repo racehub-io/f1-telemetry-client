@@ -50,7 +50,7 @@ describe('F1TelemetryClient', () => {
 
       beforeAll(() => {
         const buffer = new Buffer(PACKET_HEADER_BUFFER_2018);
-        parsedPacketHeader = F1TelemetryClient.parsePacketHeader(buffer);
+        parsedPacketHeader = F1TelemetryClient.parsePacketHeader(buffer, true);
       });
 
       it('should parse buffer and return parsed packet header', () => {
@@ -186,7 +186,7 @@ describe('F1TelemetryClient', () => {
 
       beforeAll(() => {
         const buffer = new Buffer(PACKET_HEADER_BUFFER_2019);
-        parsedPacketHeader = F1TelemetryClient.parsePacketHeader(buffer);
+        parsedPacketHeader = F1TelemetryClient.parsePacketHeader(buffer, true);
       });
 
       it('should parse buffer and return parsed packet header', () => {
@@ -322,7 +322,7 @@ describe('F1TelemetryClient', () => {
 
       beforeAll(() => {
         const buffer = new Buffer(PACKET_HEADER_BUFFER_2020);
-        parsedPacketHeader = F1TelemetryClient.parsePacketHeader(buffer);
+        parsedPacketHeader = F1TelemetryClient.parsePacketHeader(buffer, true);
       });
 
       it('should parse buffer and return parsed packet header', () => {
