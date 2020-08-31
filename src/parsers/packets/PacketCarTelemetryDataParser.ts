@@ -6,11 +6,13 @@ import {PacketCarTelemetryData} from './types';
 export class PacketCarTelemetryDataParser extends F1Parser {
   data: PacketCarTelemetryData;
 
-  constructor(buffer: Buffer, packetFormat: number) {
+  constructor(buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {
     super();
 
     this.endianess('little')
-        .nest('m_header', {type: new PacketHeaderParser(packetFormat)})
+        .nest('m_header', {
+          type: new PacketHeaderParser(packetFormat, bigintEnabled),
+        })
         .array('m_carTelemetryData', {
           length: packetFormat === 2020 ? 22 : 20,
           type: new CarTelemetryDataParser(packetFormat),

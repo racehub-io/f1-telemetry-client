@@ -37,8 +37,11 @@ import { F1TelemetryClient, constants } from "f1-telemetry-client";
 // or: const { F1TelemetryClient, constants } = require('f1-telemetry-client');
 const { PACKETS } = constants;
 
-// passing 'port' is optional, defaults to 20777
-const client = new F1TelemetryClient({port: 20777});
+/*
+*   'port' is optional, defaults to 20777
+*   'bigintEnabled' is optional, setting it to false makes the parser skip bigint values, defaults to true.
+*/
+const client = new F1TelemetryClient({port: 20777, bigintEnabled:true});
 client.on(PACKETS.event, console.log);
 client.on(PACKETS.motion, console.log);
 client.on(PACKETS.carSetups, console.log);

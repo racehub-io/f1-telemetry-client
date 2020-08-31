@@ -7,11 +7,11 @@ import {PacketParticipantsData} from './types';
 export class PacketParticipantsDataParser extends F1Parser {
   data: PacketParticipantsData;
 
-  constructor(buffer: Buffer, packetFormat: number) {
+  constructor(buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {
     super();
 
     this.endianess('little').nest('m_header', {
-      type: new PacketHeaderParser(packetFormat),
+      type: new PacketHeaderParser(packetFormat, bigintEnabled),
     });
 
     if (packetFormat === 2018) {

@@ -6,11 +6,13 @@ import {PacketFinalClassificationData} from './types';
 export class PacketFinalClassificationDataParser extends F1Parser {
   data: PacketFinalClassificationData;
 
-  constructor(buffer: Buffer, packetFormat: number) {
+  constructor(buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {
     super();
 
     this.endianess('little')
-        .nest('m_header', {type: new PacketHeaderParser(packetFormat)})
+        .nest('m_header', {
+          type: new PacketHeaderParser(packetFormat, bigintEnabled),
+        })
         .uint8('m_numCars')
         .array('m_classificationData', {
           length: 22,

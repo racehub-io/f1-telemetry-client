@@ -2,7 +2,7 @@ import {constants, F1TelemetryClient} from '..';
 
 const {PACKETS} = constants;
 
-const client = new F1TelemetryClient({port: 20777});
+const client = new F1TelemetryClient({port: 20777, bigintEnabled: true});
 
 client.on(PACKETS.event, console.log);
 client.on(PACKETS.motion, console.log);
@@ -14,6 +14,7 @@ client.on(PACKETS.carTelemetry, console.log);
 client.on(PACKETS.carStatus, console.log);
 client.on(PACKETS.finalClassification, console.log);
 client.on(PACKETS.lobbyInfo, console.log);
+
 client.start();
 
 // stops the client
