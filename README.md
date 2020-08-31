@@ -64,11 +64,11 @@ client.stop();
 
 The following links contain information that summarises the UDP data structures so that developers of supporting hardware or software are able to configure these to work correctly with the F1 game.
 
-[F1 2020 UDP Spec](https://forums.codemasters.com/topic/50942-f1-2020-udp-specification/)
-[F1 2019 UDP Spec](https://forums.codemasters.com/topic/44592-f1-2019-udp-specification/)
+[F1 2020 UDP Spec](https://forums.codemasters.com/topic/50942-f1-2020-udp-specification/)  
+[F1 2019 UDP Spec](https://forums.codemasters.com/topic/44592-f1-2019-udp-specification/)  
 [F1 2018 UDP Spec](https://forums.codemasters.com/discussion/136948/f1-2018-udp-specification)
 
 ## License
 
-This project is originally a fork of [f1-2018-udp](https://github.com/irvingswiftj/f1-2018-udp).
+This project is originally a fork of [f1-2018-udp](https://github.com/irvingswiftj/f1-2018-udp).  
 Licensed under the MIT License.
