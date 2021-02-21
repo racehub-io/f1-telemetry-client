@@ -45,8 +45,11 @@ const { PACKETS } = constants;
 *                   which can be a bottleneck on high frequencies. you can then parse
 *                   using the exposed parsing functions from
 *                   defaults to true
+*   'forwardPort' is optional, passing it a number will make the client bridge the messages
+*                   over to that port. this is useful to send telemetry to connected peripherals.
+*                   defaults to undefined
 */
-const client = new F1TelemetryClient({ port: 20777, bigintEnabled: true, bridgeMode: true });
+const client = new F1TelemetryClient({ port: 20777, forwardPort: 4477, bigintEnabled: true, bridgeMode: true });
 client.on(PACKETS.event, console.log);
 client.on(PACKETS.motion, console.log);
 client.on(PACKETS.carSetups, console.log);

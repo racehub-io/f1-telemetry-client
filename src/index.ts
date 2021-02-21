@@ -5,15 +5,14 @@ import * as dgram from 'dgram';
 import {EventEmitter} from 'events';
 import {AddressInfo} from 'net';
 
-const util = require('util');
-
 import * as constants from './constants';
 import * as constantsTypes from './constants/types';
 import {PacketCarSetupDataParser, PacketCarStatusDataParser, PacketCarTelemetryDataParser, PacketEventDataParser, PacketFinalClassificationDataParser, PacketFormatParser, PacketHeaderParser, PacketLapDataParser, PacketLobbyInfoDataParser, PacketMotionDataParser, PacketParticipantsDataParser, PacketSessionDataParser,} from './parsers/packets';
 import * as packetTypes from './parsers/packets/types';
-import {Options} from './types';
+import {Options, ParsedMessage} from './types';
 
 const DEFAULT_PORT = 20777;
+const DEFAULT_FORWARD_PORT = undefined;
 const BIGINT_ENABLED = true;
 const PARSER_ENABLED = true;
 
@@ -22,28 +21,32 @@ const PARSER_ENABLED = true;
  */
 class F1TelemetryClient extends EventEmitter {
   port: number;
+  forwardPort?: number;
   bigintEnabled: boolean;
   parserEnabled: boolean;
-  client?: dgram.Socket;
+  socket?: dgram.Socket;
 
   constructor(opts: Options = {}) {
     super();
 
     const {
       port = DEFAULT_PORT,
+      forwardPort = DEFAULT_FORWARD_PORT,
       bigintEnabled = BIGINT_ENABLED,
       parserEnabled = PARSER_ENABLED,
     } = opts;
 
     this.port = port;
+    this.forwardPort = forwardPort;
     this.bigintEnabled = bigintEnabled;
     this.parserEnabled = parserEnabled;
-    this.client = dgram.createSocket('udp4');
+    this.socket = dgram.createSocket('udp4');
   }
 
   /**
    *
    * @param {Buffer} buffer
+   * @param {Boolean} bigIntEnabled
    */
   static parsePacketHeader(
       buffer: Buffer, bigintEnabled: boolean
@@ -106,11 +109,33 @@ class F1TelemetryClient extends EventEmitter {
    *
    * @param {Buffer} message
    */
-  parseMessage(message: Buffer) {
-    if (!this.parserEnabled) {
-      return this.bridgeMessage(message);
+  handleMessage(message: Buffer) {
+    if (this.socket && this.forwardPort) {
+      // forward message to port
+      this.socket.send(message, 0, message.length, this.forwardPort, '0.0.0.0');
     }
 
+    if (!this.parserEnabled) {
+      // bridge message
+      this.bridgeMessage(message);
+      return;
+    }
+
+    const parsedMessage = this.parseBufferMessage(message);
+
+    if (!parsedMessage || !parsedMessage.packetData) {
+      return;
+    }
+
+    // emit parsed message
+    this.emit(parsedMessage.packetID, parsedMessage.packetData.data);
+  }
+
+  /**
+   *
+   * @param {Buffer} message
+   */
+  parseBufferMessage(message: Buffer): ParsedMessage|undefined {
     const {m_packetFormat, m_packetId} =
         F1TelemetryClient.parsePacketHeader(message, this.bigintEnabled);
 
@@ -121,9 +146,19 @@ class F1TelemetryClient extends EventEmitter {
     }
 
     const packetData = new parser(message, m_packetFormat, this.bigintEnabled);
-    const packetKeys = Object.keys(constants.PACKETS);
+    const packetID = Object.keys(constants.PACKETS)[m_packetId];
 
-    this.emit(packetKeys[m_packetId], packetData.data);
+    // emit parsed message
+    return {packetData, packetID};
+  }
+
+  /**
+   *
+   * @param {string} message
+   */
+  parseStringMessage(message: string): ParsedMessage|undefined {
+    const decodedMessage = base64Encoder.decode(message);
+    return this.parseBufferMessage(Buffer.from(decodedMessage));
   }
 
   /**
@@ -131,7 +166,8 @@ class F1TelemetryClient extends EventEmitter {
    * @param {Buffer} message
    */
   bridgeMessage(message: Buffer) {
-    // TODO: compare performance of .encode with .toString('base64')
+    // TODO: compare performance of .encode against .toString('base64')
+    //       maybe use this.socket.send instead?
     this.emit(base64Encoder.encode(message));
   }
 
@@ -139,36 +175,36 @@ class F1TelemetryClient extends EventEmitter {
    * Method to start listening for packets
    */
   start() {
-    if (!this.client) {
+    if (!this.socket) {
       return;
     }
 
-    this.client.on('listening', () => {
-      if (!this.client) {
+    this.socket.on('listening', () => {
+      if (!this.socket) {
         return;
       }
 
-      const address = this.client.address() as AddressInfo;
+      const address = this.socket.address() as AddressInfo;
       console.log(
           `UDP Client listening on ${address.address}:${address.port} 🏎`);
-      this.client.setBroadcast(true);
+      this.socket.setBroadcast(true);
     });
 
-    this.client.on('message', (m) => this.parseMessage(m));
-    this.client.bind(this.port);
+    this.socket.on('message', (m) => this.handleMessage(m));
+    this.socket.bind(this.port);
   }
 
   /**
    * Method to close the client
    */
   stop() {
-    if (!this.client) {
+    if (!this.socket) {
       return;
     }
 
-    return this.client.close(() => {
+    return this.socket.close(() => {
       console.log(`UDP Client closed 🏁`);
-      this.client = undefined;
+      this.socket = undefined;
     });
   }
 }
@@ -179,6 +215,7 @@ export {
   constantsTypes,
   packetTypes,
   DEFAULT_PORT,
+  DEFAULT_FORWARD_PORT,
   BIGINT_ENABLED,
   PARSER_ENABLED,
 };
