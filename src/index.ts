@@ -1,4 +1,5 @@
 // tslint:disable-next-line
+import base64Encoder from 'base64-arraybuffer';
 import {Parser} from 'binary-parser';
 import * as dgram from 'dgram';
 import {EventEmitter} from 'events';
@@ -14,6 +15,7 @@ import {Options} from './types';
 
 const DEFAULT_PORT = 20777;
 const BIGINT_ENABLED = true;
+const PARSER_ENABLED = true;
 
 /**
  *
@@ -21,15 +23,21 @@ const BIGINT_ENABLED = true;
 class F1TelemetryClient extends EventEmitter {
   port: number;
   bigintEnabled: boolean;
+  parserEnabled: boolean;
   client?: dgram.Socket;
 
   constructor(opts: Options = {}) {
     super();
 
-    const {port = DEFAULT_PORT, bigintEnabled = BIGINT_ENABLED} = opts;
+    const {
+      port = DEFAULT_PORT,
+      bigintEnabled = BIGINT_ENABLED,
+      parserEnabled = PARSER_ENABLED,
+    } = opts;
 
     this.port = port;
     this.bigintEnabled = bigintEnabled;
+    this.parserEnabled = parserEnabled;
     this.client = dgram.createSocket('udp4');
   }
 
@@ -99,6 +107,10 @@ class F1TelemetryClient extends EventEmitter {
    * @param {Buffer} message
    */
   parseMessage(message: Buffer) {
+    if (!this.parserEnabled) {
+      return this.bridgeMessage(message);
+    }
+
     const {m_packetFormat, m_packetId} =
         F1TelemetryClient.parsePacketHeader(message, this.bigintEnabled);
 
@@ -112,6 +124,15 @@ class F1TelemetryClient extends EventEmitter {
     const packetKeys = Object.keys(constants.PACKETS);
 
     this.emit(packetKeys[m_packetId], packetData.data);
+  }
+
+  /**
+   *
+   * @param {Buffer} message
+   */
+  bridgeMessage(message: Buffer) {
+    // TODO: compare performance of .encode with .toString('base64')
+    this.emit(base64Encoder.encode(message));
   }
 
   /**
@@ -158,4 +179,6 @@ export {
   constantsTypes,
   packetTypes,
   DEFAULT_PORT,
+  BIGINT_ENABLED,
+  PARSER_ENABLED,
 };

@@ -41,8 +41,12 @@ const { PACKETS } = constants;
 *   'port' is optional, defaults to 20777
 *   'bigintEnabled' is optional, setting it to false makes the parser skip bigint values,
 *                   defaults to true
+*   'parserEnabled' is optional, setting it to false makes the client skip the parsing,
+*                   which can be a bottleneck on high frequencies. you can then parse
+*                   using the exposed parsing functions from
+*                   defaults to true
 */
-const client = new F1TelemetryClient({ port: 20777, bigintEnabled: true });
+const client = new F1TelemetryClient({ port: 20777, bigintEnabled: true, bridgeMode: true });
 client.on(PACKETS.event, console.log);
 client.on(PACKETS.motion, console.log);
 client.on(PACKETS.carSetups, console.log);
