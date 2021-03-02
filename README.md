@@ -46,7 +46,7 @@ const { PACKETS } = constants;
 *   'skipParsing' is optional, setting it to true will make the client not parse and emit content. You can consume telemetry data using forwardAddresses instead.
 *                   defaults to false
 */
-const client = new F1TelemetryClient({ port: 20777, forwardAddresses: [{port: 30500}], bigintEnabled: true, bridgeToPort: true });
+const client = new F1TelemetryClient({ port: 20777 });
 client.on(PACKETS.event, console.log);
 client.on(PACKETS.motion, console.log);
 client.on(PACKETS.carSetups, console.log);
