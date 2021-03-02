@@ -2,7 +2,11 @@ import {constants, F1TelemetryClient} from '..';
 
 const {PACKETS} = constants;
 
-const client = new F1TelemetryClient({port: 20777, bigintEnabled: true});
+const client = new F1TelemetryClient({
+  port: 20777,
+  forwardPorts: [4477],
+  skipParsing: true,
+});
 
 client.on(PACKETS.event, console.log);
 client.on(PACKETS.motion, console.log);

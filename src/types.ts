@@ -2,9 +2,9 @@ import {PacketCarSetupDataParser, PacketCarStatusDataParser, PacketCarTelemetryD
 
 export interface Options {
   port?: number;
-  forwardPort?: number|undefined;
+  forwardPorts?: number[]|undefined;
   bigintEnabled?: boolean;
-  parserEnabled?: boolean;
+  skipParsing?: boolean;
 }
 
 export interface ParsedMessage {

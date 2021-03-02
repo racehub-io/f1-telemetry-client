@@ -41,15 +41,12 @@ const { PACKETS } = constants;
 *   'port' is optional, defaults to 20777
 *   'bigintEnabled' is optional, setting it to false makes the parser skip bigint values,
 *                   defaults to true
-*   'parserEnabled' is optional, setting it to false makes the client skip the parsing,
-*                   which can be a bottleneck on high frequencies. you can then parse
-*                   using the exposed parsing functions from
-*                   defaults to true
-*   'forwardPort' is optional, passing it a number will make the client bridge the messages
-*                   over to that port. this is useful to send telemetry to connected peripherals.
+*   'forwardPorts' is optional, it's an array of ports to forward unparsed telemetry to
 *                   defaults to undefined
+*   'skipParsing' is optional, setting it to true will make the client not parse and emit content. You can consume telemetry data using forwardPorts instead.
+*                   defaults to false
 */
-const client = new F1TelemetryClient({ port: 20777, forwardPort: 4477, bigintEnabled: true, bridgeMode: true });
+const client = new F1TelemetryClient({ port: 20777, forwardPort: 4477, bigintEnabled: true, bridgeToPort: true });
 client.on(PACKETS.event, console.log);
 client.on(PACKETS.motion, console.log);
 client.on(PACKETS.carSetups, console.log);

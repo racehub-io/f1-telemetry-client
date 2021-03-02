@@ -12,18 +12,18 @@ import * as packetTypes from './parsers/packets/types';
 import {Options, ParsedMessage} from './types';
 
 const DEFAULT_PORT = 20777;
-const DEFAULT_FORWARD_PORT = undefined;
+const FORWARD_PORTS = undefined;
+const SKIP_PARSING = false;
 const BIGINT_ENABLED = true;
-const PARSER_ENABLED = true;
 
 /**
  *
  */
 class F1TelemetryClient extends EventEmitter {
   port: number;
-  forwardPort?: number;
   bigintEnabled: boolean;
-  parserEnabled: boolean;
+  skipParsing?: boolean;
+  forwardPorts?: number[];
   socket?: dgram.Socket;
 
   constructor(opts: Options = {}) {
@@ -31,15 +31,15 @@ class F1TelemetryClient extends EventEmitter {
 
     const {
       port = DEFAULT_PORT,
-      forwardPort = DEFAULT_FORWARD_PORT,
       bigintEnabled = BIGINT_ENABLED,
-      parserEnabled = PARSER_ENABLED,
+      skipParsing = SKIP_PARSING,
+      forwardPorts = FORWARD_PORTS,
     } = opts;
 
     this.port = port;
-    this.forwardPort = forwardPort;
     this.bigintEnabled = bigintEnabled;
-    this.parserEnabled = parserEnabled;
+    this.forwardPorts = forwardPorts;
+    this.skipParsing = skipParsing;
     this.socket = dgram.createSocket('udp4');
   }
 
@@ -110,14 +110,12 @@ class F1TelemetryClient extends EventEmitter {
    * @param {Buffer} message
    */
   handleMessage(message: Buffer) {
-    if (this.socket && this.forwardPort) {
-      // forward message to port
-      this.socket.send(message, 0, message.length, this.forwardPort, '0.0.0.0');
-    }
-
-    if (!this.parserEnabled) {
+    if (this.forwardPorts) {
       // bridge message
       this.bridgeMessage(message);
+    }
+
+    if (this.skipParsing) {
       return;
     }
 
@@ -166,9 +164,15 @@ class F1TelemetryClient extends EventEmitter {
    * @param {Buffer} message
    */
   bridgeMessage(message: Buffer) {
-    // TODO: compare performance of .encode against .toString('base64')
-    //       maybe use this.socket.send instead?
-    this.emit(base64Encoder.encode(message));
+    if (!this.socket) {
+      throw new Error('Socket is not initialized');
+    }
+    if (!this.forwardPorts) {
+      throw new Error('No ports to bridge over');
+    }
+    for (const port of this.forwardPorts) {
+      this.socket.send(message, 0, message.length, port, '0.0.0.0');
+    }
   }
 
   /**
@@ -215,7 +219,6 @@ export {
   constantsTypes,
   packetTypes,
   DEFAULT_PORT,
-  DEFAULT_FORWARD_PORT,
   BIGINT_ENABLED,
-  PARSER_ENABLED,
+  FORWARD_PORTS,
 };
