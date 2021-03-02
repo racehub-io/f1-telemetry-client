@@ -2,9 +2,14 @@ import {PacketCarSetupDataParser, PacketCarStatusDataParser, PacketCarTelemetryD
 
 export interface Options {
   port?: number;
-  forwardPorts?: number[]|undefined;
+  forwardAddresses?: Address[]|undefined;
   bigintEnabled?: boolean;
   skipParsing?: boolean;
+}
+
+export interface Address {
+  port: number;
+  ip?: string;
 }
 
 export interface ParsedMessage {

@@ -9,10 +9,10 @@ import * as constants from './constants';
 import * as constantsTypes from './constants/types';
 import {PacketCarSetupDataParser, PacketCarStatusDataParser, PacketCarTelemetryDataParser, PacketEventDataParser, PacketFinalClassificationDataParser, PacketFormatParser, PacketHeaderParser, PacketLapDataParser, PacketLobbyInfoDataParser, PacketMotionDataParser, PacketParticipantsDataParser, PacketSessionDataParser,} from './parsers/packets';
 import * as packetTypes from './parsers/packets/types';
-import {Options, ParsedMessage} from './types';
+import {Address, Options, ParsedMessage} from './types';
 
 const DEFAULT_PORT = 20777;
-const FORWARD_PORTS = undefined;
+const FORWARD_ADDRESSES = undefined;
 const SKIP_PARSING = false;
 const BIGINT_ENABLED = true;
 
@@ -23,7 +23,7 @@ class F1TelemetryClient extends EventEmitter {
   port: number;
   bigintEnabled: boolean;
   skipParsing?: boolean;
-  forwardPorts?: number[];
+  forwardAddresses?: Address[];
   socket?: dgram.Socket;
 
   constructor(opts: Options = {}) {
@@ -33,12 +33,12 @@ class F1TelemetryClient extends EventEmitter {
       port = DEFAULT_PORT,
       bigintEnabled = BIGINT_ENABLED,
       skipParsing = SKIP_PARSING,
-      forwardPorts = FORWARD_PORTS,
+      forwardAddresses = FORWARD_ADDRESSES,
     } = opts;
 
     this.port = port;
     this.bigintEnabled = bigintEnabled;
-    this.forwardPorts = forwardPorts;
+    this.forwardAddresses = forwardAddresses;
     this.skipParsing = skipParsing;
     this.socket = dgram.createSocket('udp4');
   }
@@ -132,7 +132,7 @@ class F1TelemetryClient extends EventEmitter {
    * @param {Buffer} message
    */
   handleMessage(message: Buffer) {
-    if (this.forwardPorts) {
+    if (this.forwardAddresses) {
       // bridge message
       this.bridgeMessage(message);
     }
@@ -170,11 +170,12 @@ class F1TelemetryClient extends EventEmitter {
     if (!this.socket) {
       throw new Error('Socket is not initialized');
     }
-    if (!this.forwardPorts) {
+    if (!this.forwardAddresses) {
       throw new Error('No ports to bridge over');
     }
-    for (const port of this.forwardPorts) {
-      this.socket.send(message, 0, message.length, port, '0.0.0.0');
+    for (const address of this.forwardAddresses) {
+      this.socket.send(
+          message, 0, message.length, address.port, address.ip || '0.0.0.0');
     }
   }
 
@@ -223,5 +224,5 @@ export {
   packetTypes,
   DEFAULT_PORT,
   BIGINT_ENABLED,
-  FORWARD_PORTS,
+  FORWARD_ADDRESSES,
 };
