@@ -45,6 +45,28 @@ class F1TelemetryClient extends EventEmitter {
 
   /**
    *
+   * @param {Buffer} message
+   */
+  static parseBufferMessage(message: Buffer, bigintEnabled = false):
+      ParsedMessage|undefined {
+    const {m_packetFormat, m_packetId} =
+        F1TelemetryClient.parsePacketHeader(message, bigintEnabled);
+
+    const parser = F1TelemetryClient.getParserByPacketId(m_packetId);
+
+    if (!parser) {
+      return;
+    }
+
+    const packetData = new parser(message, m_packetFormat, bigintEnabled);
+    const packetID = Object.keys(constants.PACKETS)[m_packetId];
+
+    // emit parsed message
+    return {packetData, packetID};
+  }
+
+  /**
+   *
    * @param {Buffer} buffer
    * @param {Boolean} bigIntEnabled
    */
@@ -119,7 +141,8 @@ class F1TelemetryClient extends EventEmitter {
       return;
     }
 
-    const parsedMessage = this.parseBufferMessage(message);
+    const parsedMessage =
+        F1TelemetryClient.parseBufferMessage(message, this.bigintEnabled);
 
     if (!parsedMessage || !parsedMessage.packetData) {
       return;
@@ -131,32 +154,12 @@ class F1TelemetryClient extends EventEmitter {
 
   /**
    *
-   * @param {Buffer} message
-   */
-  parseBufferMessage(message: Buffer): ParsedMessage|undefined {
-    const {m_packetFormat, m_packetId} =
-        F1TelemetryClient.parsePacketHeader(message, this.bigintEnabled);
-
-    const parser = F1TelemetryClient.getParserByPacketId(m_packetId);
-
-    if (!parser) {
-      return;
-    }
-
-    const packetData = new parser(message, m_packetFormat, this.bigintEnabled);
-    const packetID = Object.keys(constants.PACKETS)[m_packetId];
-
-    // emit parsed message
-    return {packetData, packetID};
-  }
-
-  /**
-   *
    * @param {string} message
    */
   parseStringMessage(message: string): ParsedMessage|undefined {
     const decodedMessage = base64Encoder.decode(message);
-    return this.parseBufferMessage(Buffer.from(decodedMessage));
+    return F1TelemetryClient.parseBufferMessage(
+        Buffer.from(decodedMessage), this.bigintEnabled);
   }
 
   /**
