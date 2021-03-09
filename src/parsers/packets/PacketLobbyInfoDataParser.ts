@@ -9,12 +9,13 @@ export class PacketLobbyInfoDataParser extends F1Parser {
   constructor(buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {
     super();
 
-    this.endianess('little')
-        .nest('m_header', {
-          type: new PacketHeaderParser(packetFormat, bigintEnabled),
-        })
-        .uint8('m_numPlayers')
-        .array('m_lobbyPlayers', {length: 22, type: new LobbyInfoDataParser()});
+    (this as any)
+      .endianess('little')
+      .nest('m_header', {
+        type: new PacketHeaderParser(packetFormat, bigintEnabled),
+      })
+      .uint8('m_numPlayers')
+      .array('m_lobbyPlayers', {length: 22, type: new LobbyInfoDataParser()});
 
     this.data = this.fromBuffer(buffer);
   }

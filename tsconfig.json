@@ -5,7 +5,8 @@
     "outDir": "build",
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "target": "ESNext"
+    "target": "ESNext",
+    "noImplicitAny": false
   },
   "include": ["src/*.ts", "src/**/*.ts", "test/*.ts", "test/**/*.ts"]
 }

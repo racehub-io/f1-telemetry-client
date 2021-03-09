@@ -11,44 +11,47 @@ export class PacketSessionDataParser extends F1Parser {
   constructor(buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {
     super();
 
-    this.endianess('little')
-        .nest('m_header', {
-          type: new PacketHeaderParser(packetFormat, bigintEnabled),
-        })
-        .uint8('m_weather')
-        .int8('m_trackTemperature')
-        .int8('m_airTemperature')
-        .uint8('m_totalLaps')
-        .uint16('m_trackLength')
-        .uint8('m_sessionType')
-        .int8('m_trackId');
+    (this as any)
+      .endianess('little')
+      .nest('m_header', {
+        type: new PacketHeaderParser(packetFormat, bigintEnabled),
+      })
+      .uint8('m_weather')
+      .int8('m_trackTemperature')
+      .int8('m_airTemperature')
+      .uint8('m_totalLaps')
+      .uint16('m_trackLength')
+      .uint8('m_sessionType')
+      .int8('m_trackId');
 
     if (packetFormat === 2018) {
-      this.uint8('m_era');
+      (this as any).uint8('m_era');
     }
 
     if (packetFormat === 2019 || packetFormat === 2020) {
-      this.uint8('m_formula');
+      (this as any).uint8('m_formula');
     }
 
-    this.uint16('m_sessionTimeLeft')
-        .uint16('m_sessionDuration')
-        .uint8('m_pitSpeedLimit')
-        .uint8('m_gamePaused')
-        .uint8('m_isSpectating')
-        .uint8('m_spectatorCarIndex')
-        .uint8('m_sliProNativeSupport')
-        .uint8('m_numMarshalZones')
-        .array('m_marshalZones', {length: 21, type: new MarshalZoneParser()})
-        .uint8('m_safetyCarStatus')
-        .uint8('m_networkGame');
+    (this as any)
+      .uint16('m_sessionTimeLeft')
+      .uint16('m_sessionDuration')
+      .uint8('m_pitSpeedLimit')
+      .uint8('m_gamePaused')
+      .uint8('m_isSpectating')
+      .uint8('m_spectatorCarIndex')
+      .uint8('m_sliProNativeSupport')
+      .uint8('m_numMarshalZones')
+      .array('m_marshalZones', {length: 21, type: new MarshalZoneParser()})
+      .uint8('m_safetyCarStatus')
+      .uint8('m_networkGame');
 
     if (packetFormat === 2020) {
-      this.uint8('m_numWeatherForecastSamples')
-          .array('m_weatherForecastSamples', {
-            type: new WeatherForecastSampleParser(),
-            length: 20,
-          });
+      (this as any)
+        .uint8('m_numWeatherForecastSamples')
+        .array('m_weatherForecastSamples', {
+          type: new WeatherForecastSampleParser(),
+          length: 20,
+        });
     }
 
     this.data = this.fromBuffer(buffer);
