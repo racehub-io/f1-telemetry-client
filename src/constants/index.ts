@@ -7,6 +7,7 @@ import {FORMULAS} from './formulas';
 import {FUEL_MIX} from './fuelMix';
 import {NATIONALITIES} from './nationalities';
 import {PACKETS} from './packets';
+import {PACKET_SIZES} from './packetSizes';
 import {SAFETY_CAR_STATUSES} from './safetyCarStatuses';
 import {SESSION_TYPES} from './sessionTypes';
 import {SURFACES} from './surfaces';
@@ -24,6 +25,7 @@ export {
   FORMULAS,
   FUEL_MIX,
   NATIONALITIES,
+  PACKET_SIZES,
   PACKETS,
   SAFETY_CAR_STATUSES,
   SESSION_TYPES,

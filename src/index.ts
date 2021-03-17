@@ -1,5 +1,4 @@
 // tslint:disable-next-line
-import base64Encoder from 'base64-arraybuffer';
 import {Parser} from 'binary-parser';
 import * as dgram from 'dgram';
 import {EventEmitter} from 'events';
@@ -13,7 +12,6 @@ import {Address, Options, ParsedMessage} from './types';
 
 const DEFAULT_PORT = 20777;
 const FORWARD_ADDRESSES = undefined;
-const SKIP_PARSING = false;
 const BIGINT_ENABLED = true;
 
 /**
@@ -22,7 +20,6 @@ const BIGINT_ENABLED = true;
 class F1TelemetryClient extends EventEmitter {
   port: number;
   bigintEnabled: boolean;
-  skipParsing?: boolean;
   forwardAddresses?: Address[];
   socket?: dgram.Socket;
 
@@ -32,14 +29,12 @@ class F1TelemetryClient extends EventEmitter {
     const {
       port = DEFAULT_PORT,
       bigintEnabled = BIGINT_ENABLED,
-      skipParsing = SKIP_PARSING,
       forwardAddresses = FORWARD_ADDRESSES,
     } = opts;
 
     this.port = port;
     this.bigintEnabled = bigintEnabled;
     this.forwardAddresses = forwardAddresses;
-    this.skipParsing = skipParsing;
     this.socket = dgram.createSocket('udp4');
   }
 
@@ -79,6 +74,17 @@ class F1TelemetryClient extends EventEmitter {
     const packetHeaderParser =
         new PacketHeaderParser(m_packetFormat, bigintEnabled);
     return packetHeaderParser.fromBuffer(buffer);
+  }
+
+  /**
+   *
+   * @param {Number} packetFormat
+   * @param {Number} packetId
+   */
+  static getPacketSize(packetFormat: number, packetId: number) {
+    const {PACKET_SIZES} = constants;
+    const packetValues = Object.values(PACKET_SIZES);
+    return packetValues[packetId][packetFormat];
   }
 
   /**
@@ -137,10 +143,6 @@ class F1TelemetryClient extends EventEmitter {
       this.bridgeMessage(message);
     }
 
-    if (this.skipParsing) {
-      return;
-    }
-
     const parsedMessage =
         F1TelemetryClient.parseBufferMessage(message, this.bigintEnabled);
 
@@ -150,16 +152,6 @@ class F1TelemetryClient extends EventEmitter {
 
     // emit parsed message
     this.emit(parsedMessage.packetID, parsedMessage.packetData.data);
-  }
-
-  /**
-   *
-   * @param {string} message
-   */
-  parseStringMessage(message: string): ParsedMessage|undefined {
-    const decodedMessage = base64Encoder.decode(message);
-    return F1TelemetryClient.parseBufferMessage(
-        Buffer.from(decodedMessage), this.bigintEnabled);
   }
 
   /**
