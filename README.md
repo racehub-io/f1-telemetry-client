@@ -41,8 +41,12 @@ const { PACKETS } = constants;
 *   'port' is optional, defaults to 20777
 *   'bigintEnabled' is optional, setting it to false makes the parser skip bigint values,
 *                   defaults to true
+*   'forwardAddresses' is optional, it's an array of Address objects to forward unparsed telemetry to. each address object is comprised of a port and an optional ip address
+*                   defaults to undefined
+*   'skipParsing' is optional, setting it to true will make the client not parse and emit content. You can consume telemetry data using forwardAddresses instead.
+*                   defaults to false
 */
-const client = new F1TelemetryClient({ port: 20777, bigintEnabled: true });
+const client = new F1TelemetryClient({ port: 20777 });
 client.on(PACKETS.event, console.log);
 client.on(PACKETS.motion, console.log);
 client.on(PACKETS.carSetups, console.log);
