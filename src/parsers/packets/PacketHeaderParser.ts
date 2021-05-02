@@ -4,7 +4,7 @@ export class PacketHeaderParser extends F1Parser {
   constructor(packetFormat: number, bigintEnabled: boolean) {
     super();
 
-    this.endianess('little').uint16('m_packetFormat');
+    this.endianess('little').uint16le('m_packetFormat');
 
     if (packetFormat === 2018) {
       this.uint8('m_packetVersion').uint8('m_packetId');

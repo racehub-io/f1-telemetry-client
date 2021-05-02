@@ -9,7 +9,7 @@ export class LapDataParser extends F1Parser {
         .floatle('m_currentLapTime');
 
     if (packetFormat === 2020) {
-      this.uint16('m_sector1TimeInMS').uint16('m_sector2TimeInMS');
+      this.uint16le('m_sector1TimeInMS').uint16le('m_sector2TimeInMS');
     }
 
     this.floatle('m_bestLapTime');
@@ -20,14 +20,14 @@ export class LapDataParser extends F1Parser {
 
     if (packetFormat === 2020) {
       this.uint8('m_bestLapNum')
-          .uint16('m_bestLapSector1TimeInMS')
-          .uint16('m_bestLapSector2TimeInMS')
-          .uint16('m_bestLapSector3TimeInMS')
-          .uint16('m_bestOverallSector1TimeInMS')
+          .uint16le('m_bestLapSector1TimeInMS')
+          .uint16le('m_bestLapSector2TimeInMS')
+          .uint16le('m_bestLapSector3TimeInMS')
+          .uint16le('m_bestOverallSector1TimeInMS')
           .uint8('m_bestOverallSector1LapNum')
-          .uint16('m_bestOverallSector2TimeInMS')
+          .uint16le('m_bestOverallSector2TimeInMS')
           .uint8('m_bestOverallSector2LapNum')
-          .uint16('m_bestOverallSector3TimeInMS')
+          .uint16le('m_bestOverallSector3TimeInMS')
           .uint8('m_bestOverallSector3LapNum');
     }
 
