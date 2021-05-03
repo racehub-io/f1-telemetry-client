@@ -23,7 +23,7 @@ export class CarStatusDataParser extends F1Parser {
         .uint8('m_drsAllowed');
 
     if (packetFormat === 2020) {
-      this.uint16('m_drsActivationDistance');
+      this.uint16le('m_drsActivationDistance');
     }
 
     this.array('m_tyresWear', {

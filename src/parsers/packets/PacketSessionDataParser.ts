@@ -19,7 +19,7 @@ export class PacketSessionDataParser extends F1Parser {
         .int8('m_trackTemperature')
         .int8('m_airTemperature')
         .uint8('m_totalLaps')
-        .uint16('m_trackLength')
+        .uint16le('m_trackLength')
         .uint8('m_sessionType')
         .int8('m_trackId');
 
@@ -31,8 +31,8 @@ export class PacketSessionDataParser extends F1Parser {
       this.uint8('m_formula');
     }
 
-    this.uint16('m_sessionTimeLeft')
-        .uint16('m_sessionDuration')
+    this.uint16le('m_sessionTimeLeft')
+        .uint16le('m_sessionDuration')
         .uint8('m_pitSpeedLimit')
         .uint8('m_gamePaused')
         .uint8('m_isSpectating')
