@@ -1,6 +1,6 @@
 {
   "name": "f1-telemetry-client",
-  "version": "0.1.22",
+  "version": "0.1.23",
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
   "files": [
