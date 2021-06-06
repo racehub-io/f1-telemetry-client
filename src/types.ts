@@ -5,6 +5,7 @@ export interface Options {
   forwardAddresses?: Address[]|undefined;
   bigintEnabled?: boolean;
   skipParsing?: boolean;
+  address?: string;
 }
 
 export interface Address {

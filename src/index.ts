@@ -13,6 +13,7 @@ import {Address, Options, ParsedMessage} from './types';
 const DEFAULT_PORT = 20777;
 const FORWARD_ADDRESSES = undefined;
 const BIGINT_ENABLED = true;
+const ADDRESS = 'localhost';
 
 /**
  *
@@ -21,6 +22,7 @@ class F1TelemetryClient extends EventEmitter {
   port: number;
   bigintEnabled: boolean;
   forwardAddresses?: Address[];
+  address: string;
   socket?: dgram.Socket;
 
   constructor(opts: Options = {}) {
@@ -30,11 +32,13 @@ class F1TelemetryClient extends EventEmitter {
       port = DEFAULT_PORT,
       bigintEnabled = BIGINT_ENABLED,
       forwardAddresses = FORWARD_ADDRESSES,
+      address = ADDRESS,
     } = opts;
 
     this.port = port;
     this.bigintEnabled = bigintEnabled;
     this.forwardAddresses = forwardAddresses;
+    this.address = address;
     this.socket = dgram.createSocket('udp4');
   }
 
@@ -193,7 +197,7 @@ class F1TelemetryClient extends EventEmitter {
     this.socket.on('message', (m) => this.handleMessage(m));
     this.socket.bind({
       port: this.port,
-      address: 'localhost',
+      address: this.address,
       exclusive: false,
     });
   }
