@@ -197,7 +197,7 @@ class F1TelemetryClient extends EventEmitter {
     this.socket.on('message', (m) => this.handleMessage(m));
     this.socket.bind({
       port: this.port,
-      address: this.bindAddress,
+      address: this.address,
       exclusive: false,
     });
   }
