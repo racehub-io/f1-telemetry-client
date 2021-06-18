@@ -49,14 +49,14 @@ export class PacketSessionDataParser extends F1Parser {
 
     if (packetFormat === 2020) {
       this.array('m_weatherForecastSamples', {
-        type: new WeatherForecastSampleParser(),
+        type: new WeatherForecastSampleParser(packetFormat),
         length: 20,
       });
     };
 
     if (packetFormat === 2021) {
       this.array('m_weatherForecastSamples', {
-        type: new WeatherForecastSampleParser(),
+        type: new WeatherForecastSampleParser(packetFormat),
         length: 56,
       })
       .uint8('m_forecastAccuracy')
