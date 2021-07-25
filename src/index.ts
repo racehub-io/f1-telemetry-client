@@ -22,7 +22,6 @@ class F1TelemetryClient extends EventEmitter {
   port: number;
   bigintEnabled: boolean;
   forwardAddresses?: Address[];
-  address: string;
   socket?: dgram.Socket;
 
   constructor(opts: Options = {}) {
@@ -32,13 +31,11 @@ class F1TelemetryClient extends EventEmitter {
       port = DEFAULT_PORT,
       bigintEnabled = BIGINT_ENABLED,
       forwardAddresses = FORWARD_ADDRESSES,
-      address = ADDRESS,
     } = opts;
 
     this.port = port;
     this.bigintEnabled = bigintEnabled;
     this.forwardAddresses = forwardAddresses;
-    this.address = address;
     this.socket = dgram.createSocket('udp4');
   }
 
@@ -197,7 +194,6 @@ class F1TelemetryClient extends EventEmitter {
     this.socket.on('message', (m) => this.handleMessage(m));
     this.socket.bind({
       port: this.port,
-      address: this.address,
       exclusive: false,
     });
   }
