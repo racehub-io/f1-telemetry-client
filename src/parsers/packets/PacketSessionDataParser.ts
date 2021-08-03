@@ -74,7 +74,9 @@ export class PacketSessionDataParser extends F1Parser {
           .uint8('m_pitAssist')
           .uint8('m_pitReleaseAssist')
           .uint8('m_ERSAssist')
-          .uint8('m_DRSAssist');
+          .uint8('m_DRSAssist')
+          .uint8('m_dynamicRacingLine')
+          .uint8('m_dynamicRacingLineType');
     }
 
     this.data = this.fromBuffer(buffer);
