@@ -14,4 +14,9 @@ export const BUTTON_FLAGS: {[index: string]: string} = {
   0x1000: 'R2 or RT',
   0x2000: 'Left Stick Click',
   0x4000: 'Right Stick Click',
+  0x8000: 'Right Stick Left',
+  0x10000: 'Right Stick Right',
+  0x20000: 'Right Stick Up',
+  0x40000: 'Right Stick Down',
+  0x80000: 'Special',
 };
