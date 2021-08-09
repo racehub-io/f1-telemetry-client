@@ -18,7 +18,8 @@ export class PacketParticipantsDataParser extends F1Parser {
       this.uint8('m_numCars');
     }
 
-    if (packetFormat === 2019 || packetFormat === 2020) {
+    if (packetFormat === 2019 || packetFormat === 2020 ||
+        packetFormat === 2021) {
       this.uint8('m_numActiveCars');
     }
 

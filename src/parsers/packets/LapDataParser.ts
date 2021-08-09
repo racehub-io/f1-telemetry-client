@@ -4,9 +4,13 @@ export class LapDataParser extends F1Parser {
   constructor(packetFormat: number) {
     super();
 
-    this.endianess('little')
-        .floatle('m_lastLapTime')
-        .floatle('m_currentLapTime');
+    this.endianess('little');
+
+    if (packetFormat === 2021) {
+      this.uint32le('m_lastLapTimeInMS').uint32le('m_currentLapTimeInMS');
+    } else {
+      this.floatle('m_lastLapTime').floatle('m_currentLapTime');
+    }
 
     if (packetFormat === 2020 || packetFormat === 2021) {
       this.uint16le('m_sector1TimeInMS').uint16le('m_sector2TimeInMS');

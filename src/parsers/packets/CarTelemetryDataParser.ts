@@ -9,7 +9,9 @@ export class CarTelemetryDataParser extends F1Parser {
 
     if (packetFormat === 2018) {
       this.uint8('m_throttle').int8('m_steer').uint8('m_brake');
-    } else if (packetFormat === 2019 || packetFormat === 2020) {
+    } else if (
+        packetFormat === 2019 || packetFormat === 2020 ||
+        packetFormat === 2021) {
       this.floatle('m_throttle').floatle('m_steer').floatle('m_brake');
     }
 
@@ -17,20 +19,27 @@ export class CarTelemetryDataParser extends F1Parser {
         .int8('m_gear')
         .uint16le('m_engineRPM')
         .uint8('m_drs')
-        .uint8('m_revLightsPercent')
-        .array('m_brakesTemperature', {
+        .uint8('m_revLightsPercent');
+
+    if (packetFormat === 2021) {
+      this.uint16le('m_revLightsBitValue');
+    }
+
+    this.array('m_brakesTemperature', {
           length: 4,
           type: new Parser().uint16le(''),
         })
         .array('m_tyresSurfaceTemperature', {
           length: 4,
-          type: packetFormat === 2020 ? new Parser().uint8('') :
-                                        new Parser().uint16le(''),
+          type: packetFormat === 2020 || packetFormat === 2021 ?
+              new Parser().uint8('') :
+              new Parser().uint16le(''),
         })
         .array('m_tyresInnerTemperature', {
           length: 4,
-          type: packetFormat === 2020 ? new Parser().uint8('') :
-                                        new Parser().uint16le(''),
+          type: packetFormat === 2020 || packetFormat === 2021 ?
+              new Parser().uint8('') :
+              new Parser().uint16le(''),
         })
         .uint16le('m_engineTemperature')
         .array('m_tyresPressure', {
@@ -38,7 +47,8 @@ export class CarTelemetryDataParser extends F1Parser {
           type: new Parser().floatle(''),
         });
 
-    if (packetFormat === 2019 || packetFormat === 2020) {
+    if (packetFormat === 2019 || packetFormat === 2020 ||
+        packetFormat === 2021) {
       this.array('m_surfaceType', {
         length: 4,
         type: new Parser().uint8(''),
