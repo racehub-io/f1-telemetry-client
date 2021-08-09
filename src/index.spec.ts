@@ -5,9 +5,7 @@ import {BIGINT_ENABLED, DEFAULT_PORT, F1TelemetryClient, FORWARD_ADDRESSES,} fro
 import {PACKET_CAR_SETUP_DATA_BUFFER_2018, PACKET_CAR_SETUP_DATA_BUFFER_2019, PACKET_CAR_SETUP_DATA_BUFFER_2020, PACKET_CAR_SETUP_DATA_PARSED_2018, PACKET_CAR_SETUP_DATA_PARSED_2019, PACKET_CAR_SETUP_DATA_PARSED_2020, PACKET_CAR_STATUS_DATA_BUFFER_2018, PACKET_CAR_STATUS_DATA_BUFFER_2019, PACKET_CAR_STATUS_DATA_BUFFER_2020, PACKET_CAR_STATUS_DATA_BUFFER_2021, PACKET_CAR_STATUS_DATA_PARSED_2018, PACKET_CAR_STATUS_DATA_PARSED_2019, PACKET_CAR_STATUS_DATA_PARSED_2020, PACKET_CAR_STATUS_DATA_PARSED_2021, PACKET_CAR_TELEMETRY_DATA_BUFFER_2018, PACKET_CAR_TELEMETRY_DATA_BUFFER_2019, PACKET_CAR_TELEMETRY_DATA_BUFFER_2020, PACKET_CAR_TELEMETRY_DATA_BUFFER_2021, PACKET_CAR_TELEMETRY_DATA_PARSED_2018, PACKET_CAR_TELEMETRY_DATA_PARSED_2019, PACKET_CAR_TELEMETRY_DATA_PARSED_2020, PACKET_CAR_TELEMETRY_DATA_PARSED_2021, PACKET_EVENT_DATA_BUFFER_2018, PACKET_EVENT_DATA_BUFFER_2019, PACKET_EVENT_DATA_BUFFER_2020, PACKET_EVENT_DATA_PARSED_2018, PACKET_EVENT_DATA_PARSED_2019, PACKET_EVENT_DATA_PARSED_2020, PACKET_FINAL_CLASSIFICATION_DATA_BUFFER_2020, PACKET_FINAL_CLASSIFICATION_DATA_PARSED_2020, PACKET_HEADER_BUFFER_2018, PACKET_HEADER_BUFFER_2019, PACKET_HEADER_BUFFER_2020, PACKET_HEADER_PARSED_2018, PACKET_HEADER_PARSED_2019, PACKET_HEADER_PARSED_2020, PACKET_LAP_DATA_BUFFER_2018, PACKET_LAP_DATA_BUFFER_2019, PACKET_LAP_DATA_BUFFER_2020, PACKET_LAP_DATA_BUFFER_2021, PACKET_LAP_DATA_PARSED_2018, PACKET_LAP_DATA_PARSED_2019, PACKET_LAP_DATA_PARSED_2020, PACKET_LAP_DATA_PARSED_2021, PACKET_LOBBY_INFO_DATA_BUFFER_2020, PACKET_LOBBY_INFO_DATA_PARSED_2020, PACKET_MOTION_DATA_BUFFER_2018, PACKET_MOTION_DATA_BUFFER_2019, PACKET_MOTION_DATA_BUFFER_2020, PACKET_MOTION_DATA_PARSED_2018, PACKET_MOTION_DATA_PARSED_2019, PACKET_MOTION_DATA_PARSED_2020, PACKET_PARTICIPANTS_DATA_BUFFER_2018, PACKET_PARTICIPANTS_DATA_BUFFER_2019, PACKET_PARTICIPANTS_DATA_BUFFER_2020, PACKET_PARTICIPANTS_DATA_BUFFER_2021, PACKET_PARTICIPANTS_DATA_PARSED_2018, PACKET_PARTICIPANTS_DATA_PARSED_2019, PACKET_PARTICIPANTS_DATA_PARSED_2020, PACKET_PARTICIPANTS_DATA_PARSED_2021, PACKET_SESSION_DATA_BUFFER_2018, PACKET_SESSION_DATA_BUFFER_2019, PACKET_SESSION_DATA_BUFFER_2020, PACKET_SESSION_DATA_BUFFER_2021, PACKET_SESSION_DATA_PARSED_2018, PACKET_SESSION_DATA_PARSED_2019, PACKET_SESSION_DATA_PARSED_2020, PACKET_SESSION_DATA_PARSED_2021,} from './mocks';
 
 describe('F1TelemetryClient', () => {
-  /*
-
-  xdescribe('constructor', () => {
+  describe('constructor', () => {
     describe('default settings', () => {
       describe('when no parameters are passed', () => {
         let f1TelemetryClient: F1TelemetryClient;
@@ -16,11 +14,12 @@ describe('F1TelemetryClient', () => {
           f1TelemetryClient = new F1TelemetryClient();
         });
 
-        it('should set default port, forwardAddresses and bigintEnabled to
-  default values', () => { expect(f1TelemetryClient.port).toBe(DEFAULT_PORT);
-          expect(f1TelemetryClient.forwardAddresses).toBe(FORWARD_ADDRESSES);
-          expect(f1TelemetryClient.bigintEnabled).toBe(BIGINT_ENABLED);
-        });
+        it('should set default port, forwardAddresses and bigintEnabled to default values',
+           () => {
+             expect(f1TelemetryClient.port).toBe(DEFAULT_PORT);
+             expect(f1TelemetryClient.forwardAddresses).toBe(FORWARD_ADDRESSES);
+             expect(f1TelemetryClient.bigintEnabled).toBe(BIGINT_ENABLED);
+           });
 
         it('should set up client as udp4 client', () => {
           expect(f1TelemetryClient.socket).toBeDefined();
@@ -42,11 +41,11 @@ describe('F1TelemetryClient', () => {
           expect(f1TelemetryClient.port).toBe(20778);
         });
 
-        it('should set forwardAddresses, forward port and bigintEnabled to
-  default values', () => {
-          expect(f1TelemetryClient.forwardAddresses).toBe(FORWARD_ADDRESSES);
-          expect(f1TelemetryClient.bigintEnabled).toBe(BIGINT_ENABLED);
-        });
+        it('should set forwardAddresses, forward port and bigintEnabled to default values',
+           () => {
+             expect(f1TelemetryClient.forwardAddresses).toBe(FORWARD_ADDRESSES);
+             expect(f1TelemetryClient.bigintEnabled).toBe(BIGINT_ENABLED);
+           });
 
         it('should set up client as udp4 client', () => {
           expect(f1TelemetryClient.socket).toBeDefined();
@@ -73,9 +72,10 @@ describe('F1TelemetryClient', () => {
         });
 
         it('should set port, forward port and bigintEnabled to default values',
-  () => { expect(f1TelemetryClient.port).toBe(DEFAULT_PORT);
-          expect(f1TelemetryClient.bigintEnabled).toBe(BIGINT_ENABLED);
-        });
+           () => {
+             expect(f1TelemetryClient.port).toBe(DEFAULT_PORT);
+             expect(f1TelemetryClient.bigintEnabled).toBe(BIGINT_ENABLED);
+           });
 
         it('should set up client as udp4 client', () => {
           expect(f1TelemetryClient.socket).toBeDefined();
@@ -97,11 +97,11 @@ describe('F1TelemetryClient', () => {
           expect(f1TelemetryClient.bigintEnabled).toBe(false);
         });
 
-        it('should set forwardAddresses, forward port and port to default
-  values', () => {
-          expect(f1TelemetryClient.forwardAddresses).toBe(FORWARD_ADDRESSES);
-          expect(f1TelemetryClient.port).toBe(DEFAULT_PORT);
-        });
+        it('should set forwardAddresses, forward port and port to default values',
+           () => {
+             expect(f1TelemetryClient.forwardAddresses).toBe(FORWARD_ADDRESSES);
+             expect(f1TelemetryClient.port).toBe(DEFAULT_PORT);
+           });
 
         it('should set up client as udp4 client', () => {
           expect(f1TelemetryClient.socket).toBeDefined();
@@ -112,7 +112,7 @@ describe('F1TelemetryClient', () => {
     });
   });
 
-  xdescribe('2018 format', () => {
+  describe('2018 format', () => {
     describe('parsePacketHeader', () => {
       // tslint:disable-next-line:no-any
       let parsedPacketHeader: Parser.Parsed<any>;
@@ -139,10 +139,8 @@ describe('F1TelemetryClient', () => {
         });
 
         it('should parse PacketSessionData buffer', () => {
-          expect(EventEmitter.prototype.emit).toHaveBeenCalledWith(
-            'session',
-            PACKET_SESSION_DATA_PARSED_2018
-          );
+          expect(EventEmitter.prototype.emit)
+              .toHaveBeenCalledWith('session', PACKET_SESSION_DATA_PARSED_2018);
         });
       });
 
@@ -155,10 +153,9 @@ describe('F1TelemetryClient', () => {
         });
 
         it('should parse PacketParticipantsData buffer and emit result', () => {
-          expect(EventEmitter.prototype.emit).toHaveBeenCalledWith(
-            'participants',
-            PACKET_PARTICIPANTS_DATA_PARSED_2018
-          );
+          expect(EventEmitter.prototype.emit)
+              .toHaveBeenCalledWith(
+                  'participants', PACKET_PARTICIPANTS_DATA_PARSED_2018);
         });
       });
 
@@ -171,10 +168,9 @@ describe('F1TelemetryClient', () => {
         });
 
         it('should parse PacketCarTelemetryData buffer and emit result', () => {
-          expect(EventEmitter.prototype.emit).toHaveBeenCalledWith(
-            'carTelemetry',
-            PACKET_CAR_TELEMETRY_DATA_PARSED_2018
-          );
+          expect(EventEmitter.prototype.emit)
+              .toHaveBeenCalledWith(
+                  'carTelemetry', PACKET_CAR_TELEMETRY_DATA_PARSED_2018);
         });
       });
 
@@ -187,10 +183,9 @@ describe('F1TelemetryClient', () => {
         });
 
         it('should parse PacketCarStatusData buffer and emit result', () => {
-          expect(EventEmitter.prototype.emit).toHaveBeenCalledWith(
-            'carStatus',
-            PACKET_CAR_STATUS_DATA_PARSED_2018
-          );
+          expect(EventEmitter.prototype.emit)
+              .toHaveBeenCalledWith(
+                  'carStatus', PACKET_CAR_STATUS_DATA_PARSED_2018);
         });
       });
 
@@ -203,10 +198,8 @@ describe('F1TelemetryClient', () => {
         });
 
         it('should parse PacketLapData buffer and emit result', () => {
-          expect(EventEmitter.prototype.emit).toHaveBeenCalledWith(
-            'lapData',
-            PACKET_LAP_DATA_PARSED_2018
-          );
+          expect(EventEmitter.prototype.emit)
+              .toHaveBeenCalledWith('lapData', PACKET_LAP_DATA_PARSED_2018);
         });
       });
 
@@ -219,10 +212,8 @@ describe('F1TelemetryClient', () => {
         });
 
         it('should parse PacketMotionData buffer and emit result', () => {
-          expect(EventEmitter.prototype.emit).toHaveBeenCalledWith(
-            'motion',
-            PACKET_MOTION_DATA_PARSED_2018
-          );
+          expect(EventEmitter.prototype.emit)
+              .toHaveBeenCalledWith('motion', PACKET_MOTION_DATA_PARSED_2018);
         });
       });
 
@@ -235,10 +226,9 @@ describe('F1TelemetryClient', () => {
         });
 
         it('should parse PacketCarSetupData buffer and emit result', () => {
-          expect(EventEmitter.prototype.emit).toHaveBeenCalledWith(
-            'carSetups',
-            PACKET_CAR_SETUP_DATA_PARSED_2018
-          );
+          expect(EventEmitter.prototype.emit)
+              .toHaveBeenCalledWith(
+                  'carSetups', PACKET_CAR_SETUP_DATA_PARSED_2018);
         });
       });
 
@@ -251,16 +241,14 @@ describe('F1TelemetryClient', () => {
         });
 
         it('should parse PacketEventData buffer and emit result', () => {
-          expect(EventEmitter.prototype.emit).toHaveBeenCalledWith(
-            'event',
-            PACKET_EVENT_DATA_PARSED_2018
-          );
+          expect(EventEmitter.prototype.emit)
+              .toHaveBeenCalledWith('event', PACKET_EVENT_DATA_PARSED_2018);
         });
       });
     });
   });
 
-  xdescribe('2019 format', () => {
+  describe('2019 format', () => {
     describe('parsePacketHeader', () => {
       // tslint:disable-next-line:no-any
       let parsedPacketHeader: Parser.Parsed<any>;
@@ -287,10 +275,8 @@ describe('F1TelemetryClient', () => {
         });
 
         it('should parse PacketSessionData buffer', () => {
-          expect(EventEmitter.prototype.emit).toHaveBeenCalledWith(
-            'session',
-            PACKET_SESSION_DATA_PARSED_2019
-          );
+          expect(EventEmitter.prototype.emit)
+              .toHaveBeenCalledWith('session', PACKET_SESSION_DATA_PARSED_2019);
         });
       });
 
@@ -303,10 +289,9 @@ describe('F1TelemetryClient', () => {
         });
 
         it('should parse PacketParticipantsData buffer and emit result', () => {
-          expect(EventEmitter.prototype.emit).toHaveBeenCalledWith(
-            'participants',
-            PACKET_PARTICIPANTS_DATA_PARSED_2019
-          );
+          expect(EventEmitter.prototype.emit)
+              .toHaveBeenCalledWith(
+                  'participants', PACKET_PARTICIPANTS_DATA_PARSED_2019);
         });
       });
 
@@ -319,10 +304,9 @@ describe('F1TelemetryClient', () => {
         });
 
         it('should parse PacketCarTelemetryData buffer and emit result', () => {
-          expect(EventEmitter.prototype.emit).toHaveBeenCalledWith(
-            'carTelemetry',
-            PACKET_CAR_TELEMETRY_DATA_PARSED_2019
-          );
+          expect(EventEmitter.prototype.emit)
+              .toHaveBeenCalledWith(
+                  'carTelemetry', PACKET_CAR_TELEMETRY_DATA_PARSED_2019);
         });
       });
 
@@ -335,10 +319,9 @@ describe('F1TelemetryClient', () => {
         });
 
         it('should parse PacketCarStatusData buffer and emit result', () => {
-          expect(EventEmitter.prototype.emit).toHaveBeenCalledWith(
-            'carStatus',
-            PACKET_CAR_STATUS_DATA_PARSED_2019
-          );
+          expect(EventEmitter.prototype.emit)
+              .toHaveBeenCalledWith(
+                  'carStatus', PACKET_CAR_STATUS_DATA_PARSED_2019);
         });
       });
 
@@ -351,10 +334,8 @@ describe('F1TelemetryClient', () => {
         });
 
         it('should parse PacketLapData buffer and emit result', () => {
-          expect(EventEmitter.prototype.emit).toHaveBeenCalledWith(
-            'lapData',
-            PACKET_LAP_DATA_PARSED_2019
-          );
+          expect(EventEmitter.prototype.emit)
+              .toHaveBeenCalledWith('lapData', PACKET_LAP_DATA_PARSED_2019);
         });
       });
 
@@ -367,10 +348,8 @@ describe('F1TelemetryClient', () => {
         });
 
         it('should parse PacketMotionData buffer and emit result', () => {
-          expect(EventEmitter.prototype.emit).toHaveBeenCalledWith(
-            'motion',
-            PACKET_MOTION_DATA_PARSED_2019
-          );
+          expect(EventEmitter.prototype.emit)
+              .toHaveBeenCalledWith('motion', PACKET_MOTION_DATA_PARSED_2019);
         });
       });
 
@@ -383,10 +362,9 @@ describe('F1TelemetryClient', () => {
         });
 
         it('should parse PacketCarSetupData buffer and emit result', () => {
-          expect(EventEmitter.prototype.emit).toHaveBeenCalledWith(
-            'carSetups',
-            PACKET_CAR_SETUP_DATA_PARSED_2019
-          );
+          expect(EventEmitter.prototype.emit)
+              .toHaveBeenCalledWith(
+                  'carSetups', PACKET_CAR_SETUP_DATA_PARSED_2019);
         });
       });
 
@@ -399,16 +377,14 @@ describe('F1TelemetryClient', () => {
         });
 
         it('should parse PacketEventData buffer and emit result', () => {
-          expect(EventEmitter.prototype.emit).toHaveBeenCalledWith(
-            'event',
-            PACKET_EVENT_DATA_PARSED_2019
-          );
+          expect(EventEmitter.prototype.emit)
+              .toHaveBeenCalledWith('event', PACKET_EVENT_DATA_PARSED_2019);
         });
       });
     });
   });
 
-  xdescribe('2020 format', () => {
+  describe('2020 format', () => {
     describe('parsePacketHeader', () => {
       // tslint:disable-next-line:no-any
       let parsedPacketHeader: Parser.Parsed<any>;
@@ -435,10 +411,8 @@ describe('F1TelemetryClient', () => {
         });
 
         it('should parse PacketSessionData buffer', () => {
-          expect(EventEmitter.prototype.emit).toHaveBeenCalledWith(
-            'session',
-            PACKET_SESSION_DATA_PARSED_2020
-          );
+          expect(EventEmitter.prototype.emit)
+              .toHaveBeenCalledWith('session', PACKET_SESSION_DATA_PARSED_2020);
         });
       });
 
@@ -451,10 +425,9 @@ describe('F1TelemetryClient', () => {
         });
 
         it('should parse PacketParticipantsData buffer and emit result', () => {
-          expect(EventEmitter.prototype.emit).toHaveBeenCalledWith(
-            'participants',
-            PACKET_PARTICIPANTS_DATA_PARSED_2020
-          );
+          expect(EventEmitter.prototype.emit)
+              .toHaveBeenCalledWith(
+                  'participants', PACKET_PARTICIPANTS_DATA_PARSED_2020);
         });
       });
 
@@ -467,10 +440,9 @@ describe('F1TelemetryClient', () => {
         });
 
         it('should parse PacketCarTelemetryData buffer and emit result', () => {
-          expect(EventEmitter.prototype.emit).toHaveBeenCalledWith(
-            'carTelemetry',
-            PACKET_CAR_TELEMETRY_DATA_PARSED_2020
-          );
+          expect(EventEmitter.prototype.emit)
+              .toHaveBeenCalledWith(
+                  'carTelemetry', PACKET_CAR_TELEMETRY_DATA_PARSED_2020);
         });
       });
 
@@ -483,10 +455,9 @@ describe('F1TelemetryClient', () => {
         });
 
         it('should parse PacketCarStatusData buffer and emit result', () => {
-          expect(EventEmitter.prototype.emit).toHaveBeenCalledWith(
-            'carStatus',
-            PACKET_CAR_STATUS_DATA_PARSED_2020
-          );
+          expect(EventEmitter.prototype.emit)
+              .toHaveBeenCalledWith(
+                  'carStatus', PACKET_CAR_STATUS_DATA_PARSED_2020);
         });
       });
 
@@ -499,10 +470,8 @@ describe('F1TelemetryClient', () => {
         });
 
         it('should parse PacketLapData buffer and emit result', () => {
-          expect(EventEmitter.prototype.emit).toHaveBeenCalledWith(
-            'lapData',
-            PACKET_LAP_DATA_PARSED_2020
-          );
+          expect(EventEmitter.prototype.emit)
+              .toHaveBeenCalledWith('lapData', PACKET_LAP_DATA_PARSED_2020);
         });
       });
 
@@ -515,10 +484,8 @@ describe('F1TelemetryClient', () => {
         });
 
         it('should parse PacketMotionData buffer and emit result', () => {
-          expect(EventEmitter.prototype.emit).toHaveBeenCalledWith(
-            'motion',
-            PACKET_MOTION_DATA_PARSED_2020
-          );
+          expect(EventEmitter.prototype.emit)
+              .toHaveBeenCalledWith('motion', PACKET_MOTION_DATA_PARSED_2020);
         });
       });
 
@@ -531,10 +498,9 @@ describe('F1TelemetryClient', () => {
         });
 
         it('should parse PacketCarSetupData buffer and emit result', () => {
-          expect(EventEmitter.prototype.emit).toHaveBeenCalledWith(
-            'carSetups',
-            PACKET_CAR_SETUP_DATA_PARSED_2020
-          );
+          expect(EventEmitter.prototype.emit)
+              .toHaveBeenCalledWith(
+                  'carSetups', PACKET_CAR_SETUP_DATA_PARSED_2020);
         });
       });
 
@@ -547,10 +513,8 @@ describe('F1TelemetryClient', () => {
         });
 
         it('should parse PacketEventData buffer and emit result', () => {
-          expect(EventEmitter.prototype.emit).toHaveBeenCalledWith(
-            'event',
-            PACKET_EVENT_DATA_PARSED_2020
-          );
+          expect(EventEmitter.prototype.emit)
+              .toHaveBeenCalledWith('event', PACKET_EVENT_DATA_PARSED_2020);
         });
       });
 
@@ -563,10 +527,9 @@ describe('F1TelemetryClient', () => {
         });
 
         it('should parse PacketLobbyInfoData buffer', () => {
-          expect(EventEmitter.prototype.emit).toHaveBeenCalledWith(
-            'lobbyInfo',
-            PACKET_LOBBY_INFO_DATA_PARSED_2020
-          );
+          expect(EventEmitter.prototype.emit)
+              .toHaveBeenCalledWith(
+                  'lobbyInfo', PACKET_LOBBY_INFO_DATA_PARSED_2020);
         });
       });
 
@@ -574,29 +537,25 @@ describe('F1TelemetryClient', () => {
         beforeAll(() => {
           f1TelemetryClient = new F1TelemetryClient();
           spyOn(EventEmitter.prototype, 'emit');
-          const buffer = Buffer.from(
-            PACKET_FINAL_CLASSIFICATION_DATA_BUFFER_2020
-          );
+          const buffer =
+              Buffer.from(PACKET_FINAL_CLASSIFICATION_DATA_BUFFER_2020);
           f1TelemetryClient.handleMessage(buffer);
         });
 
         it('should parse PacketFinalClassificationData buffer', () => {
-          expect(EventEmitter.prototype.emit).toHaveBeenCalledWith(
-            'finalClassification',
-            PACKET_FINAL_CLASSIFICATION_DATA_PARSED_2020
-          );
+          expect(EventEmitter.prototype.emit)
+              .toHaveBeenCalledWith(
+                  'finalClassification',
+                  PACKET_FINAL_CLASSIFICATION_DATA_PARSED_2020);
         });
       });
     });
   });
 
-  */
-
   describe('2021 format', () => {
     describe('handleMessage', () => {
       let f1TelemetryClient: F1TelemetryClient;
 
-      /*
       describe('PacketSessionData', () => {
         beforeAll(() => {
           f1TelemetryClient = new F1TelemetryClient({bigintEnabled: false});
@@ -606,10 +565,8 @@ describe('F1TelemetryClient', () => {
         });
 
         it('should parse PacketSessionData buffer', () => {
-          expect(EventEmitter.prototype.emit).toHaveBeenCalledWith(
-            'session',
-            PACKET_SESSION_DATA_PARSED_2021
-          );
+          expect(EventEmitter.prototype.emit)
+              .toHaveBeenCalledWith('session', PACKET_SESSION_DATA_PARSED_2021);
         });
       });
 
@@ -622,12 +579,11 @@ describe('F1TelemetryClient', () => {
         });
 
         it('should parse PacketParticipantsData buffer and emit result', () => {
-          expect(EventEmitter.prototype.emit).toHaveBeenCalledWith(
-            'participants',
-            PACKET_PARTICIPANTS_DATA_PARSED_2021
-            );
-          });
+          expect(EventEmitter.prototype.emit)
+              .toHaveBeenCalledWith(
+                  'participants', PACKET_PARTICIPANTS_DATA_PARSED_2021);
         });
+      });
 
       describe('PacketCarTelemetryData', () => {
         beforeAll(() => {
@@ -638,10 +594,9 @@ describe('F1TelemetryClient', () => {
         });
 
         it('should parse PacketCarTelemetryData buffer and emit result', () => {
-          expect(EventEmitter.prototype.emit).toHaveBeenCalledWith(
-            'carTelemetry',
-            PACKET_CAR_TELEMETRY_DATA_PARSED_2021
-          );
+          expect(EventEmitter.prototype.emit)
+              .toHaveBeenCalledWith(
+                  'carTelemetry', PACKET_CAR_TELEMETRY_DATA_PARSED_2021);
         });
       });
 
@@ -654,14 +609,12 @@ describe('F1TelemetryClient', () => {
         });
 
         it('should parse PacketCarStatusData buffer and emit result', () => {
-          expect(EventEmitter.prototype.emit).toHaveBeenCalledWith(
-            'carStatus',
-            PACKET_CAR_STATUS_DATA_PARSED_2021
-          );
+          expect(EventEmitter.prototype.emit)
+              .toHaveBeenCalledWith(
+                  'carStatus', PACKET_CAR_STATUS_DATA_PARSED_2021);
         });
       });
 
-      */
       describe('PacketLapData', () => {
         beforeAll(() => {
           f1TelemetryClient = new F1TelemetryClient({bigintEnabled: false});
@@ -679,7 +632,7 @@ describe('F1TelemetryClient', () => {
       /*
       describe('PacketMotionData', () => {
         beforeAll(() => {
-          f1TelemetryClient = new F1TelemetryClient();
+          f1TelemetryClient = new F1TelemetryClient({bigintEnabled: false});
           spyOn(EventEmitter.prototype, 'emit');
           const buffer = Buffer.from(PACKET_MOTION_DATA_BUFFER_2020);
           f1TelemetryClient.handleMessage(buffer);
@@ -695,7 +648,7 @@ describe('F1TelemetryClient', () => {
 
       describe('PacketCarSetupData', () => {
         beforeAll(() => {
-          f1TelemetryClient = new F1TelemetryClient();
+          f1TelemetryClient = new F1TelemetryClient({bigintEnabled: false});
           spyOn(EventEmitter.prototype, 'emit');
           const buffer = Buffer.from(PACKET_CAR_SETUP_DATA_BUFFER_2020);
           f1TelemetryClient.handleMessage(buffer);
@@ -711,7 +664,7 @@ describe('F1TelemetryClient', () => {
 
       describe('PacketEventData', () => {
         beforeAll(() => {
-          f1TelemetryClient = new F1TelemetryClient();
+          f1TelemetryClient = new F1TelemetryClient({bigintEnabled: false});
           spyOn(EventEmitter.prototype, 'emit');
           const buffer = Buffer.from(PACKET_EVENT_DATA_BUFFER_2020);
           f1TelemetryClient.handleMessage(buffer);
@@ -727,7 +680,7 @@ describe('F1TelemetryClient', () => {
 
       describe('PacketLobbyInfoData', () => {
         beforeAll(() => {
-          f1TelemetryClient = new F1TelemetryClient();
+          f1TelemetryClient = new F1TelemetryClient({bigintEnabled: false});
           spyOn(EventEmitter.prototype, 'emit');
           const buffer = Buffer.from(PACKET_LOBBY_INFO_DATA_BUFFER_2020);
           f1TelemetryClient.handleMessage(buffer);
@@ -743,7 +696,7 @@ describe('F1TelemetryClient', () => {
 
       describe('PacketFinalClassificationData', () => {
         beforeAll(() => {
-          f1TelemetryClient = new F1TelemetryClient();
+          f1TelemetryClient = new F1TelemetryClient({bigintEnabled: false});
           spyOn(EventEmitter.prototype, 'emit');
           const buffer = Buffer.from(
             PACKET_FINAL_CLASSIFICATION_DATA_BUFFER_2020
@@ -761,6 +714,4 @@ describe('F1TelemetryClient', () => {
       */
     });
   });
-
-  xdescribe('forward port', () => {});
 });

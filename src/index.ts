@@ -151,7 +151,8 @@ class F1TelemetryClient extends EventEmitter {
       return;
     }
 
-    if (parsedMessage.packetID === 'lapData') {
+    /*
+    if (parsedMessage.packetID === 'motion') {
       console.log('-------------------');
       console.log(parsedMessage.packetID);
       console.log('-------------------');
@@ -160,6 +161,7 @@ class F1TelemetryClient extends EventEmitter {
       console.log(JSON.stringify(parsedMessage.packetData.data));
       console.log('-------------------');
     }
+    */
 
     // emit parsed message
     this.emit(parsedMessage.packetID, parsedMessage.packetData.data);
