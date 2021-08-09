@@ -4,7 +4,7 @@
 
 The F1 series of games support the outputting of key game data via a UDP data stream. This data can be interpreted by external apps or connected peripherals for a range of different uses, including providing additional telemetry information, customised HUD displays, motion platform hardware support or providing force feedback data for custom steering wheels.
 
-This is a TypeScript UDP client and telemetry parser for Codemaster's F1 2020, 2019 and F1 2018 games that enables the consumption of such information.
+This is a TypeScript UDP client and telemetry parser for Codemaster's F1 2021, F1 2020, F1 2019 and F1 2018, that enables the consumption of such information.
 
 ## Installing
 
@@ -76,5 +76,4 @@ The following links contain information that summarises the UDP data structures 
 
 ## License
 
-This project is originally a fork of [f1-2018-udp](https://github.com/irvingswiftj/f1-2018-udp).  
 Licensed under the MIT License.
