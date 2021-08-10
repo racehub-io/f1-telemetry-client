@@ -12,4 +12,10 @@ export const EVENT_CODES: {[index: string]: EventCode} = {
   RaceWinner: 'RCWN',
   PenaltyIssued: 'PENA',
   SpeedTrapTriggered: 'SPTP',
+  StartLights: 'STLG',
+  LightsOut: 'LGOT',
+  DriveThroughServed: 'DTSV',
+  StopGoServed: 'SGSV',
+  Flashback: 'FLBK',
+  ButtonStatus: 'BUTN',
 };

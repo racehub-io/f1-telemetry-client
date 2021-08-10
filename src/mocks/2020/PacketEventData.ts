@@ -15,6 +15,5 @@ export const PACKET_EVENT_DATA_PARSED_2020 = {
     m_playerCarIndex: 19,
     m_secondaryPlayerCarIndex: 255,
     m_sessionTime: 0,
-    m_sessionUID: 15667368907113941736n,
   },
 };

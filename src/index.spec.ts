@@ -2,7 +2,7 @@ import {Parser} from 'binary-parser';
 import {EventEmitter} from 'events';
 
 import {BIGINT_ENABLED, DEFAULT_PORT, F1TelemetryClient, FORWARD_ADDRESSES,} from './index';
-import {PACKET_CAR_SETUP_DATA_BUFFER_2018, PACKET_CAR_SETUP_DATA_BUFFER_2019, PACKET_CAR_SETUP_DATA_BUFFER_2020, PACKET_CAR_SETUP_DATA_PARSED_2018, PACKET_CAR_SETUP_DATA_PARSED_2019, PACKET_CAR_SETUP_DATA_PARSED_2020, PACKET_CAR_STATUS_DATA_BUFFER_2018, PACKET_CAR_STATUS_DATA_BUFFER_2019, PACKET_CAR_STATUS_DATA_BUFFER_2020, PACKET_CAR_STATUS_DATA_BUFFER_2021, PACKET_CAR_STATUS_DATA_PARSED_2018, PACKET_CAR_STATUS_DATA_PARSED_2019, PACKET_CAR_STATUS_DATA_PARSED_2020, PACKET_CAR_STATUS_DATA_PARSED_2021, PACKET_CAR_TELEMETRY_DATA_BUFFER_2018, PACKET_CAR_TELEMETRY_DATA_BUFFER_2019, PACKET_CAR_TELEMETRY_DATA_BUFFER_2020, PACKET_CAR_TELEMETRY_DATA_BUFFER_2021, PACKET_CAR_TELEMETRY_DATA_PARSED_2018, PACKET_CAR_TELEMETRY_DATA_PARSED_2019, PACKET_CAR_TELEMETRY_DATA_PARSED_2020, PACKET_CAR_TELEMETRY_DATA_PARSED_2021, PACKET_EVENT_DATA_BUFFER_2018, PACKET_EVENT_DATA_BUFFER_2019, PACKET_EVENT_DATA_BUFFER_2020, PACKET_EVENT_DATA_PARSED_2018, PACKET_EVENT_DATA_PARSED_2019, PACKET_EVENT_DATA_PARSED_2020, PACKET_FINAL_CLASSIFICATION_DATA_BUFFER_2020, PACKET_FINAL_CLASSIFICATION_DATA_PARSED_2020, PACKET_HEADER_BUFFER_2018, PACKET_HEADER_BUFFER_2019, PACKET_HEADER_BUFFER_2020, PACKET_HEADER_PARSED_2018, PACKET_HEADER_PARSED_2019, PACKET_HEADER_PARSED_2020, PACKET_LAP_DATA_BUFFER_2018, PACKET_LAP_DATA_BUFFER_2019, PACKET_LAP_DATA_BUFFER_2020, PACKET_LAP_DATA_BUFFER_2021, PACKET_LAP_DATA_PARSED_2018, PACKET_LAP_DATA_PARSED_2019, PACKET_LAP_DATA_PARSED_2020, PACKET_LAP_DATA_PARSED_2021, PACKET_LOBBY_INFO_DATA_BUFFER_2020, PACKET_LOBBY_INFO_DATA_PARSED_2020, PACKET_MOTION_DATA_BUFFER_2018, PACKET_MOTION_DATA_BUFFER_2019, PACKET_MOTION_DATA_BUFFER_2020, PACKET_MOTION_DATA_PARSED_2018, PACKET_MOTION_DATA_PARSED_2019, PACKET_MOTION_DATA_PARSED_2020, PACKET_PARTICIPANTS_DATA_BUFFER_2018, PACKET_PARTICIPANTS_DATA_BUFFER_2019, PACKET_PARTICIPANTS_DATA_BUFFER_2020, PACKET_PARTICIPANTS_DATA_BUFFER_2021, PACKET_PARTICIPANTS_DATA_PARSED_2018, PACKET_PARTICIPANTS_DATA_PARSED_2019, PACKET_PARTICIPANTS_DATA_PARSED_2020, PACKET_PARTICIPANTS_DATA_PARSED_2021, PACKET_SESSION_DATA_BUFFER_2018, PACKET_SESSION_DATA_BUFFER_2019, PACKET_SESSION_DATA_BUFFER_2020, PACKET_SESSION_DATA_BUFFER_2021, PACKET_SESSION_DATA_PARSED_2018, PACKET_SESSION_DATA_PARSED_2019, PACKET_SESSION_DATA_PARSED_2020, PACKET_SESSION_DATA_PARSED_2021,} from './mocks';
+import {PACKET_CAR_SETUP_DATA_BUFFER_2018, PACKET_CAR_SETUP_DATA_BUFFER_2019, PACKET_CAR_SETUP_DATA_BUFFER_2020, PACKET_CAR_SETUP_DATA_BUFFER_2021, PACKET_CAR_SETUP_DATA_PARSED_2018, PACKET_CAR_SETUP_DATA_PARSED_2019, PACKET_CAR_SETUP_DATA_PARSED_2020, PACKET_CAR_SETUP_DATA_PARSED_2021, PACKET_CAR_STATUS_DATA_BUFFER_2018, PACKET_CAR_STATUS_DATA_BUFFER_2019, PACKET_CAR_STATUS_DATA_BUFFER_2020, PACKET_CAR_STATUS_DATA_BUFFER_2021, PACKET_CAR_STATUS_DATA_PARSED_2018, PACKET_CAR_STATUS_DATA_PARSED_2019, PACKET_CAR_STATUS_DATA_PARSED_2020, PACKET_CAR_STATUS_DATA_PARSED_2021, PACKET_CAR_TELEMETRY_DATA_BUFFER_2018, PACKET_CAR_TELEMETRY_DATA_BUFFER_2019, PACKET_CAR_TELEMETRY_DATA_BUFFER_2020, PACKET_CAR_TELEMETRY_DATA_BUFFER_2021, PACKET_CAR_TELEMETRY_DATA_PARSED_2018, PACKET_CAR_TELEMETRY_DATA_PARSED_2019, PACKET_CAR_TELEMETRY_DATA_PARSED_2020, PACKET_CAR_TELEMETRY_DATA_PARSED_2021, PACKET_EVENT_DATA_BUFFER_2018, PACKET_EVENT_DATA_BUFFER_2019, PACKET_EVENT_DATA_BUFFER_2020, PACKET_EVENT_DATA_BUFFER_2021, PACKET_EVENT_DATA_PARSED_2018, PACKET_EVENT_DATA_PARSED_2019, PACKET_EVENT_DATA_PARSED_2020, PACKET_EVENT_DATA_PARSED_2021, PACKET_FINAL_CLASSIFICATION_DATA_BUFFER_2020, PACKET_FINAL_CLASSIFICATION_DATA_PARSED_2020, PACKET_HEADER_BUFFER_2018, PACKET_HEADER_BUFFER_2019, PACKET_HEADER_BUFFER_2020, PACKET_HEADER_BUFFER_2021, PACKET_HEADER_PARSED_2018, PACKET_HEADER_PARSED_2019, PACKET_HEADER_PARSED_2020, PACKET_HEADER_PARSED_2021, PACKET_LAP_DATA_BUFFER_2018, PACKET_LAP_DATA_BUFFER_2019, PACKET_LAP_DATA_BUFFER_2020, PACKET_LAP_DATA_BUFFER_2021, PACKET_LAP_DATA_PARSED_2018, PACKET_LAP_DATA_PARSED_2019, PACKET_LAP_DATA_PARSED_2020, PACKET_LAP_DATA_PARSED_2021, PACKET_LOBBY_INFO_DATA_BUFFER_2020, PACKET_LOBBY_INFO_DATA_PARSED_2020, PACKET_MOTION_DATA_BUFFER_2018, PACKET_MOTION_DATA_BUFFER_2019, PACKET_MOTION_DATA_BUFFER_2020, PACKET_MOTION_DATA_BUFFER_2021, PACKET_MOTION_DATA_PARSED_2018, PACKET_MOTION_DATA_PARSED_2019, PACKET_MOTION_DATA_PARSED_2020, PACKET_MOTION_DATA_PARSED_2021, PACKET_PARTICIPANTS_DATA_BUFFER_2018, PACKET_PARTICIPANTS_DATA_BUFFER_2019, PACKET_PARTICIPANTS_DATA_BUFFER_2020, PACKET_PARTICIPANTS_DATA_BUFFER_2021, PACKET_PARTICIPANTS_DATA_PARSED_2018, PACKET_PARTICIPANTS_DATA_PARSED_2019, PACKET_PARTICIPANTS_DATA_PARSED_2020, PACKET_PARTICIPANTS_DATA_PARSED_2021, PACKET_SESSION_DATA_BUFFER_2018, PACKET_SESSION_DATA_BUFFER_2019, PACKET_SESSION_DATA_BUFFER_2020, PACKET_SESSION_DATA_BUFFER_2021, PACKET_SESSION_DATA_PARSED_2018, PACKET_SESSION_DATA_PARSED_2019, PACKET_SESSION_DATA_PARSED_2020, PACKET_SESSION_DATA_PARSED_2021,} from './mocks';
 
 describe('F1TelemetryClient', () => {
   describe('constructor', () => {
@@ -506,7 +506,7 @@ describe('F1TelemetryClient', () => {
 
       describe('PacketEventData', () => {
         beforeAll(() => {
-          f1TelemetryClient = new F1TelemetryClient();
+          f1TelemetryClient = new F1TelemetryClient({bigintEnabled: false});
           spyOn(EventEmitter.prototype, 'emit');
           const buffer = Buffer.from(PACKET_EVENT_DATA_BUFFER_2020);
           f1TelemetryClient.handleMessage(buffer);
@@ -553,6 +553,20 @@ describe('F1TelemetryClient', () => {
   });
 
   describe('2021 format', () => {
+    describe('parsePacketHeader', () => {
+      // tslint:disable-next-line:no-any
+      let parsedPacketHeader: Parser.Parsed<any>;
+
+      beforeAll(() => {
+        const buffer = Buffer.from(PACKET_HEADER_BUFFER_2021);
+        parsedPacketHeader = F1TelemetryClient.parsePacketHeader(buffer, false);
+      });
+
+      it('should parse buffer and return parsed packet header', () => {
+        expect(parsedPacketHeader).toEqual(PACKET_HEADER_PARSED_2021);
+      });
+    });
+
     describe('handleMessage', () => {
       let f1TelemetryClient: F1TelemetryClient;
 
@@ -629,20 +643,17 @@ describe('F1TelemetryClient', () => {
         });
       });
 
-      /*
       describe('PacketMotionData', () => {
         beforeAll(() => {
           f1TelemetryClient = new F1TelemetryClient({bigintEnabled: false});
           spyOn(EventEmitter.prototype, 'emit');
-          const buffer = Buffer.from(PACKET_MOTION_DATA_BUFFER_2020);
+          const buffer = Buffer.from(PACKET_MOTION_DATA_BUFFER_2021);
           f1TelemetryClient.handleMessage(buffer);
         });
 
         it('should parse PacketMotionData buffer and emit result', () => {
-          expect(EventEmitter.prototype.emit).toHaveBeenCalledWith(
-            'motion',
-            PACKET_MOTION_DATA_PARSED_2020
-          );
+          expect(EventEmitter.prototype.emit)
+              .toHaveBeenCalledWith('motion', PACKET_MOTION_DATA_PARSED_2021);
         });
       });
 
@@ -650,15 +661,14 @@ describe('F1TelemetryClient', () => {
         beforeAll(() => {
           f1TelemetryClient = new F1TelemetryClient({bigintEnabled: false});
           spyOn(EventEmitter.prototype, 'emit');
-          const buffer = Buffer.from(PACKET_CAR_SETUP_DATA_BUFFER_2020);
+          const buffer = Buffer.from(PACKET_CAR_SETUP_DATA_BUFFER_2021);
           f1TelemetryClient.handleMessage(buffer);
         });
 
         it('should parse PacketCarSetupData buffer and emit result', () => {
-          expect(EventEmitter.prototype.emit).toHaveBeenCalledWith(
-            'carSetups',
-            PACKET_CAR_SETUP_DATA_PARSED_2020
-          );
+          expect(EventEmitter.prototype.emit)
+              .toHaveBeenCalledWith(
+                  'carSetups', PACKET_CAR_SETUP_DATA_PARSED_2021);
         });
       });
 
@@ -666,17 +676,19 @@ describe('F1TelemetryClient', () => {
         beforeAll(() => {
           f1TelemetryClient = new F1TelemetryClient({bigintEnabled: false});
           spyOn(EventEmitter.prototype, 'emit');
-          const buffer = Buffer.from(PACKET_EVENT_DATA_BUFFER_2020);
+          const buffer = Buffer.from(PACKET_EVENT_DATA_BUFFER_2021);
           f1TelemetryClient.handleMessage(buffer);
         });
 
         it('should parse PacketEventData buffer and emit result', () => {
-          expect(EventEmitter.prototype.emit).toHaveBeenCalledWith(
-            'event',
-            PACKET_EVENT_DATA_PARSED_2020
-          );
+          expect(EventEmitter.prototype.emit)
+              .toHaveBeenCalledWith('event', PACKET_EVENT_DATA_PARSED_2021);
         });
       });
+
+      /*
+
+      // TODO: CAR DAMAGE, LOBBY INFO, FINAL CLASSIFICATION, SESSION HISTORY
 
       describe('PacketLobbyInfoData', () => {
         beforeAll(() => {
@@ -699,7 +711,7 @@ describe('F1TelemetryClient', () => {
           f1TelemetryClient = new F1TelemetryClient({bigintEnabled: false});
           spyOn(EventEmitter.prototype, 'emit');
           const buffer = Buffer.from(
-            PACKET_FINAL_CLASSIFICATION_DATA_BUFFER_2020
+            PACKET_FINAL_CLASSIFICATION_DATA_BUFFER_2021
           );
           f1TelemetryClient.handleMessage(buffer);
         });
@@ -707,10 +719,11 @@ describe('F1TelemetryClient', () => {
         it('should parse PacketFinalClassificationData buffer', () => {
           expect(EventEmitter.prototype.emit).toHaveBeenCalledWith(
             'finalClassification',
-            PACKET_FINAL_CLASSIFICATION_DATA_PARSED_2020
+            PACKET_FINAL_CLASSIFICATION_DATA_PARSED_2021
           );
         });
       });
+
       */
     });
   });
