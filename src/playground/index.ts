@@ -3,16 +3,15 @@ import {constants, F1TelemetryClient} from '..';
 
 const client = new F1TelemetryClient({
   port: 20779,
+  bigIntEnabled: false,
 });
 
 const socket = dgram.createSocket('udp4');
-// socket.bind(5550);
+socket.bind(5550);
 
 socket.on('message', (msg) => {
   const parsedmsg = F1TelemetryClient.parseBufferMessage(msg);
-  if (parsedmsg?.packetID === 'participants') {
-    // console.log(parsedmsg?.packetData?.data, parsedmsg?.packetID);
-  }
+  console.log(parsedmsg?.packetData?.data, parsedmsg?.packetID);
 });
 
 client.start();
