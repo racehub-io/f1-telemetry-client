@@ -3,7 +3,7 @@ import {constants, F1TelemetryClient} from '..';
 
 const client = new F1TelemetryClient({
   port: 20779,
-  bigIntEnabled: false,
+  bigintEnabled: false,
 });
 
 const socket = dgram.createSocket('udp4');
