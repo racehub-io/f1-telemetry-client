@@ -13,7 +13,8 @@ export class CarStatusDataParser extends F1Parser {
         .floatle('m_fuelInTank')
         .floatle('m_fuelCapacity');
 
-    if (packetFormat === 2019 || packetFormat === 2020) {
+    if (packetFormat === 2019 || packetFormat === 2020 ||
+        packetFormat === 2021) {
       this.floatle('m_fuelRemainingLaps');
     }
 
@@ -22,41 +23,49 @@ export class CarStatusDataParser extends F1Parser {
         .uint8('m_maxGears')
         .uint8('m_drsAllowed');
 
-    if (packetFormat === 2020) {
+    if (packetFormat === 2020 || packetFormat === 2021) {
       this.uint16le('m_drsActivationDistance');
     }
 
-    this.array('m_tyresWear', {
-      length: 4,
-      type: new Parser().uint8(''),
-    });
+    if (packetFormat !== 2021) {
+      this.array('m_tyresWear', {
+        length: 4,
+        type: new Parser().uint8(''),
+      });
+    }
 
-    if (packetFormat === 2019 || packetFormat === 2020) {
-      this.uint8('m_actualTyreCompound').uint8('m_tyreVisualCompound');
+    if (packetFormat === 2019 || packetFormat === 2020 ||
+        packetFormat === 2021) {
+      this.uint8('m_actualTyreCompound').uint8('m_visualTyreCompound');
     } else {
       this.uint8('m_tyreCompound');
     }
 
-    if (packetFormat === 2020) {
+    if (packetFormat === 2020 || packetFormat === 2021) {
       this.uint8('m_tyresAgeLaps');
     }
 
-    this.array('m_tyresDamage', {
-          length: 4,
-          type: new Parser().uint8(''),
-        })
-        .uint8('m_frontLeftWingDamage')
-        .uint8('m_frontRightWingDamage')
-        .uint8('m_rearWingDamage');
+    if (packetFormat !== 2021) {
+      this.array('m_tyresDamage', {
+            length: 4,
+            type: new Parser().uint8(''),
+          })
+          .uint8('m_frontLeftWingDamage')
+          .uint8('m_frontRightWingDamage')
+          .uint8('m_rearWingDamage');
+    }
 
     if (packetFormat === 2020) {
       this.uint8('m_drsFault');
     }
 
-    this.uint8('m_engineDamage').uint8('m_gearBoxDamage');
+    if (packetFormat !== 2021) {
+      this.uint8('m_engineDamage').uint8('m_gearBoxDamage');
+    }
 
-    if (packetFormat === 2019 || packetFormat === 2020) {
-      this.int8('m_vehicleFiaFlags');
+    if (packetFormat === 2019 || packetFormat === 2020 ||
+        packetFormat === 2021) {
+      this.uint8('m_vehicleFiaFlags');
     } else {
       this.uint8('m_exhaustDamage').int8('m_vehicleFiaFlags');
     }
@@ -66,5 +75,9 @@ export class CarStatusDataParser extends F1Parser {
         .floatle('m_ersHarvestedThisLapMGUK')
         .floatle('m_ersHarvestedThisLapMGUH')
         .floatle('m_ersDeployedThisLap');
+
+    if (packetFormat === 2021) {
+      this.int8('m_networkPaused');
+    }
   }
 }

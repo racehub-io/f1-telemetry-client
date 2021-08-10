@@ -1,20 +1,18 @@
 import * as dgram from 'dgram';
 import {constants, F1TelemetryClient} from '..';
 
-const {PACKETS} = constants;
-
 const client = new F1TelemetryClient({
-  port: 20777,
-  forwardAddresses: [{port: 5550}],
-  skipParsing: true,
+  port: 20779,
 });
 
 const socket = dgram.createSocket('udp4');
-socket.bind(5550);
+// socket.bind(5550);
 
 socket.on('message', (msg) => {
   const parsedmsg = F1TelemetryClient.parseBufferMessage(msg);
-  console.log(parsedmsg?.packetData?.data, parsedmsg?.packetID);
+  if (parsedmsg?.packetID === 'participants') {
+    // console.log(parsedmsg?.packetData?.data, parsedmsg?.packetID);
+  }
 });
 
 client.start();

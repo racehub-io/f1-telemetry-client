@@ -22,11 +22,48 @@ export class FastestLapParser extends F1Parser {
   }
 }
 
+export class FlashbackParser extends F1Parser {
+  constructor() {
+    super();
+    this.endianess('little')
+        .uint32le('flashbackFrameIdentifier')
+        .floatle('flashbackSessionTime');
+  }
+}
+
+export class StartLightsParser extends F1Parser {
+  constructor() {
+    super();
+
+    this.endianess('little').uint8('numLights');
+  }
+}
+
+export class ButtonsParser extends F1Parser {
+  constructor() {
+    super();
+
+    this.endianess('little').uint32le('m_buttonStatus');
+  }
+}
+
 export class SpeedTrapParser extends F1Parser {
   constructor() {
     super();
 
     this.endianess('little').uint8('vehicleIdx').floatle('speed');
+  }
+}
+
+export class SpeedTrapParser2021 extends F1Parser {
+  constructor() {
+    super();
+
+    this.endianess('little')
+        .uint8('vehicleIdx')
+        .floatle('speed')
+        .uint8('overallFastestInSession')
+        .uint8('driverFastestInSession');
   }
 }
 
@@ -65,6 +102,10 @@ export class PacketEventDataParser extends F1Parser {
       this.unpack2020Format(buffer, packetFormat, bigintEnabled);
     }
 
+    if (packetFormat === 2021) {
+      this.unpack2021Format(buffer, packetFormat, bigintEnabled);
+    }
+
     this.data = this.fromBuffer(buffer);
   }
 
@@ -99,6 +140,28 @@ export class PacketEventDataParser extends F1Parser {
           this.nest('m_eventDetails', {type: new SpeedTrapParser()});
         } else if (eventStringCode === EVENT_CODES.PenaltyIssued) {
           this.nest('m_eventDetails', {type: new PenaltyParser()});
+        }
+      };
+
+  unpack2021Format =
+      (buffer: Buffer, packetFormat: number, bigintEnabled: boolean) => {
+        const eventStringCode =
+            this.getEventStringCode(buffer, packetFormat, bigintEnabled);
+
+        if (eventStringCode === EVENT_CODES.FastestLap) {
+          this.nest('m_eventDetails', {type: new FastestLapParser()});
+        } else if (eventStringCode === EVENT_CODES.SpeedTrapTriggered) {
+          this.nest('m_eventDetails', {type: new SpeedTrapParser2021()});
+        } else if (eventStringCode === EVENT_CODES.PenaltyIssued) {
+          this.nest('m_eventDetails', {type: new PenaltyParser()});
+        } else if (eventStringCode === EVENT_CODES.Flashback) {
+          this.nest('m_eventDetails', {type: new FlashbackParser()});
+        } else if (eventStringCode === EVENT_CODES.StartLights) {
+          this.nest('m_eventDetails', {type: new StartLightsParser()});
+        } else if (eventStringCode === EVENT_CODES.ButtonStatus) {
+          this.nest('m_eventDetails', {type: new ButtonsParser()});
+        } else {
+          this.nest('m_eventDetails', {type: new GenericEventParser()});
         }
       };
 
