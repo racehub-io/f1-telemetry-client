@@ -1,4 +1,4 @@
-import {PacketCarSetupDataParser, PacketCarStatusDataParser, PacketCarTelemetryDataParser, PacketEventDataParser, PacketFinalClassificationDataParser, PacketLapDataParser, PacketLobbyInfoDataParser, PacketMotionDataParser, PacketParticipantsDataParser, PacketSessionDataParser,} from './parsers/packets';
+import {PacketCarSetupDataParser, PacketCarStatusDataParser, PacketCarTelemetryDataParser, PacketEventDataParser, PacketFinalClassificationDataParser, PacketLapDataParser, PacketLobbyInfoDataParser, PacketMotionDataParser, PacketParticipantsDataParser, PacketSessionDataParser, PacketSessionHistoryDataParser} from './parsers/packets';
 
 export interface Options {
   port?: number;
@@ -18,5 +18,5 @@ export interface ParsedMessage {
       PacketLapDataParser|PacketEventDataParser|PacketParticipantsDataParser|
       PacketCarSetupDataParser|PacketCarTelemetryDataParser|
       PacketCarStatusDataParser|PacketFinalClassificationDataParser|
-      PacketLobbyInfoDataParser|null;
+      PacketLobbyInfoDataParser|PacketSessionHistoryDataParser|null;
 }

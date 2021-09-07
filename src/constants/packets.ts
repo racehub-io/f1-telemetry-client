@@ -9,4 +9,5 @@ export const PACKETS = {
   carStatus: 'carStatus',
   finalClassification: 'finalClassification',
   lobbyInfo: 'lobbyInfo',
+  sessionHistory: 'sessionHistory',
 };

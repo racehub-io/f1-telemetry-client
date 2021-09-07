@@ -10,6 +10,7 @@ import {PacketLobbyInfoDataParser} from './PacketLobbyInfoDataParser';
 import {PacketMotionDataParser} from './PacketMotionDataParser';
 import {PacketParticipantsDataParser} from './PacketParticipantsDataParser';
 import {PacketSessionDataParser} from './PacketSessionDataParser';
+import {PacketSessionHistoryDataParser} from './PacketSessionHistoryDataParser';
 
 export {
   PacketCarSetupDataParser,
@@ -24,4 +25,5 @@ export {
   PacketMotionDataParser,
   PacketParticipantsDataParser,
   PacketSessionDataParser,
+  PacketSessionHistoryDataParser,
 };
