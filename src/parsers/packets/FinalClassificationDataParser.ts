@@ -14,7 +14,7 @@ export class FinalClassificationDataParser extends F1Parser {
         .uint8('m_resultStatus');
 
     if (packetFormat === 2021) {
-      this.int32le('m_bestLapTimeInMS');
+      this.uint32le('m_bestLapTimeInMS');
     } else {
       this.floatle('m_bestLapTime');
     }
