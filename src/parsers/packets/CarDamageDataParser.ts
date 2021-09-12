@@ -30,6 +30,7 @@ export class CarDamageDataParser extends F1Parser {
         .uint8('m_engineMGUHWear')
         .uint8('m_engineESWear')
         .uint8('m_engineCEWear')
+        .uint8('m_engineICEWear')
         .uint8('m_engineMGUKWear')
         .uint8('m_engineTCWear');
   }
