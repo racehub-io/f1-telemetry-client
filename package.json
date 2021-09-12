@@ -1,6 +1,6 @@
 {
-  "name": "f1-telemetry-client",
-  "version": "0.2.0",
+  "name": "@racehub-io/f1-telemetry-client",
+  "version": "0.2.2",
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
   "files": [
@@ -9,7 +9,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jonybur/f1-telemetry-client.git"
+    "url": "https://github.com/racehub-io/f1-telemetry-client.git"
   },
   "dependencies": {
     "binary-parser": "^1.5.0",
@@ -61,6 +61,10 @@
     "f1 2018",
     "f12019",
     "f1 2019",
+    "f12020",
+    "f1 2020",
+    "f12021",
+    "f1 2021",
     "formula 1",
     "f1",
     "codemasters",
@@ -71,10 +75,12 @@
     "gaming",
     "formula",
     "ps4",
+    "ps5",
     "xbox",
     "xbox one",
     "playstation",
     "playstation 4",
+    "playstation 5",
     "esports",
     "e sports",
     "e-sports",
