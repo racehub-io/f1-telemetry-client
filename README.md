@@ -1,6 +1,6 @@
 # F1 Telemetry Client
 
-<img src="https://img.shields.io/npm/v/f1-telemetry-client.svg"> <a  href='https://travis-ci.org/jonybur/f1-telemetry-client' ><img  src='https://travis-ci.org/jonybur/f1-telemetry-client.svg?branch=master'></a> <img  src="https://img.shields.io/github/license/jonybur/f1-telemetry-client.svg"> <a  href="https://snyk.io/test/github/jonybur/f1-telemetry-client?targetFile=package.json"><img  src="https://snyk.io/test/github/jonybur/f1-telemetry-client/badge.svg?targetFile=package.json"  alt="Known Vulnerabilities"  data-canonical-src="https://snyk.io/test/github/jonybur/f1-telemetry-client?targetFile=package.json"  style="max-width:100%;"></a> <a  href="https://github.com/google/gts"><img  src='https://img.shields.io/badge/code%20style-google-blueviolet.svg'></a>
+<img src="https://img.shields.io/npm/v/f1-telemetry-client.svg"> <a  href='https://travis-ci.org/racehub-io/f1-telemetry-client' ><img  src='https://travis-ci.org/racehub-io/f1-telemetry-client.svg?branch=master'></a> <img  src="https://img.shields.io/github/license/racehub-io/f1-telemetry-client.svg"> <a  href="https://snyk.io/test/github/racehub-io/f1-telemetry-client?targetFile=package.json"><img  src="https://snyk.io/test/github/racehub-io/f1-telemetry-client/badge.svg?targetFile=package.json"  alt="Known Vulnerabilities"  data-canonical-src="https://snyk.io/test/github/racehub-io/f1-telemetry-client?targetFile=package.json"  style="max-width:100%;"></a> <a  href="https://github.com/google/gts"><img  src='https://img.shields.io/badge/code%20style-google-blueviolet.svg'></a>
 
 The F1 series of games support the outputting of key game data via a UDP data stream. This data can be interpreted by external apps or connected peripherals for a range of different uses, including providing additional telemetry information, customised HUD displays, motion platform hardware support or providing force feedback data for custom steering wheels.
 
@@ -9,13 +9,13 @@ This is a TypeScript UDP client and telemetry parser for Codemaster's F1 2021, F
 ## Installing
 
 ```
-$ npm install f1-telemetry-client
+$ npm install @racehub-io/f1-telemetry-client
 ```
 
 or
 
 ```
-$ yarn add f1-telemetry-client
+$ yarn add @racehub-io/f1-telemetry-client
 ```
 
 ## Running the playground
@@ -57,6 +57,8 @@ client.on(PACKETS.carTelemetry, console.log);
 client.on(PACKETS.carStatus, console.log);
 client.on(PACKETS.finalClassification, console.log);
 client.on(PACKETS.lobbyInfo, console.log);
+client.on(PACKETS.carDamage, console.log);
+client.on(PACKETS.sessionHistory, console.log);
 
 // to start listening:
 client.start();
