@@ -14,7 +14,7 @@ export class PacketCarTelemetryDataParser extends F1Parser {
           type: new PacketHeaderParser(packetFormat, bigintEnabled),
         })
         .array('m_carTelemetryData', {
-          length: packetFormat === 2020 ? 22 : 20,
+          length: packetFormat === 2020 || packetFormat === 2021 ? 22 : 20,
           type: new CarTelemetryDataParser(packetFormat),
         });
 
