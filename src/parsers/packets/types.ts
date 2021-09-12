@@ -80,9 +80,9 @@ export interface LapData {
   m_resultStatus: number;
 }
 
-export interface PacketCarStatusData {
+export interface PacketCarDamageData {
   m_header: PacketHeader;
-  m_carStatusData: CarStatusData[];
+  m_carDamageData: CarStatusData[];
 }
 
 export interface TyreWear {
@@ -91,6 +91,36 @@ export interface TyreWear {
 
 export interface TyreDamage {
   m_tyresDamage: number;
+}
+
+export interface BrakeDamage {
+  m_brakesDamage: number;
+}
+
+export interface CarDamageData {
+  m_tyresWear: TyreWear[],
+  m_tyresDamage: TyreDamage,
+  m_brakesDamage: BrakeDamage[],
+  m_frontLeftWingDamage: number;
+  m_frontRightWingDamage: number;
+  m_rearWingDamage: number;
+  m_floorDamage: number;
+  m_diffuserDamage: number;
+  m_sidepodDamage: number;
+  m_drsFault: number;
+  m_gearBoxDamage: number;
+  m_engineDamage: number;
+  m_engineMGUHWear: number;
+  m_engineESWear: number;
+  m_engineCEWear: number;
+  m_engineICEWear: number;
+  m_engineMGUKWear: number;
+  m_engineTCWear: number;
+}
+
+export interface PacketCarStatusData {
+  m_header: PacketHeader;
+  m_carStatusData: CarStatusData[];
 }
 
 export interface CarStatusData {
@@ -252,4 +282,31 @@ export interface PacketLobbyInfoData {
   m_header: PacketHeader;
   m_numPlayers: number;
   m_lobbyPlayers: LobbyInfoData[];
+}
+
+export interface LapHistoryData {
+  m_lapTimeInMS: number;
+  m_sector1TimeInMS: number;
+  m_sector2TimeInMS: number;
+  m_sector3TimeInMS: number;
+  m_lapValidBitFlags: number;
+}
+
+export interface TyreStintsHistoryData {
+  m_endLap: number;
+  m_tyreActualCompound: number;
+  m_tyreVisualCompound: number;
+}
+
+export interface PacketSessionHistoryData {
+  m_header: PacketHeader;
+  m_carIdx: number;
+  m_numLaps: number;
+  m_numTyreStints: number;
+  m_bestLapTimeLapNum: number;
+  m_bestSector1LapNum: number;
+  m_bestSector2LapNum: number;
+  m_bestSector3LapNum: number;
+  m_lapHistoryData: LapHistoryData[];
+  m_tyreStintsHistoryData: TyreStintsHistoryData[];
 }

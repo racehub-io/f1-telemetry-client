@@ -1,3 +1,4 @@
+import {PacketCarDamageDataParser} from './PacketCarDamageDataParser';
 import {PacketCarSetupDataParser} from './PacketCarSetupDataParser';
 import {PacketCarStatusDataParser} from './PacketCarStatusDataParser';
 import {PacketCarTelemetryDataParser} from './PacketCarTelemetryDataParser';
@@ -10,6 +11,7 @@ import {PacketLobbyInfoDataParser} from './PacketLobbyInfoDataParser';
 import {PacketMotionDataParser} from './PacketMotionDataParser';
 import {PacketParticipantsDataParser} from './PacketParticipantsDataParser';
 import {PacketSessionDataParser} from './PacketSessionDataParser';
+import {PacketSessionHistoryDataParser} from './PacketSessionHistoryDataParser';
 
 export {
   PacketCarSetupDataParser,
@@ -24,4 +26,6 @@ export {
   PacketMotionDataParser,
   PacketParticipantsDataParser,
   PacketSessionDataParser,
+  PacketCarDamageDataParser,
+  PacketSessionHistoryDataParser,
 };
