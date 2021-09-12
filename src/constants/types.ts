@@ -28,3 +28,8 @@ export interface Tyre {
 export type Packet = string;
 
 export type PacketSize = number;
+
+export interface SessionTypes {
+  short: string;
+  long: string;
+}

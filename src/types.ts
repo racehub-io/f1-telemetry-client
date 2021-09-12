@@ -1,4 +1,4 @@
-import {PacketCarSetupDataParser, PacketCarStatusDataParser, PacketCarTelemetryDataParser, PacketEventDataParser, PacketFinalClassificationDataParser, PacketLapDataParser, PacketLobbyInfoDataParser, PacketMotionDataParser, PacketParticipantsDataParser, PacketSessionDataParser,} from './parsers/packets';
+import {PacketCarDamageDataParser, PacketCarSetupDataParser, PacketCarStatusDataParser, PacketCarTelemetryDataParser, PacketEventDataParser, PacketFinalClassificationDataParser, PacketLapDataParser, PacketLobbyInfoDataParser, PacketMotionDataParser, PacketParticipantsDataParser, PacketSessionDataParser, PacketSessionHistoryDataParser} from './parsers/packets';
 
 export interface Options {
   port?: number;
@@ -14,9 +14,9 @@ export interface Address {
 
 export interface ParsedMessage {
   packetID: string;
-  packetData:|PacketSessionDataParser|PacketMotionDataParser|
+  packetData:|PacketSessionHistoryDataParser|PacketSessionDataParser|PacketMotionDataParser|
       PacketLapDataParser|PacketEventDataParser|PacketParticipantsDataParser|
       PacketCarSetupDataParser|PacketCarTelemetryDataParser|
-      PacketCarStatusDataParser|PacketFinalClassificationDataParser|
+      PacketCarStatusDataParser|PacketCarDamageDataParser|PacketFinalClassificationDataParser|
       PacketLobbyInfoDataParser|null;
 }

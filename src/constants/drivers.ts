@@ -106,4 +106,5 @@ export const DRIVERS: {[index: number]: Driver} = {
   109: {abbreviation: 'BUT', firstName: 'Jenson', lastName: 'Button'},
   110: {abbreviation: 'COU', firstName: 'David', lastName: 'Coulthard'},
   111: {abbreviation: 'ROS', firstName: 'Nico', lastName: 'Rosberg'},
+  255: {abbreviation: 'DRV', firstName: 'Network', lastName: 'Human'},
 };
