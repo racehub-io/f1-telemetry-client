@@ -6,7 +6,7 @@ export class F1Parser extends Parser {
    * @param {Buffer} buffer
    */
   // tslint:disable-next-line:no-any
-  fromBuffer(buffer: Buffer): Parser.Parsed<any> {
+  fromBuffer(buffer: Buffer): any {
     return this.parse(buffer);
   }
 }
