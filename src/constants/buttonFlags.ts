@@ -19,4 +19,16 @@ export const BUTTON_FLAGS: {[index: string]: string} = {
   0x20000: 'Right Stick Up',
   0x40000: 'Right Stick Down',
   0x80000: 'Special',
+  0x00100000: 'UDP Action 1',
+  0x00200000: 'UDP Action 2',
+  0x00400000: 'UDP Action 3',
+  0x00800000: 'UDP Action 4',
+  0x01000000: 'UDP Action 5',
+  0x02000000: 'UDP Action 6',
+  0x04000000: 'UDP Action 7',
+  0x08000000: 'UDP Action 8',
+  0x10000000: 'UDP Action 9',
+  0x20000000: 'UDP Action 10',
+  0x40000000: 'UDP Action 11',
+  0x80000000: 'UDP Action 12'
 };

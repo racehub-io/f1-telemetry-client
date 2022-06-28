@@ -25,7 +25,12 @@ export class CarDamageDataParser extends F1Parser {
         .uint8('m_diffuserDamage')
         .uint8('m_sidepodDamage')
         .uint8('m_drsFault')
-        .uint8('m_gearBoxDamage')
+
+    if (packetFormat === 2022) {
+      this.uint8('m_ersFault')
+    }
+
+    this.uint8('m_gearBoxDamage')
         .uint8('m_engineDamage')
         .uint8('m_engineMGUHWear')
         .uint8('m_engineESWear')
@@ -33,5 +38,10 @@ export class CarDamageDataParser extends F1Parser {
         .uint8('m_engineICEWear')
         .uint8('m_engineMGUKWear')
         .uint8('m_engineTCWear');
+
+    if (packetFormat === 2022) {
+      this.uint8('m_engineBlown')
+          .uint8('m_engineSeized')
+    }
   }
 }

@@ -14,7 +14,7 @@ export class WeatherForecastSampleParser extends F1Parser {
       this.int8('m_airTemperature');
     };
 
-    if (packetFormat === 2021) {
+    if (packetFormat === 2021 || packetFormat === 2022) {
       this.int8('m_trackTemperatureChange')
           .int8('m_airTemperature')
           .int8('m_airTemperatureChange')

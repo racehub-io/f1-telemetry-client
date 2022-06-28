@@ -6,13 +6,13 @@ export class LapDataParser extends F1Parser {
 
     this.endianess('little');
 
-    if (packetFormat === 2021) {
+    if (packetFormat === 2021 || packetFormat === 2022) {
       this.uint32le('m_lastLapTimeInMS').uint32le('m_currentLapTimeInMS');
     } else {
       this.floatle('m_lastLapTime').floatle('m_currentLapTime');
     }
 
-    if (packetFormat === 2020 || packetFormat === 2021) {
+    if (packetFormat === 2020 || packetFormat === 2021 || packetFormat === 2022) {
       this.uint16le('m_sector1TimeInMS').uint16le('m_sector2TimeInMS');
     }
 
@@ -45,13 +45,13 @@ export class LapDataParser extends F1Parser {
         .uint8('m_currentLapNum')
         .uint8('m_pitStatus');
 
-    if (packetFormat === 2021) {
+    if (packetFormat === 2021 || packetFormat === 2022) {
       this.uint8('m_numPitStops');
     }
 
     this.uint8('m_sector').uint8('m_currentLapInvalid').uint8('m_penalties');
 
-    if (packetFormat === 2021) {
+    if (packetFormat === 2021 || packetFormat === 2022) {
       this.uint8('m_warnings')
           .uint8('m_numUnservedDriveThroughPens')
           .uint8('m_numUnservedStopGoPens');
@@ -61,7 +61,7 @@ export class LapDataParser extends F1Parser {
         .uint8('m_driverStatus')
         .uint8('m_resultStatus');
 
-    if (packetFormat === 2021) {
+    if (packetFormat === 2021 || packetFormat === 2022) {
       this.uint8('m_pitLaneTimerActive')
           .uint16le('m_pitLaneTimeInLaneInMS')
           .uint16le('m_pitStopTimerInMS')
