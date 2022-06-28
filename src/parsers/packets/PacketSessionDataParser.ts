@@ -44,7 +44,8 @@ export class PacketSessionDataParser extends F1Parser {
         .uint8('m_safetyCarStatus')
         .uint8('m_networkGame');
 
-    if (packetFormat === 2020 || packetFormat === 2021 || packetFormat === 2022) {
+    if (packetFormat === 2020 || packetFormat === 2021 ||
+        packetFormat === 2022) {
       this.uint8('m_numWeatherForecastSamples');
     }
 
@@ -80,10 +81,10 @@ export class PacketSessionDataParser extends F1Parser {
     }
 
     if (packetFormat === 2022) {
-      this.unit8('m_gameMode')
-          .unit8('m_ruleSet')
-          .unit32le('m_timeOfDay')
-          .unit8('m_sessionLength')
+      this.uint8('m_gameMode')
+          .uint8('m_ruleSet')
+          .uint32le('m_timeOfDay')
+          .uint8('m_sessionLength');
     }
 
     this.data = this.fromBuffer(buffer);

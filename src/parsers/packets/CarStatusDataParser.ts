@@ -23,11 +23,12 @@ export class CarStatusDataParser extends F1Parser {
         .uint8('m_maxGears')
         .uint8('m_drsAllowed');
 
-    if (packetFormat === 2020 || packetFormat === 2021 || packetFormat === 2022) {
+    if (packetFormat === 2020 || packetFormat === 2021 ||
+        packetFormat === 2022) {
       this.uint16le('m_drsActivationDistance');
     }
 
-    if (packetFormat !== 2021 || packetFormat !== 2022) {
+    if (packetFormat !== 2021 && packetFormat !== 2022) {
       this.array('m_tyresWear', {
         length: 4,
         type: new Parser().uint8(''),
@@ -41,11 +42,12 @@ export class CarStatusDataParser extends F1Parser {
       this.uint8('m_tyreCompound');
     }
 
-    if (packetFormat === 2020 || packetFormat === 2021 || packetFormat === 2022) {
+    if (packetFormat === 2020 || packetFormat === 2021 ||
+        packetFormat === 2022) {
       this.uint8('m_tyresAgeLaps');
     }
 
-    if (packetFormat !== 2021 || packetFormat !== 2022) {
+    if (packetFormat !== 2021 && packetFormat !== 2022) {
       this.array('m_tyresDamage', {
             length: 4,
             type: new Parser().uint8(''),
@@ -59,7 +61,7 @@ export class CarStatusDataParser extends F1Parser {
       this.uint8('m_drsFault');
     }
 
-    if (packetFormat !== 2021 || packetFormat !== 2022) {
+    if (packetFormat !== 2021 && packetFormat !== 2022) {
       this.uint8('m_engineDamage').uint8('m_gearBoxDamage');
     }
 
