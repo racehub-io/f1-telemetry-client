@@ -11,7 +11,7 @@ export class CarTelemetryDataParser extends F1Parser {
       this.uint8('m_throttle').int8('m_steer').uint8('m_brake');
     } else if (
         packetFormat === 2019 || packetFormat === 2020 ||
-        packetFormat === 2021) {
+        packetFormat === 2021 || packetFormat === 2022) {
       this.floatle('m_throttle').floatle('m_steer').floatle('m_brake');
     }
 
@@ -21,7 +21,7 @@ export class CarTelemetryDataParser extends F1Parser {
         .uint8('m_drs')
         .uint8('m_revLightsPercent');
 
-    if (packetFormat === 2021) {
+    if (packetFormat === 2021 || packetFormat === 2022) {
       this.uint16le('m_revLightsBitValue');
     }
 
@@ -31,13 +31,13 @@ export class CarTelemetryDataParser extends F1Parser {
         })
         .array('m_tyresSurfaceTemperature', {
           length: 4,
-          type: packetFormat === 2020 || packetFormat === 2021 ?
+          type: packetFormat === 2020 || packetFormat === 2021 || packetFormat === 2022 ?
               new Parser().uint8('') :
               new Parser().uint16le(''),
         })
         .array('m_tyresInnerTemperature', {
           length: 4,
-          type: packetFormat === 2020 || packetFormat === 2021 ?
+          type: packetFormat === 2020 || packetFormat === 2021 || packetFormat === 2022 ?
               new Parser().uint8('') :
               new Parser().uint16le(''),
         })
@@ -48,7 +48,7 @@ export class CarTelemetryDataParser extends F1Parser {
         });
 
     if (packetFormat === 2019 || packetFormat === 2020 ||
-        packetFormat === 2021) {
+        packetFormat === 2021 || packetFormat === 2022) {
       this.array('m_surfaceType', {
         length: 4,
         type: new Parser().uint8(''),

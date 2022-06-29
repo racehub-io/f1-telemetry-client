@@ -14,7 +14,7 @@ export class PacketCarStatusDataParser extends F1Parser {
           type: new PacketHeaderParser(packetFormat, bigintEnabled),
         })
         .array('m_carStatusData', {
-          length: packetFormat === 2020 || packetFormat === 2021 ? 22 : 20,
+          length: packetFormat === 2020 || packetFormat === 2021 || packetFormat === 2022 ? 22 : 20,
           type: new CarStatusDataParser(packetFormat),
         });
 

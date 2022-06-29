@@ -13,7 +13,7 @@ export class FinalClassificationDataParser extends F1Parser {
         .uint8('m_numPitStops')
         .uint8('m_resultStatus');
 
-    if (packetFormat === 2021) {
+    if (packetFormat === 2021 || packetFormat === 2022) {
       this.uint32le('m_bestLapTimeInMS');
     } else {
       this.floatle('m_bestLapTime');
@@ -31,5 +31,12 @@ export class FinalClassificationDataParser extends F1Parser {
           length: 8,
           type: new Parser().uint8(''),
         });
+
+    if (packetFormat === 2022) {
+      this.array('m_tyreStintsEndLaps', {
+        length: 8,
+        type: new Parser().uint8(''),
+      });
+    }
   }
 }

@@ -15,7 +15,7 @@ export class PacketCarDamageDataParser extends F1Parser {
         })
         .array('m_carDamageData', {
           length: 22,
-          type: new CarDamageDataParser(),
+          type: new CarDamageDataParser(packetFormat),
         });
 
     this.data = this.fromBuffer(buffer);

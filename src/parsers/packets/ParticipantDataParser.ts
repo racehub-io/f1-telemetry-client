@@ -6,13 +6,13 @@ export class ParticipantDataParser extends F1Parser {
 
     this.uint8('m_aiControlled').uint8('m_driverId');
 
-    if (packetFormat === 2021) {
+    if (packetFormat === 2021 || packetFormat === 2022) {
       this.uint8('m_networkId');
     }
 
     this.uint8('m_teamId');
 
-    if (packetFormat === 2021) {
+    if (packetFormat === 2021 || packetFormat === 2022) {
       this.uint8('m_myTeam');
     }
 
@@ -22,7 +22,7 @@ export class ParticipantDataParser extends F1Parser {
     });
 
     if (packetFormat === 2019 || packetFormat === 2020 ||
-        packetFormat === 2021) {
+        packetFormat === 2021 || packetFormat === 2022) {
       this.uint8('m_yourTelemetry');
     }
   }
