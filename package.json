@@ -1,6 +1,6 @@
 {
   "name": "@racehub-io/f1-telemetry-client",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
   "files": [
