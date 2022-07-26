@@ -21,7 +21,9 @@ export class PacketLapDataParser extends F1Parser {
           type: new LapDataParser(packetFormat),
         });
 
-    this.uint8('m_timeTrialPBCarIdx').uint8('m_timeTrialRivalCarIdx');
+    if (packetFormat === 2022) {
+      this.uint8('m_timeTrialPBCarIdx').uint8('m_timeTrialRivalCarIdx');
+    }
 
     this.data = this.fromBuffer(buffer);
   }
