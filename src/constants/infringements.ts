@@ -51,4 +51,5 @@ export const INFRINGEMENTS: string[] = [
   'Retry penalty',
   'Illegal time gain',
   'Mandatory pitstop',
+  'Attribute assigned',
 ];
