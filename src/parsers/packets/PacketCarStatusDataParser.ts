@@ -3,20 +3,20 @@ import {CarStatusDataParser} from './CarStatusDataParser';
 import {PacketHeaderParser} from './PacketHeaderParser';
 import {PacketCarStatusData} from './types';
 
-export class PacketCarStatusDataParser extends F1Parser {
+export class PacketCarStatusDataParser extends F1Parser<PacketCarStatusData> {
   data: PacketCarStatusData;
 
   constructor(buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {
     super();
 
     this.endianess('little')
-        .nest('m_header', {
-          type: new PacketHeaderParser(packetFormat, bigintEnabled),
-        })
-        .array('m_carStatusData', {
-          length: packetFormat === 2020 || packetFormat === 2021 || packetFormat === 2022 ? 22 : 20,
-          type: new CarStatusDataParser(packetFormat),
-        });
+      .nest('m_header', {
+        type: new PacketHeaderParser(packetFormat, bigintEnabled),
+      })
+      .array('m_carStatusData', {
+        length: packetFormat >= 2020 ? 22 : 20,
+        type: new CarStatusDataParser(packetFormat),
+      });
 
     this.data = this.fromBuffer(buffer);
   }

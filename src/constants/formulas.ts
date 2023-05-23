@@ -1,6 +1,6 @@
-export const FORMULAS: string[] = [
-  'F1 Modern',
-  'F1 Classic',
-  'F2',
-  'F1 Generic',
-];
+export const FORMULAS: {[index: number]: string} = {
+  0: 'F1 Modern',
+  1: 'F1 Classic',
+  2: 'F2',
+  3: 'F1 Generic',
+};

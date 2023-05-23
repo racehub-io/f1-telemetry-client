@@ -11,4 +11,6 @@ export const PACKETS = {
   lobbyInfo: 'lobbyInfo',
   carDamage: 'carDamage',
   sessionHistory: 'sessionHistory',
+  tyreSets: 'tyreSets',
+  motionEx: 'motionEx',
 };

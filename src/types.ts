@@ -1,8 +1,23 @@
-import {PacketCarDamageDataParser, PacketCarSetupDataParser, PacketCarStatusDataParser, PacketCarTelemetryDataParser, PacketEventDataParser, PacketFinalClassificationDataParser, PacketLapDataParser, PacketLobbyInfoDataParser, PacketMotionDataParser, PacketParticipantsDataParser, PacketSessionDataParser, PacketSessionHistoryDataParser} from './parsers/packets';
+import {
+  PacketCarDamageDataParser,
+  PacketCarSetupDataParser,
+  PacketCarStatusDataParser,
+  PacketCarTelemetryDataParser,
+  PacketEventDataParser,
+  PacketFinalClassificationDataParser,
+  PacketLapDataParser,
+  PacketLobbyInfoDataParser,
+  PacketMotionDataParser,
+  PacketParticipantsDataParser,
+  PacketSessionDataParser,
+  PacketSessionHistoryDataParser,
+} from './parsers/packets';
+import {PacketTyreSetsDataParser} from './parsers/packets/PacketTyreSetsDataParser';
+import {PacketMotionExDataParser} from './parsers/packets/PacketMotionExDataParser';
 
 export interface Options {
   port?: number;
-  forwardAddresses?: Address[]|undefined;
+  forwardAddresses?: Address[] | undefined;
   bigintEnabled?: boolean;
   skipParsing?: boolean;
 }
@@ -14,9 +29,22 @@ export interface Address {
 
 export interface ParsedMessage {
   packetID: string;
-  packetData:|PacketSessionHistoryDataParser|PacketSessionDataParser|PacketMotionDataParser|
-      PacketLapDataParser|PacketEventDataParser|PacketParticipantsDataParser|
-      PacketCarSetupDataParser|PacketCarTelemetryDataParser|
-      PacketCarStatusDataParser|PacketCarDamageDataParser|PacketFinalClassificationDataParser|
-      PacketLobbyInfoDataParser|null;
+  packetData:
+    | PacketSessionHistoryDataParser
+    | PacketSessionDataParser
+    | PacketMotionDataParser
+    | PacketLapDataParser
+    | PacketEventDataParser
+    | PacketParticipantsDataParser
+    | PacketCarSetupDataParser
+    | PacketCarTelemetryDataParser
+    | PacketCarStatusDataParser
+    | PacketCarDamageDataParser
+    | PacketFinalClassificationDataParser
+    | PacketLobbyInfoDataParser
+    | PacketTyreSetsDataParser
+    | PacketMotionExDataParser
+    | null;
+
+  message?: Buffer;
 }

@@ -4,7 +4,7 @@ import {PacketHeaderParser} from './PacketHeaderParser';
 import {ParticipantDataParser} from './ParticipantDataParser';
 import {PacketParticipantsData} from './types';
 
-export class PacketParticipantsDataParser extends F1Parser {
+export class PacketParticipantsDataParser extends F1Parser<PacketParticipantsData> {
   data: PacketParticipantsData;
 
   constructor(buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {
@@ -18,13 +18,12 @@ export class PacketParticipantsDataParser extends F1Parser {
       this.uint8('m_numCars');
     }
 
-    if (packetFormat === 2019 || packetFormat === 2020 ||
-        packetFormat === 2021 || packetFormat === 2022) {
+    if (packetFormat >= 2019) {
       this.uint8('m_numActiveCars');
     }
 
     this.array('m_participants', {
-      length: packetFormat === 2020 || packetFormat === 2021 ? 22 : 20,
+      length: packetFormat >= 2020 ? 22 : 20,
       type: new ParticipantDataParser(packetFormat),
     });
 

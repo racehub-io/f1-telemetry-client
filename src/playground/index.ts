@@ -1,4 +1,3 @@
-import * as dgram from 'dgram';
 import {constants, F1TelemetryClient} from '..';
 
 const {PACKETS} = constants;
@@ -18,16 +17,21 @@ client.on(PACKETS.carTelemetry, console.log);
 client.on(PACKETS.carStatus, console.log);
 client.on(PACKETS.finalClassification, console.log);
 client.on(PACKETS.lobbyInfo, console.log);
+client.on(PACKETS.carDamage, console.log);
+client.on(PACKETS.sessionHistory, console.log);
+client.on(PACKETS.tyreSets, console.log);
+client.on(PACKETS.motionEx, console.log);
 
 client.start();
 
 // stops the client
-[`exit`,
- `SIGINT`,
- `SIGUSR1`,
- `SIGUSR2`,
- `uncaughtException`,
- `SIGTERM`,
-].forEach((eventType) => {
+[
+  'exit',
+  'SIGINT',
+  'SIGUSR1',
+  'SIGUSR2',
+  'uncaughtException',
+  'SIGTERM',
+].forEach(eventType => {
   (process as NodeJS.EventEmitter).on(eventType, () => client.stop());
 });

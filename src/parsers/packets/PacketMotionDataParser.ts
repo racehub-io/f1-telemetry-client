@@ -6,27 +6,26 @@ import {CarMotionDataParser} from './CarMotionDataParser';
 import {PacketHeaderParser} from './PacketHeaderParser';
 import {PacketMotionData} from './types';
 
-export class PacketMotionDataParser extends F1Parser {
+export class PacketMotionDataParser extends F1Parser<PacketMotionData> {
   data: PacketMotionData;
 
   constructor(buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {
     super();
 
     this.endianess('little')
-        .nest('m_header', {
-          type: new PacketHeaderParser(packetFormat, bigintEnabled),
-        })
-        .array('m_carMotionData', {
-          length: packetFormat === 2020 || packetFormat === 2021 ||
-                  packetFormat === 2022 ?
-              22 :
-              20,
-          type: new CarMotionDataParser(),
-        })
-        .array('m_suspensionPosition', {
-          length: 4,
-          type: new Parser().floatle(''),
-        })
+      .nest('m_header', {
+        type: new PacketHeaderParser(packetFormat, bigintEnabled),
+      })
+      .array('m_carMotionData', {
+        length: packetFormat >= 2020 ? 22 : 20,
+        type: new CarMotionDataParser(),
+      });
+
+    if (packetFormat <= 2022) {
+      this.array('m_suspensionPosition', {
+        length: 4,
+        type: new Parser().floatle(''),
+      })
         .array('m_suspensionVelocity', {
           length: 4,
           type: new Parser().floatle(''),
@@ -53,6 +52,7 @@ export class PacketMotionDataParser extends F1Parser {
         .floatle('m_angularAccelerationY')
         .floatle('m_angularAccelerationZ')
         .floatle('m_frontWheelsAngle');
+    }
 
     this.data = this.fromBuffer(buffer);
   }

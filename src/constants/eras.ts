@@ -1,1 +1,4 @@
-export const ERAS: string[] = ['Modern', 'Classic'];
+export const ERAS: {[index: number]: string} = {
+  0: 'Modern',
+  1: 'Classic',
+};

@@ -18,4 +18,6 @@ export const EVENT_CODES: {[index: string]: EventCode} = {
   StopGoServed: 'SGSV',
   Flashback: 'FLBK',
   ButtonStatus: 'BUTN',
+  RedFlag: 'RDFL',
+  Overtake: 'OVTK',
 };
