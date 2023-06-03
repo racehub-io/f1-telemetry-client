@@ -1,6 +1,27 @@
-import {EventCode} from './types';
+import type {EventKeys} from '../types';
 
-export const EVENT_CODES: {[index: string]: EventCode} = {
+export type EventCode =
+  | 'SSTA'
+  | 'SEND'
+  | 'FTLP'
+  | 'RTMT'
+  | 'DRSE'
+  | 'DRSD'
+  | 'TMPT'
+  | 'CHQF'
+  | 'RCWN'
+  | 'PENA'
+  | 'SPTP'
+  | 'STLG'
+  | 'LGOT'
+  | 'DTSV'
+  | 'SGSV'
+  | 'FLBK'
+  | 'BUTN'
+  | 'RDFL'
+  | 'OVTK';
+
+export const EVENT_CODES: Record<EventKeys, EventCode> = {
   SessionStarted: 'SSTA',
   SessionEnded: 'SEND',
   FastestLap: 'FTLP',

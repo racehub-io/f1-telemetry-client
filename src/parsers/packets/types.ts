@@ -295,7 +295,6 @@ export interface GenericEvent extends PacketBase {
     | 'DRSE'
     | 'DRSD'
     | 'CHQF';
-  m_eventDetails?: VehicleEventDetails;
 }
 
 export interface VehicleEvent extends PacketBase {
@@ -533,3 +532,19 @@ export type PacketEvent =
   | PenaltyEvent
   | FlashbackEvent
   | SpeedTrapEvent;
+
+export type Packet =
+  | PacketSessionHistoryData
+  | PacketSessionData
+  | PacketMotionData
+  | PacketLapData
+  | PacketEvent
+  | PacketParticipantsData
+  | PacketCarSetupData
+  | PacketCarTelemetryData
+  | PacketCarStatusData
+  | PacketCarDamageData
+  | PacketFinalClassificationData
+  | PacketLobbyInfoData
+  | PacketTyreSetsData
+  | PacketMotionExData;

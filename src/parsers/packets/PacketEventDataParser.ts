@@ -1,10 +1,9 @@
 import {Parser} from 'binary-parser';
 
-import {EVENT_CODES} from '../../constants';
 import {F1Parser} from '../F1Parser';
 
 import {PacketHeaderParser} from './PacketHeaderParser';
-import {
+import type {
   ButtonEventDetails,
   FastestLapEventDetails,
   FlashbackEventDetails,
@@ -14,9 +13,19 @@ import {
   PenaltyEventDetails,
   SpeedTrapEventDetails,
   PacketEvent,
+  GenericEvent,
 } from './types';
+import {EVENT_CODES} from '../../constants';
+import type {EventCode} from '../../constants/eventCodes';
 
 export class VehicleEventParser extends F1Parser<VehicleEventDetails> {
+  static EVENT_CODES: EventCode[] = [
+    EVENT_CODES.Retirement,
+    EVENT_CODES.TeammateInPits,
+    EVENT_CODES.RaceWinner,
+    EVENT_CODES.DriveThroughServed,
+    EVENT_CODES.StopGoServed,
+  ];
   constructor() {
     super();
     this.endianess('little').uint8('vehicleIdx');
@@ -111,106 +120,6 @@ export class PacketEventDataParser extends F1Parser<PacketEvent> {
 
     this.string('m_eventStringCode', {length: 4});
 
-    if (packetFormat === 2019) {
-      this.unpack2019Format(buffer, packetFormat, bigintEnabled);
-    }
-
-    if (packetFormat === 2020) {
-      this.unpack2020Format(buffer, packetFormat, bigintEnabled);
-    }
-
-    if (packetFormat === 2021 || packetFormat === 2022) {
-      this.unpack2022Format(buffer, packetFormat, bigintEnabled);
-    }
-
-    if (packetFormat >= 2023) {
-      this.unpack2023Format(buffer, packetFormat, bigintEnabled);
-    }
-
-    this.data = this.fromBuffer(buffer);
-  }
-
-  unpack2019Format = (
-    buffer: Buffer,
-    packetFormat: number,
-    bigintEnabled: boolean
-  ) => {
-    const eventStringCode = this.getEventStringCode(
-      buffer,
-      packetFormat,
-      bigintEnabled
-    );
-
-    if (eventStringCode === EVENT_CODES.FastestLap) {
-      this.nest('m_eventDetails', {type: new FastestLapParser()});
-    } else if (
-      eventStringCode === EVENT_CODES.Retirement ||
-      eventStringCode === EVENT_CODES.TeammateInPits ||
-      eventStringCode === EVENT_CODES.RaceWinner
-    ) {
-      this.nest('m_eventDetails', {type: new VehicleEventParser()});
-    }
-  };
-
-  unpack2020Format = (
-    buffer: Buffer,
-    packetFormat: number,
-    bigintEnabled: boolean
-  ) => {
-    const eventStringCode = this.getEventStringCode(
-      buffer,
-      packetFormat,
-      bigintEnabled
-    );
-
-    if (eventStringCode === EVENT_CODES.FastestLap) {
-      this.nest('m_eventDetails', {type: new FastestLapParser()});
-    } else if (
-      eventStringCode === EVENT_CODES.Retirement ||
-      eventStringCode === EVENT_CODES.TeammateInPits ||
-      eventStringCode === EVENT_CODES.RaceWinner
-    ) {
-      this.nest('m_eventDetails', {type: new VehicleEventParser()});
-    } else if (eventStringCode === EVENT_CODES.SpeedTrapTriggered) {
-      this.nest('m_eventDetails', {type: new SpeedTrapParser(packetFormat)});
-    } else if (eventStringCode === EVENT_CODES.PenaltyIssued) {
-      this.nest('m_eventDetails', {type: new PenaltyParser()});
-    }
-  };
-
-  unpack2022Format = (
-    buffer: Buffer,
-    packetFormat: number,
-    bigintEnabled: boolean
-  ) => {
-    const eventStringCode = this.getEventStringCode(
-      buffer,
-      packetFormat,
-      bigintEnabled
-    );
-
-    if (eventStringCode === EVENT_CODES.FastestLap) {
-      this.nest('m_eventDetails', {type: new FastestLapParser()});
-    } else if (eventStringCode === EVENT_CODES.SpeedTrapTriggered) {
-      this.nest('m_eventDetails', {type: new SpeedTrapParser(packetFormat)});
-    } else if (eventStringCode === EVENT_CODES.PenaltyIssued) {
-      this.nest('m_eventDetails', {type: new PenaltyParser()});
-    } else if (eventStringCode === EVENT_CODES.Flashback) {
-      this.nest('m_eventDetails', {type: new FlashbackParser()});
-    } else if (eventStringCode === EVENT_CODES.StartLights) {
-      this.nest('m_eventDetails', {type: new StartLightsParser()});
-    } else if (eventStringCode === EVENT_CODES.ButtonStatus) {
-      this.nest('m_eventDetails', {type: new ButtonsParser()});
-    } else {
-      this.nest('m_eventDetails', {type: new VehicleEventParser()});
-    }
-  };
-
-  unpack2023Format = (
-    buffer: Buffer,
-    packetFormat: number,
-    bigintEnabled: boolean
-  ) => {
     const eventStringCode = this.getEventStringCode(
       buffer,
       packetFormat,
@@ -231,23 +140,25 @@ export class PacketEventDataParser extends F1Parser<PacketEvent> {
       this.nest('m_eventDetails', {type: new ButtonsParser()});
     } else if (eventStringCode === EVENT_CODES.Overtake) {
       this.nest('m_eventDetails', {type: new OvertakeParser()});
-    } else {
+    } else if (VehicleEventParser.EVENT_CODES.includes(eventStringCode)) {
       this.nest('m_eventDetails', {type: new VehicleEventParser()});
     }
-  };
+
+    this.data = this.fromBuffer(buffer);
+  }
 
   getEventStringCode = (
     buffer: Buffer,
     packetFormat: number,
     bigintEnabled: boolean
-  ) => {
+  ): EventCode => {
     const headerParser = new Parser()
       .endianess('little')
       .nest('m_header', {
         type: new PacketHeaderParser(packetFormat, bigintEnabled),
       })
       .string('m_eventStringCode', {length: 4});
-    const {m_eventStringCode} = headerParser.parse(buffer);
+    const {m_eventStringCode} = headerParser.parse(buffer) as GenericEvent;
     return m_eventStringCode;
   };
 }
