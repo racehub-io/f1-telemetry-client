@@ -73,7 +73,7 @@ client.stop();
 
 The following links contain information that summarises the UDP data structures so that developers of supporting hardware or software are able to configure these to work correctly with the F1 game.
 
-- [F1 2023 UDP Spec](https://answers.ea.com/t5/General-Discussion/bd-p/f1-23-general-discussion-en) (not yet released)
+- [F1 2023 UDP Spec](https://answers.ea.com/t5/General-Discussion/F1-23-UDP-Specification/td-p/12632888) (not yet released)
 - [F1 2022 UDP Spec](https://answers.ea.com/t5/General-Discussion/F1-22-UDP-Specification/td-p/11551274)
 - [F1 2020 UDP Spec](https://forums.codemasters.com/topic/50942-f1-2020-udp-specification/)  
 - [F1 2021 UDP Spec](https://forums.codemasters.com/topic/80231-f1-2021-udp-specification/)  

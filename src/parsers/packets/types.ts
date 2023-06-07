@@ -148,6 +148,16 @@ export interface MarshalZone {
 }
 
 export interface LapData {
+  m_bestLapNum?: number;
+  m_bestLapSector1TimeInMS?: number;
+  m_bestLapSector2TimeInMS?: number;
+  m_bestLapSector3TimeInMS?: number;
+  m_bestOverallSector1TimeInMS?: number;
+  m_bestOverallSector1LapNum?: number;
+  m_bestOverallSector2TimeInMS?: number;
+  m_bestOverallSector2LapNum?: number;
+  m_bestOverallSector3TimeInMS?: number;
+  m_bestOverallSector3LapNum?: number;
   m_lastLapTime?: number;
   m_lastLapTimeInMS?: number;
   m_currentLapTime?: number;
@@ -432,10 +442,10 @@ export interface WeatherForecastSample {
   m_timeOffset: number;
   m_weather: number;
   m_trackTemperature: number;
-  m_trackTemperatureChange: number;
+  m_trackTemperatureChange?: number;
   m_airTemperature: number;
-  m_airTemperatureChange: number;
-  m_rainPercentage: number;
+  m_airTemperatureChange?: number;
+  m_rainPercentage?: number;
 }
 export interface FinalClassificationData {
   m_position: number;
@@ -446,14 +456,14 @@ export interface FinalClassificationData {
   m_resultStatus: number;
   // check why missing?
   m_bestLapTime?: number;
-  m_bestLapTimeInMS: number;
+  m_bestLapTimeInMS?: number;
   m_totalRaceTime: number;
   m_penaltiesTime: number;
   m_numPenalties: number;
   m_numTyreStints: number;
   m_tyreStintsActual: number[];
   m_tyreStintsVisual: number[];
-  m_tyreStintsEndLaps: number[];
+  m_tyreStintsEndLaps?: number[];
 }
 
 export interface PacketFinalClassificationData extends PacketBase {
@@ -531,6 +541,7 @@ export type PacketEvent =
   | OvertakeEvent
   | PenaltyEvent
   | FlashbackEvent
+  | FastestLapEvent
   | SpeedTrapEvent;
 
 export type Packet =
