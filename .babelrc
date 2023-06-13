@@ -1,0 +1,10 @@
+{
+  "comments": true,
+  "compact": false,
+  "retainLines": false,
+  "minified": false,
+  "presets": [
+    "@babel/preset-env",
+    "@babel/preset-typescript"
+  ]
+}

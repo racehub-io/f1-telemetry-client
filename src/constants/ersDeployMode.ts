@@ -1,15 +1,15 @@
-export const ERS_DEPLOY_MODE: string[] = [
-  'None',
-  'Low',
-  'Medium',
-  'High',
-  'Overtake',
-  'Hotlap',
-];
+export const ERS_DEPLOY_MODE: {[index: number]: string} = {
+  0: 'None',
+  1: 'Medium',
+  2: 'Hotlap',
+  3: 'Overtake',
+};
 
-export const ERS_DEPLOY_MODE_2020: string[] = [
-  'None',
-  'Medium',
-  'Hotlap',
-  'Overtake',
-];
+export const ERS_DEPLOY_MODE_2019: {[index: number]: string} = {
+  0: 'None',
+  1: 'Low',
+  2: 'Medium',
+  3: 'High',
+  4: 'Overtake',
+  5: 'Hotlap',
+};
