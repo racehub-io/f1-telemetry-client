@@ -1,4 +1,4 @@
-import {Team} from './types';
+import type {Team} from './types';
 
 const MERCEDES_COLOR = '#00D2BE';
 const FERRARI_COLOR = '#DC0000';
@@ -13,6 +13,7 @@ const ALFA_ROMEO_COLOR = '#900000';
 const LOTUS_COLOR = '#fcd56d';
 const JORDAN_COLOR = '#006F62';
 const BENTETTON_COLOR = '#fcd56d';
+const KONNORSPORT_COLOR = '#ffe918';
 
 const ART_GRAND_PRIX_COLOR = '#B4B3B4';
 const CAMPOS_VEXATEC_COLOR = '#EBC110';
@@ -145,16 +146,28 @@ export const TEAMS: {[index: number]: Team} = {
   115: {name: 'BWT 21', color: BWT_ARDEN_COLOR},
   116: {name: 'Trident 21', color: TRIDENT_COLOR},
   117: {name: 'Mercedes AMG GT Black Series', color: MERCEDES_COLOR},
-  118: {name: 'Prema ‘22', color: PREMA_COLOR},
-  119: {name: 'Virtuosi ‘22', color: UNI_VIRTUOSI_COLOR},
-  120: {name: 'Carlin ‘22', color: CARLIN_COLOR},
-  121: {name: 'Hitech ‘22', color: HITECH_COLOR},
-  122: {name: 'Art GP ‘22', color: ART_GRAND_PRIX_COLOR},
-  123: {name: 'MP Motorsport ‘22', color: MP_MOTORSPORT_COLOR},
-  124: {name: 'Charouz ‘22', color: CHAROUZ_COLOR},
-  125: {name: 'Dams ‘22', color: DAMS_COLOR},
-  126: {name: 'Campos ‘22', color: CAMPOS_VEXATEC_COLOR},
-  127: {name: 'Van Amersfoort Racing ‘22', color: '#f55702'},
-  128: {name: 'Trident ‘22', color: TRIDENT_COLOR},
+  118: {name: 'Mercedes 22', color: MERCEDES_COLOR},
+  119: {name: 'Ferrari 22', color: FERRARI_COLOR},
+  120: {name: 'Red Bull Racing 22', color: RED_BULL_COLOR},
+  121: {name: 'Williams 22', color: WILLIAMS_COLOR},
+  122: {name: 'Aston Martin 22', color: ASTON_MARTIN_COLOR},
+  123: {name: 'Alpine 22', color: ALPINE_COLOR},
+  124: {name: 'Alpha Tauri 22', color: ALPHA_TAURI_COLOR},
+  125: {name: 'Haas 22', color: HAAS_COLOR},
+  126: {name: 'McLaren 22', color: MCLAREN_COLOR},
+  127: {name: 'Alfa Romeo 22', color: ALFA_ROMEO_COLOR},
+  128: {name: 'Konnersport 22', color: KONNORSPORT_COLOR},
+  129: {name: 'Konnersport', color: KONNORSPORT_COLOR},
+  130: {name: 'Prema 22', color: PREMA_COLOR},
+  131: {name: 'Virtuosi 22', color: UNI_VIRTUOSI_COLOR},
+  132: {name: 'Carlin 22', color: CARLIN_COLOR},
+  133: {name: 'MP Motorsport 22', color: MP_MOTORSPORT_COLOR},
+  134: {name: 'Charouz 22', color: CHAROUZ_COLOR},
+  135: {name: 'Dams 22', color: DAMS_COLOR},
+  136: {name: 'Campos 22', color: CAMPOS_VEXATEC_COLOR},
+  137: {name: 'Van Amersfoort Racing 22', color: '#f55702'},
+  138: {name: 'Trident 22', color: TRIDENT_COLOR},
+  139: {name: 'Hitech 22', color: HITECH_COLOR},
+  140: {name: 'Art GP 22', color: ART_GRAND_PRIX_COLOR},
   255: {name: 'Not found', color: '#FFFFFF'},
 };
