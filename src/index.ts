@@ -65,7 +65,8 @@ class F1TelemetryClient extends EventEmitter {
   ): ParsedMessage | undefined {
     const {m_packetFormat, m_packetId} = F1TelemetryClient.parsePacketHeader(
       message,
-      bigintEnabled
+      bigintEnabled,
+      rinfo
     );
 
     const parser = F1TelemetryClient.getParserByPacketId(m_packetId);
@@ -75,6 +76,7 @@ class F1TelemetryClient extends EventEmitter {
     }
 
     const packetData = new parser(message, m_packetFormat, bigintEnabled);
+    packetData['data']['m_header']['ip'] = rinfo.address
     const packetID = Object.keys(constants.PACKETS)[m_packetId];
 
     // emit parsed message
@@ -173,7 +175,7 @@ class F1TelemetryClient extends EventEmitter {
    *
    * @param {Buffer} message
    */
-  handleMessage(message: Buffer) {
+  handleMessage(message: Buffer, rinfo) {
     if (this.forwardAddresses) {
       // bridge message
       this.bridgeMessage(message);
@@ -181,7 +183,8 @@ class F1TelemetryClient extends EventEmitter {
 
     const parsedMessage = F1TelemetryClient.parseBufferMessage(
       message,
-      this.bigintEnabled
+      this.bigintEnabled,
+      rinfo
     );
 
     if (!parsedMessage || !parsedMessage.packetData) {
@@ -235,7 +238,7 @@ class F1TelemetryClient extends EventEmitter {
       this.socket.setBroadcast(true);
     });
 
-    this.socket.on('message', m => this.handleMessage(m));
+    this.socket.on('message', m => this.handleMessage(m, rinfo));
     this.socket.bind({
       port: this.port,
       exclusive: false,
