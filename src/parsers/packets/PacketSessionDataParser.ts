@@ -1,3 +1,5 @@
+import {Parser} from 'binary-parser';
+
 import {F1Parser} from '../F1Parser';
 
 import {MarshalZoneParser} from './MarshalZoneParser';
@@ -57,7 +59,7 @@ export class PacketSessionDataParser extends F1Parser<PacketSessionData> {
     if (packetFormat >= 2021) {
       this.array('m_weatherForecastSamples', {
         type: new WeatherForecastSampleParser(packetFormat),
-        length: 56,
+        length: packetFormat >= 2024 ? 64 : 56,
       })
         .uint8('m_forecastAccuracy')
         .uint8('m_aiDifficulty')
@@ -93,6 +95,65 @@ export class PacketSessionDataParser extends F1Parser<PacketSessionData> {
         .uint8('m_numSafetyCarPeriods')
         .uint8('m_numVirtualSafetyCarPeriods')
         .uint8('m_numRedFlagPeriods');
+    }
+
+    if (packetFormat >= 2024) {
+      this.uint8('m_equalCarPerformance')
+        .uint8('m_recoveryMode')
+        .uint8('m_flashbackLimit')
+        .uint8('m_surfaceType')
+        .uint8('m_lowFuelMode')
+        .uint8('m_raceStarts')
+        .uint8('m_tyreTemperature')
+        .uint8('m_pitLaneTyreSim')
+        .uint8('m_carDamage')
+        .uint8('m_carDamageRate')
+        .uint8('m_collisions')
+        .uint8('m_collisionsOffForFirstLapOnly')
+        .uint8('m_mpUnsafePitRelease')
+        .uint8('m_mpOffForGriefing')
+        .uint8('m_cornerCuttingStringency')
+        .uint8('m_parcFermeRules')
+        .uint8('m_pitStopExperience')
+        .uint8('m_safetyCar')
+        .uint8('m_safetyCarExperience')
+        .uint8('m_formationLap')
+        .uint8('m_formationLapExperience')
+        .uint8('m_redFlags')
+        .uint8('m_affectsLicenceLevelSolo')
+        .uint8('m_affectsLicenceLevelMP')
+        .uint8('m_numSessionsInWeekend')
+        .array('m_weekendStructure', {
+          length: 12,
+          type: 'uint8',
+        })
+        .floatle('m_sector2LapDistanceStart')
+        .floatle('m_sector3LapDistanceStart');
+    }
+
+    if (packetFormat >= 2026) {
+      this.uint8('m_activeAeroTrackStatus')
+        .uint8('m_numActiveAeroZonesFull')
+        .array('m_activeAeroZonesFull', {
+          length: 8,
+          type: new Parser().floatle('m_zoneStart').floatle('m_zoneEnd'),
+        })
+        .uint8('m_numActiveAeroZonesPartial')
+        .array('m_activeAeroZonesPartial', {
+          length: 8,
+          type: new Parser().floatle('m_zoneStart').floatle('m_zoneEnd'),
+        })
+        .uint8('m_numDRSZones')
+        .array('m_drsZones', {
+          length: 4,
+          type: new Parser().floatle('m_zoneStart').floatle('m_zoneEnd'),
+        })
+        .floatle('m_startReactionTime')
+        .uint8('m_antiLockBrakesAssist')
+        .uint8('m_tractionControlAssist')
+        .uint8('m_dynamicRacingLineHiVis')
+        .uint8('m_dynamicRacingLineColourBlind')
+        .uint8('m_recurringRewindPrompt');
     }
 
     this.data = this.fromBuffer(buffer);

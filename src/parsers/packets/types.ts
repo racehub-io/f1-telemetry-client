@@ -8,7 +8,7 @@ export interface PacketHeader extends PacketHeaderBase {
   m_gameMinorVersion?: number;
   m_packetVersion: number;
   m_packetId: number;
-  m_sessionUID: bigint;
+  m_sessionUID?: bigint;
   m_sessionTime: number;
   m_frameIdentifier: number;
   m_overallFrameIdentifier?: number;
@@ -81,6 +81,14 @@ export interface PacketMotionExData extends PacketBase {
   m_angularAccelerationZ: number;
   m_frontWheelsAngle: number;
   m_wheelVertForce: number[];
+  m_frontAeroHeight?: number;
+  m_rearAeroHeight?: number;
+  m_frontRollAngle?: number;
+  m_rearRollAngle?: number;
+  m_chassisYaw?: number;
+  m_chassisPitch?: number;
+  m_wheelCamber?: number[];
+  m_wheelCamberGain?: number[];
 }
 
 export interface PacketLapData extends PacketBase {
@@ -140,6 +148,47 @@ export interface PacketSessionData extends PacketBase {
   m_numSafetyCarPeriods?: number;
   m_numVirtualSafetyCarPeriods?: number;
   m_numRedFlagPeriods?: number;
+  m_equalCarPerformance?: number;
+  m_recoveryMode?: number;
+  m_flashbackLimit?: number;
+  m_surfaceType?: number;
+  m_lowFuelMode?: number;
+  m_raceStarts?: number;
+  m_tyreTemperature?: number;
+  m_pitLaneTyreSim?: number;
+  m_carDamage?: number;
+  m_carDamageRate?: number;
+  m_collisions?: number;
+  m_collisionsOffForFirstLapOnly?: number;
+  m_mpUnsafePitRelease?: number;
+  m_mpOffForGriefing?: number;
+  m_cornerCuttingStringency?: number;
+  m_parcFermeRules?: number;
+  m_pitStopExperience?: number;
+  m_safetyCar?: number;
+  m_safetyCarExperience?: number;
+  m_formationLap?: number;
+  m_formationLapExperience?: number;
+  m_redFlags?: number;
+  m_affectsLicenceLevelSolo?: number;
+  m_affectsLicenceLevelMP?: number;
+  m_numSessionsInWeekend?: number;
+  m_weekendStructure?: number[];
+  m_sector2LapDistanceStart?: number;
+  m_sector3LapDistanceStart?: number;
+  m_activeAeroTrackStatus?: number;
+  m_numActiveAeroZonesFull?: number;
+  m_activeAeroZonesFull?: ActiveAeroZone[];
+  m_numActiveAeroZonesPartial?: number;
+  m_activeAeroZonesPartial?: ActiveAeroZone[];
+  m_numDRSZones?: number;
+  m_drsZones?: DRSZone[];
+  m_startReactionTime?: number;
+  m_antiLockBrakesAssist?: number;
+  m_tractionControlAssist?: number;
+  m_dynamicRacingLineHiVis?: number;
+  m_dynamicRacingLineColourBlind?: number;
+  m_recurringRewindPrompt?: number;
 }
 
 export interface MarshalZone {
@@ -193,6 +242,10 @@ export interface LapData {
   m_pitLaneTimeInLaneInMS?: number;
   m_pitStopTimerInMS?: number;
   m_pitStopShouldServePen?: number;
+  m_deltaToCarInFrontMinutes?: number;
+  m_deltaToRaceLeaderMinutes?: number;
+  m_speedTrapFastestSpeed?: number;
+  m_speedTrapFastestLap?: number;
 }
 
 export interface PacketCarDamageData extends PacketBase {
@@ -210,7 +263,7 @@ export interface CarDamageData {
   m_diffuserDamage: number;
   m_sidepodDamage: number;
   m_drsFault: number;
-  m_ersFault: number;
+  m_ersFault?: number;
   m_gearBoxDamage: number;
   m_engineDamage: number;
   m_engineMGUHWear: number;
@@ -219,8 +272,9 @@ export interface CarDamageData {
   m_engineICEWear: number;
   m_engineMGUKWear: number;
   m_engineTCWear: number;
-  m_engineBlown: number;
-  m_engineSeized: number;
+  m_engineBlown?: number;
+  m_engineSeized?: number;
+  m_tyreBlisters?: number[];
 }
 
 export interface PacketCarStatusData extends PacketBase {
@@ -263,10 +317,12 @@ export interface CarStatusData {
   m_ersDeployedThisLap: number;
   m_fuelRemainingLaps?: number;
   m_networkPaused?: number;
+  m_ersHarvestedLimitPerLap?: number;
 }
 
 export interface PacketCarSetupData extends PacketBase {
   m_carSetups: CarSetupData[];
+  m_nextFrontWingValue?: number;
 }
 
 export interface CarSetupData {
@@ -294,22 +350,18 @@ export interface CarSetupData {
   m_rearTyrePressure?: number;
   m_ballast: number;
   m_fuelLoad: number;
+  m_engineBraking?: number;
 }
 
 export interface GenericEvent extends PacketBase {
   m_eventStringCode:
-    | 'SSTA'
-    | 'LGOT'
-    | 'RDFL'
-    | 'SEND'
-    | 'DRSE'
-    | 'DRSD'
-    | 'CHQF';
+    'SSTA' | 'LGOT' | 'RDFL' | 'SEND' | 'DRSE' | 'DRSD' | 'CHQF';
+  m_eventDetails?: DRSDisabledEventDetails;
 }
 
 export interface VehicleEvent extends PacketBase {
   m_eventStringCode: 'RTMT' | 'TMPT' | 'RCWN' | 'DTSV' | 'SGSV';
-  m_eventDetails: VehicleEventDetails;
+  m_eventDetails: VehicleEventDetails & {reason?: number; stopTime?: number};
 }
 
 export interface FlashbackEvent extends PacketBase {
@@ -435,6 +487,9 @@ export interface ParticipantData {
   m_yourTelemetry?: number;
   m_showOnlineNames?: number;
   m_platform?: number;
+  m_techLevel?: number;
+  m_numColours?: number;
+  m_liveryColours?: LiveryColour[];
 }
 
 export interface WeatherForecastSample {
@@ -464,6 +519,7 @@ export interface FinalClassificationData {
   m_tyreStintsActual: number[];
   m_tyreStintsVisual: number[];
   m_tyreStintsEndLaps?: number[];
+  m_resultReason?: number;
 }
 
 export interface PacketFinalClassificationData extends PacketBase {
@@ -475,10 +531,13 @@ export interface LobbyInfoData {
   m_aiControlled: number;
   m_teamId: number;
   m_nationality: number;
-  m_platform: number;
+  m_platform?: number;
   m_name: string;
-  m_carNumber: number;
-  m_readyStatus: string;
+  m_carNumber?: number;
+  m_readyStatus: number;
+  m_yourTelemetry?: number;
+  m_showOnlineNames?: number;
+  m_techLevel?: number;
 }
 
 export interface PacketLobbyInfoData extends PacketBase {
@@ -533,8 +592,119 @@ export interface PacketTyreSetsData extends PacketBase {
   m_fittedIdx: number;
 }
 
+export interface ActiveAeroZone {
+  m_zoneStart: number;
+  m_zoneEnd: number;
+}
+
+export interface DRSZone {
+  m_zoneStart: number;
+  m_zoneEnd: number;
+}
+
+export interface LiveryColour {
+  red: number;
+  green: number;
+  blue: number;
+}
+
+export interface TimeTrialDataSet {
+  m_carIdx: number;
+  m_teamId: number;
+  m_lapTimeInMS: number;
+  m_sector1TimeInMS: number;
+  m_sector2TimeInMS: number;
+  m_sector3TimeInMS: number;
+  m_tractionControl: number;
+  m_gearboxAssist: number;
+  m_antiLockBrakes: number;
+  m_equalCarPerformance: number;
+  m_customSetup: number;
+  m_valid: number;
+}
+
+export interface PacketTimeTrialData extends PacketBase {
+  m_playerSessionBestDataSet: TimeTrialDataSet;
+  m_personalBestDataSet: TimeTrialDataSet;
+  m_rivalDataSet: TimeTrialDataSet;
+}
+
+export interface PacketLapPositionsData extends PacketBase {
+  m_numLaps: number;
+  m_lapStart: number;
+  m_positionForVehicleIdx: number[][];
+}
+
+export interface CarTelemetry2Data {
+  m_activeAeroMode: number;
+  m_activeAeroAvailable: number;
+  m_activeAeroActivationDistance: number;
+  m_overtakeAvailable: number;
+  m_overtakeActive: number;
+  m_overtakeActivationDistance: number;
+  m_2026Regulations: number;
+  m_drivingWrongWay: number;
+}
+
+export interface PacketCarTelemetry2Data extends PacketBase {
+  m_carTelemetry2Data: CarTelemetry2Data[];
+}
+
+export interface DRSDisabledEventDetails {
+  reason: number;
+}
+
+export interface DRSDisabledEvent extends GenericEvent {
+  m_eventStringCode: 'DRSD';
+  m_eventDetails?: DRSDisabledEventDetails;
+}
+
+export interface RetirementEventDetails extends VehicleEventDetails {
+  reason?: number;
+}
+
+export interface RetirementEvent extends VehicleEvent {
+  m_eventStringCode: 'RTMT';
+  m_eventDetails: RetirementEventDetails;
+}
+
+export interface StopGoPenaltyServedEventDetails extends VehicleEventDetails {
+  stopTime?: number;
+}
+
+export interface StopGoPenaltyServedEvent extends VehicleEvent {
+  m_eventStringCode: 'SGSV';
+  m_eventDetails: StopGoPenaltyServedEventDetails;
+}
+
+export interface SafetyCarEventDetails {
+  safetyCarType: number;
+  eventType: number;
+}
+
+export interface SafetyCarEvent extends PacketBase {
+  m_eventStringCode: 'SCAR';
+  m_eventDetails: SafetyCarEventDetails;
+}
+
+export interface CollisionEventDetails {
+  vehicle1Idx: number;
+  vehicle2Idx: number;
+  severity?: number;
+}
+
+export interface CollisionEvent extends PacketBase {
+  m_eventStringCode: 'COLL';
+  m_eventDetails: CollisionEventDetails;
+}
+
 export type PacketEvent =
   | GenericEvent
+  | DRSDisabledEvent
+  | RetirementEvent
+  | StopGoPenaltyServedEvent
+  | SafetyCarEvent
+  | CollisionEvent
   | LightEvent
   | ButtonEvent
   | VehicleEvent
@@ -558,4 +728,7 @@ export type Packet =
   | PacketFinalClassificationData
   | PacketLobbyInfoData
   | PacketTyreSetsData
-  | PacketMotionExData;
+  | PacketMotionExData
+  | PacketTimeTrialData
+  | PacketLapPositionsData
+  | PacketCarTelemetry2Data;

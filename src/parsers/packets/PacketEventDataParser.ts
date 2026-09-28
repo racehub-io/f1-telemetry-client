@@ -14,6 +14,11 @@ import type {
   SpeedTrapEventDetails,
   PacketEvent,
   GenericEvent,
+  SafetyCarEventDetails,
+  CollisionEventDetails,
+  RetirementEventDetails,
+  StopGoPenaltyServedEventDetails,
+  DRSDisabledEventDetails,
 } from './types';
 import {EVENT_CODES} from '../../constants';
 import type {EventCode} from '../../constants/eventCodes';
@@ -108,6 +113,42 @@ export class PenaltyParser extends F1Parser<PenaltyEventDetails> {
   }
 }
 
+export class SafetyCarParser extends F1Parser<SafetyCarEventDetails> {
+  constructor() {
+    super();
+    this.uint8('safetyCarType').uint8('eventType');
+  }
+}
+
+export class CollisionParser extends F1Parser<CollisionEventDetails> {
+  constructor(packetFormat: number) {
+    super();
+    this.uint8('vehicle1Idx').uint8('vehicle2Idx');
+    if (packetFormat >= 2026) this.uint8('severity');
+  }
+}
+
+export class RetirementParser extends F1Parser<RetirementEventDetails> {
+  constructor() {
+    super();
+    this.uint8('vehicleIdx').uint8('reason');
+  }
+}
+
+export class StopGoParser extends F1Parser<StopGoPenaltyServedEventDetails> {
+  constructor() {
+    super();
+    this.uint8('vehicleIdx').floatle('stopTime');
+  }
+}
+
+export class DRSDisabledParser extends F1Parser<DRSDisabledEventDetails> {
+  constructor() {
+    super();
+    this.uint8('reason');
+  }
+}
+
 export class PacketEventDataParser extends F1Parser<PacketEvent> {
   data: PacketEvent;
 
@@ -140,6 +181,25 @@ export class PacketEventDataParser extends F1Parser<PacketEvent> {
       this.nest('m_eventDetails', {type: new ButtonsParser()});
     } else if (eventStringCode === EVENT_CODES.Overtake) {
       this.nest('m_eventDetails', {type: new OvertakeParser()});
+    } else if (eventStringCode === EVENT_CODES.SafetyCar) {
+      this.nest('m_eventDetails', {type: new SafetyCarParser()});
+    } else if (eventStringCode === EVENT_CODES.Collision) {
+      this.nest('m_eventDetails', {type: new CollisionParser(packetFormat)});
+    } else if (
+      packetFormat >= 2025 &&
+      eventStringCode === EVENT_CODES.Retirement
+    ) {
+      this.nest('m_eventDetails', {type: new RetirementParser()});
+    } else if (
+      packetFormat >= 2025 &&
+      eventStringCode === EVENT_CODES.StopGoServed
+    ) {
+      this.nest('m_eventDetails', {type: new StopGoParser()});
+    } else if (
+      packetFormat >= 2025 &&
+      eventStringCode === EVENT_CODES.DRSDisabled
+    ) {
+      this.nest('m_eventDetails', {type: new DRSDisabledParser()});
     } else if (VehicleEventParser.EVENT_CODES.includes(eventStringCode)) {
       this.nest('m_eventDetails', {type: new VehicleEventParser()});
     }

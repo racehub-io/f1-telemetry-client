@@ -3,7 +3,6 @@ import * as fs from 'fs';
 import {PacketHeader} from '../parsers/packets/types';
 
 const client = new F1TelemetryClient({
-  port: 30500,
   bigintEnabled: true,
 });
 

@@ -15,7 +15,7 @@ export class PacketFinalClassificationDataParser extends F1Parser<PacketFinalCla
       })
       .uint8('m_numCars')
       .array('m_classificationData', {
-        length: 22,
+        length: packetFormat >= 2026 ? 24 : 22,
         type: new FinalClassificationDataParser(packetFormat),
       });
 

@@ -3,7 +3,6 @@ import {constants, F1TelemetryClient} from '..';
 const {PACKETS} = constants;
 
 const client = new F1TelemetryClient({
-  port: 30500,
   bigintEnabled: false,
 });
 

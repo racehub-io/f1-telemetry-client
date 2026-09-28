@@ -14,7 +14,7 @@ export class PacketLapDataParser extends F1Parser<PacketLapData> {
         type: new PacketHeaderParser(packetFormat, bigintEnabled),
       })
       .array('m_lapData', {
-        length: packetFormat >= 2020 ? 22 : 20,
+        length: packetFormat >= 2026 ? 24 : packetFormat >= 2020 ? 22 : 20,
         type: new LapDataParser(packetFormat),
       });
 

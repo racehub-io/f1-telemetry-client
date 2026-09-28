@@ -1,68 +1,53 @@
 {
   "name": "@racehub-io/f1-telemetry-client",
-  "version": "0.2.12",
+  "version": "0.3.0",
   "main": "build/main/index.js",
   "types": "build/main/index.d.ts",
   "files": [
-    "build"
+    "build/main",
+    "LICENSES",
+    "LICENSING.md",
+    "CONTRIBUTING.md",
+    "SECURITY.md"
   ],
-  "license": "MIT",
+  "license": "SEE LICENSE IN LICENSING.md",
   "repository": {
     "type": "git",
     "url": "https://github.com/racehub-io/f1-telemetry-client.git"
   },
   "dependencies": {
-    "binary-parser": "^2.2.1",
-    "struct": "^0.0.12"
+    "binary-parser": "^2.3.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.21.5",
-    "@babel/core": "^7.22.1",
-    "@babel/preset-env": "^7.22.4",
-    "@babel/preset-typescript": "^7.21.5",
-    "@types/binary-parser": "^1.5.1",
-    "@types/jest": "^29.5.2",
+    "@eslint/js": "^10.0.1",
+    "@types/jest": "^30.0.0",
     "@types/n-readlines": "^1.0.3",
-    "@types/node": "^20.2.5",
-    "eslint": "^7.32.0",
-    "eslint-plugin-import": "^2.27.5",
-    "gts": "^3.1.1",
-    "husky": "^8.0.3",
-    "jest": "^29.5.0",
-    "lint-staged": "^13.2.2",
+    "@types/node": "^22.20.4",
+    "eslint": "^10.11.0",
+    "jest": "^30.5.2",
     "n-readlines": "^1.0.1",
-    "rimraf": "^5.0.1",
-    "ts-jest": "^29.1.0",
-    "typescript": "~4.4.0"
+    "prettier": "^3.9.9",
+    "ts-jest": "^29.4.14",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.70.1"
   },
   "scripts": {
-    "prepublishOnly": "npm run build",
-    "start": "npm run build && node build/main/playground/index.js",
-    "record": "npm run build && node build/main/playground/record.js",
-    "build": "npm run clean && tsc && babel ./src --out-dir build/es5 --extensions .ts",
+    "prepublishOnly": "npm test -- --runInBand",
+    "prepack": "npm run build",
+    "start": "npm run compile && node build/main/playground/index.js",
+    "record": "npm run compile && node build/main/playground/record.js",
+    "build": "npm run clean && tsc -p tsconfig.build.json",
     "build:link": "npm run build && npm link",
     "type-check:watch": "npm run type-check -- --watch",
     "type-check": "tsc --noEmit",
-    "check": "gts check",
-    "clean": "rimraf ./build",
+    "check": "npm run type-check && npm run lint",
+    "clean": "node -e \"require('node:fs').rmSync('build', {recursive: true, force: true})\"",
     "compile": "tsc -p .",
-    "fix": "gts fix",
+    "fix": "eslint . --fix && prettier --write \"src/**/*.ts\" \"*.js\"",
     "test": "jest",
-    "prepare": "npm run compile",
-    "pretest": "npm run compile",
+    "pretest": "npm run type-check",
     "posttest": "npm run lint",
-    "lint": "gts lint"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,ts,css}": [
-      "gts fix",
-      "git add"
-    ]
+    "lint": "eslint . && prettier --check \"src/**/*.ts\" \"*.js\""
   },
   "keywords": [
     "automotive",
@@ -99,9 +84,17 @@
     "esports",
     "e sports",
     "e-sports",
-    "videogame"
+    "videogame",
+    "f124",
+    "f1 2024",
+    "f125",
+    "f1 2025"
   ],
   "engines": {
-    "node": ">=10.6.0"
+    "node": ">=22"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }

@@ -6,6 +6,9 @@ import * as constants from './constants';
 import * as constantsTypes from './constants/types';
 import {
   PacketCarDamageDataParser,
+  PacketCarTelemetry2DataParser,
+  PacketLapPositionsDataParser,
+  PacketTimeTrialDataParser,
   PacketCarSetupDataParser,
   PacketCarStatusDataParser,
   PacketCarTelemetryDataParser,
@@ -21,7 +24,12 @@ import {
   PacketSessionHistoryDataParser,
 } from './parsers/packets';
 import * as packetTypes from './parsers/packets/types';
-import {Address, Options, ParsedMessage} from './types';
+import {
+  Address,
+  F1TelemetryClientEvents,
+  Options,
+  ParsedMessage,
+} from './types';
 import {PacketTyreSetsDataParser} from './parsers/packets/PacketTyreSetsDataParser';
 import {PacketMotionExDataParser} from './parsers/packets/PacketMotionExDataParser';
 import {PacketHeader} from './parsers/packets/types';
@@ -34,22 +42,41 @@ const BIGINT_ENABLED = true;
  *
  */
 class F1TelemetryClient extends EventEmitter {
+  address?: string;
   port: number;
   bigintEnabled: boolean;
+  skipParsing: boolean;
   forwardAddresses?: Address[];
   socket?: dgram.Socket;
+
+  declare on: <K extends string | symbol>(
+    event: K,
+    listener: K extends keyof F1TelemetryClientEvents
+      ? (...args: F1TelemetryClientEvents[K]) => void
+      : Parameters<EventEmitter['on']>[1]
+  ) => this;
+  declare once: <K extends string | symbol>(
+    event: K,
+    listener: K extends keyof F1TelemetryClientEvents
+      ? (...args: F1TelemetryClientEvents[K]) => void
+      : Parameters<EventEmitter['once']>[1]
+  ) => this;
 
   constructor(opts: Options = {}) {
     super();
 
     const {
+      address,
       port = DEFAULT_PORT,
       bigintEnabled = BIGINT_ENABLED,
       forwardAddresses = FORWARD_ADDRESSES,
+      skipParsing = false,
     } = opts;
 
+    this.address = address;
     this.port = port;
     this.bigintEnabled = bigintEnabled;
+    this.skipParsing = skipParsing;
     this.forwardAddresses = forwardAddresses;
     this.socket = dgram.createSocket('udp4');
   }
@@ -164,6 +191,15 @@ class F1TelemetryClient extends EventEmitter {
       case PACKETS.motionEx:
         return PacketMotionExDataParser;
 
+      case PACKETS.timeTrial:
+        return PacketTimeTrialDataParser;
+
+      case PACKETS.lapPositions:
+        return PacketLapPositionsDataParser;
+
+      case PACKETS.carTelemetry2:
+        return PacketCarTelemetry2DataParser;
+
       default:
         return null;
     }
@@ -173,24 +209,39 @@ class F1TelemetryClient extends EventEmitter {
    *
    * @param {Buffer} message
    */
-  handleMessage(message: Buffer) {
+  handleMessage(message: Buffer, rinfo?: dgram.RemoteInfo) {
     if (this.forwardAddresses) {
       // bridge message
       this.bridgeMessage(message);
     }
 
-    const parsedMessage = F1TelemetryClient.parseBufferMessage(
-      message,
-      this.bigintEnabled
-    );
+    if (this.skipParsing) {
+      return;
+    }
+
+    let parsedMessage: ParsedMessage | undefined;
+    try {
+      parsedMessage = F1TelemetryClient.parseBufferMessage(
+        message,
+        this.bigintEnabled
+      );
+    } catch (error) {
+      this.emit(
+        'error',
+        error instanceof Error ? error : new Error(String(error)),
+        message,
+        rinfo
+      );
+      return;
+    }
 
     if (!parsedMessage || !parsedMessage.packetData) {
       return;
     }
 
     // emit parsed message
-    this.emit(parsedMessage.packetID, parsedMessage.packetData.data);
-    this.emit('raw', parsedMessage);
+    this.emit(parsedMessage.packetID, parsedMessage.packetData.data, rinfo);
+    this.emit('raw', parsedMessage, rinfo);
   }
 
   /**
@@ -235,8 +286,9 @@ class F1TelemetryClient extends EventEmitter {
       this.socket.setBroadcast(true);
     });
 
-    this.socket.on('message', m => this.handleMessage(m));
+    this.socket.on('message', (m, rinfo) => this.handleMessage(m, rinfo));
     this.socket.bind({
+      address: this.address,
       port: this.port,
       exclusive: false,
     });
@@ -266,3 +318,10 @@ export {
   BIGINT_ENABLED,
   FORWARD_ADDRESSES,
 };
+
+export type {
+  F1TelemetryClientEvents,
+  Options,
+  Address,
+  ParsedMessage,
+} from './types';
