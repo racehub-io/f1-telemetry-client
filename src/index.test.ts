@@ -7,6 +7,9 @@ import {
 } from './index';
 import lineByLine from 'n-readlines';
 import {readFileSync} from 'fs';
+import {createSocket} from 'dgram';
+import {once} from 'events';
+import {AddressInfo} from 'net';
 
 const normalize = (v: unknown) =>
   JSON.parse(
@@ -152,6 +155,46 @@ describe('F1TelemetryClient', () => {
       client.handleMessage(message);
       expect(packetCount).toBe(1);
       expect(rawCount).toBe(1);
+    });
+
+    it('includes sender details in both events from a real UDP packet', async () => {
+      const client = new F1TelemetryClient({port: 0});
+      const sender = createSocket('udp4');
+      try {
+        const listening = once(client.socket!, 'listening');
+        client.start();
+        await listening;
+        const packetEvent = once(client, constants.PACKETS.motion);
+        const rawEvent = once(client, 'raw');
+        sender.send(
+          message,
+          (client.socket!.address() as AddressInfo).port,
+          '127.0.0.1'
+        );
+        const [[packet, remote], [raw, rawRemote]] = await Promise.all([
+          packetEvent,
+          rawEvent,
+        ]);
+        expect(remote).toEqual({
+          address: '127.0.0.1',
+          port: (sender.address() as AddressInfo).port,
+          family: 'IPv4',
+          size: message.length,
+        });
+        expect(rawRemote).toBe(remote);
+        expect(normalize(packet)).toEqual(capture.parsed);
+        expect(raw.packetData.data).toBe(packet);
+        expect(raw.message).toEqual(message);
+        expect(packet.m_header).not.toHaveProperty('ip');
+      } finally {
+        const closed = Promise.all([
+          once(sender, 'close'),
+          once(client.socket!, 'close'),
+        ]);
+        sender.close();
+        client.stop();
+        await closed;
+      }
     });
 
     it('skips parsing when skipParsing is true', () => {
