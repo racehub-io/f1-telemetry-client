@@ -8,4 +8,5 @@ export const RULESETS: {[index: number]: string} = {
   9: 'Drift',
   10: 'Average Speed Zone',
   11: 'Rival Duel',
+  12: 'Elimination',
 };

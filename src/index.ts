@@ -6,6 +6,9 @@ import * as constants from './constants';
 import * as constantsTypes from './constants/types';
 import {
   PacketCarDamageDataParser,
+  PacketCarTelemetry2DataParser,
+  PacketLapPositionsDataParser,
+  PacketTimeTrialDataParser,
   PacketCarSetupDataParser,
   PacketCarStatusDataParser,
   PacketCarTelemetryDataParser,
@@ -36,6 +39,7 @@ const BIGINT_ENABLED = true;
 class F1TelemetryClient extends EventEmitter {
   port: number;
   bigintEnabled: boolean;
+  skipParsing: boolean;
   forwardAddresses?: Address[];
   socket?: dgram.Socket;
 
@@ -46,10 +50,12 @@ class F1TelemetryClient extends EventEmitter {
       port = DEFAULT_PORT,
       bigintEnabled = BIGINT_ENABLED,
       forwardAddresses = FORWARD_ADDRESSES,
+      skipParsing = false,
     } = opts;
 
     this.port = port;
     this.bigintEnabled = bigintEnabled;
+    this.skipParsing = skipParsing;
     this.forwardAddresses = forwardAddresses;
     this.socket = dgram.createSocket('udp4');
   }
@@ -164,6 +170,15 @@ class F1TelemetryClient extends EventEmitter {
       case PACKETS.motionEx:
         return PacketMotionExDataParser;
 
+      case PACKETS.timeTrial:
+        return PacketTimeTrialDataParser;
+
+      case PACKETS.lapPositions:
+        return PacketLapPositionsDataParser;
+
+      case PACKETS.carTelemetry2:
+        return PacketCarTelemetry2DataParser;
+
       default:
         return null;
     }
@@ -177,6 +192,10 @@ class F1TelemetryClient extends EventEmitter {
     if (this.forwardAddresses) {
       // bridge message
       this.bridgeMessage(message);
+    }
+
+    if (this.skipParsing) {
+      return;
     }
 
     const parsedMessage = F1TelemetryClient.parseBufferMessage(

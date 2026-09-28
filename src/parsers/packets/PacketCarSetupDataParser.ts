@@ -14,9 +14,13 @@ export class PacketCarSetupDataParser extends F1Parser<PacketCarSetupData> {
         type: new PacketHeaderParser(packetFormat, bigintEnabled),
       })
       .array('m_carSetups', {
-        length: packetFormat >= 2020 ? 22 : 20,
+        length: packetFormat >= 2026 ? 24 : packetFormat >= 2020 ? 22 : 20,
         type: new CarSetupDataParser(packetFormat),
       });
+
+    if (packetFormat >= 2024) {
+      this.floatle('m_nextFrontWingValue');
+    }
 
     this.data = this.fromBuffer(buffer);
   }

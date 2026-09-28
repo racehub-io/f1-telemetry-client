@@ -23,7 +23,7 @@ export class PacketParticipantsDataParser extends F1Parser<PacketParticipantsDat
     }
 
     this.array('m_participants', {
-      length: packetFormat >= 2020 ? 22 : 20,
+      length: packetFormat >= 2026 ? 24 : packetFormat >= 2020 ? 22 : 20,
       type: new ParticipantDataParser(packetFormat),
     });
 

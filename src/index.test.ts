@@ -1,11 +1,12 @@
 import {
   BIGINT_ENABLED,
+  constants,
   DEFAULT_PORT,
   F1TelemetryClient,
   FORWARD_ADDRESSES,
 } from './index';
 import lineByLine from 'n-readlines';
-import * as fs from 'fs';
+import {readFileSync} from 'fs';
 
 const normalize = (v: unknown) =>
   JSON.parse(
@@ -15,7 +16,12 @@ const normalize = (v: unknown) =>
   );
 
 const parseMessage = (data: number[]) => {
-  const parsed = F1TelemetryClient.parseBufferMessage(Buffer.from(data), true);
+  const buffer = Buffer.from(data);
+  const parsed = F1TelemetryClient.parseBufferMessage(buffer, true);
+  expect(parsed?.message).toBe(buffer);
+  expect(parsed?.packetID).toBe(
+    Object.keys(constants.PACKETS)[parsed!.packetData.data.m_header.m_packetId]
+  );
   return normalize(parsed?.packetData?.data);
 };
 
@@ -123,16 +129,52 @@ describe('F1TelemetryClient', () => {
     });
   });
 
-  for (let year = 2018; year <= 2023; year++) {
+  describe('recorded F1 25 packets', () => {
+    const capture = JSON.parse(
+      readFileSync('src/mocks/2025.json', 'utf8').split('\n')[0]
+    );
+    const message = Buffer.from(capture.message.data ?? capture.message);
+
+    it('keeps the packet event and raw event API', () => {
+      const client = new F1TelemetryClient();
+      let packetCount = 0;
+      let rawCount = 0;
+      client.on(constants.PACKETS.motion, packet => {
+        packetCount++;
+        expect(normalize(packet)).toEqual(capture.parsed);
+      });
+      client.on('raw', raw => {
+        rawCount++;
+        expect(raw.packetID).toBe('motion');
+        expect(raw.message).toBe(message);
+        expect(normalize(raw.packetData.data)).toEqual(capture.parsed);
+      });
+      client.handleMessage(message);
+      expect(packetCount).toBe(1);
+      expect(rawCount).toBe(1);
+    });
+
+    it('skips parsing when skipParsing is true', () => {
+      const client = new F1TelemetryClient({skipParsing: true});
+      let count = 0;
+      client.on(constants.PACKETS.motion, () => count++);
+      client.on('raw', () => count++);
+      client.handleMessage(message);
+      expect(count).toBe(0);
+      expect(() => client.handleMessage(message.subarray(0, 1))).not.toThrow();
+    });
+  });
+
+  for (let year = 2018; year <= 2025; year++) {
     const file = `src/mocks/${year}.json`;
-    const liner = fs.existsSync(file) ? new lineByLine(file) : null;
+    const liner = new lineByLine(file);
     let line = null;
     let lineNumber = 1;
     describe(`F1 ${year}`, () => {
-      while (liner !== null && (line = liner.next())) {
+      while ((line = liner.next())) {
+        if (line.length === 0) continue;
         const data = JSON.parse(line.toString());
         it(`L${lineNumber++}: ${data.packetID}`, () => {
-          expect(true).toBeTruthy();
           const bufferData = data?.message?.data ?? data?.message;
           const parsed = parseMessage(bufferData);
           expect(parsed.m_header.m_packetFormat).toEqual(year);

@@ -17,8 +17,8 @@ export class PacketMotionDataParser extends F1Parser<PacketMotionData> {
         type: new PacketHeaderParser(packetFormat, bigintEnabled),
       })
       .array('m_carMotionData', {
-        length: packetFormat >= 2020 ? 22 : 20,
-        type: new CarMotionDataParser(),
+        length: packetFormat >= 2026 ? 24 : packetFormat >= 2020 ? 22 : 20,
+        type: new CarMotionDataParser(packetFormat),
       });
 
     if (packetFormat <= 2022) {

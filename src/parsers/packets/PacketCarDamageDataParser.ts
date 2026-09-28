@@ -14,7 +14,7 @@ export class PacketCarDamageDataParser extends F1Parser<PacketCarDamageData> {
         type: new PacketHeaderParser(packetFormat, bigintEnabled),
       })
       .array('m_carDamageData', {
-        length: 22,
+        length: packetFormat >= 2026 ? 24 : 22,
         type: new CarDamageDataParser(packetFormat),
       });
 

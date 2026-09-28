@@ -41,12 +41,18 @@ export class CarTelemetryDataParser extends F1Parser<CarTelemetryData> {
           packetFormat >= 2020
             ? new Parser().uint8('')
             : new Parser().uint16le(''),
-      })
-      .uint16le('m_engineTemperature')
-      .array('m_tyresPressure', {
-        length: 4,
-        type: new Parser().floatle(''),
       });
+
+    if (packetFormat >= 2026) {
+      this.uint8('m_engineTemperature');
+    } else {
+      this.uint16le('m_engineTemperature');
+    }
+
+    this.array('m_tyresPressure', {
+      length: 4,
+      type: new Parser().floatle(''),
+    });
 
     if (packetFormat >= 2019) {
       this.array('m_surfaceType', {

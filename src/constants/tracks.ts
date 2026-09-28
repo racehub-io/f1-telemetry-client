@@ -34,4 +34,8 @@ export const TRACKS: {[index: number]: Track} = {
   30: {name: 'Miami'},
   31: {name: 'Las Vegas'},
   32: {name: 'Losail'},
+  39: {name: 'Silverstone (Reverse)'},
+  40: {name: 'Austria (Reverse)'},
+  41: {name: 'Zandvoort (Reverse)'},
+  42: {name: 'Madrid'},
 };

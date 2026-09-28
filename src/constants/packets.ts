@@ -15,4 +15,7 @@ export const PACKETS: Record<PacketTypes, PacketTypes> = {
   sessionHistory: 'sessionHistory',
   tyreSets: 'tyreSets',
   motionEx: 'motionEx',
+  timeTrial: 'timeTrial',
+  lapPositions: 'lapPositions',
+  carTelemetry2: 'carTelemetry2',
 };

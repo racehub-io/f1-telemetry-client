@@ -1,10 +1,10 @@
 import {F1Parser} from '../F1Parser';
-import {LobbyInfoDataParser} from './LobbyInfoDataParser';
+import {CarTelemetry2DataParser} from './CarTelemetry2DataParser';
 import {PacketHeaderParser} from './PacketHeaderParser';
-import {PacketLobbyInfoData} from './types';
+import type {PacketCarTelemetry2Data} from './types';
 
-export class PacketLobbyInfoDataParser extends F1Parser<PacketLobbyInfoData> {
-  data: PacketLobbyInfoData;
+export class PacketCarTelemetry2DataParser extends F1Parser<PacketCarTelemetry2Data> {
+  data: PacketCarTelemetry2Data;
 
   constructor(buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {
     super();
@@ -13,10 +13,9 @@ export class PacketLobbyInfoDataParser extends F1Parser<PacketLobbyInfoData> {
       .nest('m_header', {
         type: new PacketHeaderParser(packetFormat, bigintEnabled),
       })
-      .uint8('m_numPlayers')
-      .array('m_lobbyPlayers', {
+      .array('m_carTelemetry2Data', {
         length: packetFormat >= 2026 ? 24 : 22,
-        type: new LobbyInfoDataParser(packetFormat),
+        type: new CarTelemetry2DataParser(),
       });
 
     this.data = this.fromBuffer(buffer);

@@ -1,5 +1,8 @@
 import type {
   PacketCarDamageDataParser,
+  PacketCarTelemetry2DataParser,
+  PacketLapPositionsDataParser,
+  PacketTimeTrialDataParser,
   PacketCarSetupDataParser,
   PacketCarStatusDataParser,
   PacketCarTelemetryDataParser,
@@ -41,7 +44,10 @@ export type PacketParser =
   | PacketFinalClassificationDataParser
   | PacketLobbyInfoDataParser
   | PacketTyreSetsDataParser
-  | PacketMotionExDataParser;
+  | PacketMotionExDataParser
+  | PacketTimeTrialDataParser
+  | PacketLapPositionsDataParser
+  | PacketCarTelemetry2DataParser;
 
 export interface ParsedMessage {
   packetID: string;
@@ -68,4 +74,6 @@ export type EventKeys =
   | 'Flashback'
   | 'ButtonStatus'
   | 'RedFlag'
-  | 'Overtake';
+  | 'Overtake'
+  | 'SafetyCar'
+  | 'Collision';

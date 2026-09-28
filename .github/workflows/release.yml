@@ -2,24 +2,42 @@ name: Release
 
 on:
   push:
-    branches:
-      - master
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing version tag to publish
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: release-${{ inputs.tag || github.ref_name }}
+  cancel-in-progress: false
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v6
         with:
-          node-version: 16
+          ref: refs/tags/${{ inputs.tag || github.ref_name }}
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
           registry-url: https://registry.npmjs.org/
-      - run: npm install
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 16
-          registry-url: https://npm.pkg.github.com
-          scope: '@racehub-io'
+          package-manager-cache: false
+      - name: Check version tag
+        env:
+          RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
+        run: node -e "if (process.env.RELEASE_TAG !== 'v' + require('./package.json').version) throw new Error('The tag must match the package version')"
+      - run: npm install --global npm@11
+      - run: npm ci
+      - run: npm audit --omit=dev
       - run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

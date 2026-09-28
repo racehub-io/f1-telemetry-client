@@ -16,3 +16,16 @@ export const SESSION_TYPES: {[index: number]: SessionTypes} = {
   12: {short: 'R3', long: 'Race 3', type: 'R'},
   13: {short: 'TT', long: 'Time Trial', type: 'TT'},
 };
+
+export const SESSION_TYPES_2024: {[index: number]: SessionTypes} = {
+  ...SESSION_TYPES,
+  10: {short: 'SQ1', long: 'Sprint Shootout 1', type: 'Q'},
+  11: {short: 'SQ2', long: 'Sprint Shootout 2', type: 'Q'},
+  12: {short: 'SQ3', long: 'Sprint Shootout 3', type: 'Q'},
+  13: {short: 'ShortSQ', long: 'Short Sprint Shootout', type: 'Q'},
+  14: {short: 'OneShotSQ', long: 'One-Shot Sprint Shootout', type: 'Q'},
+  15: {short: 'R', long: 'Race', type: 'R'},
+  16: {short: 'R2', long: 'Race 2', type: 'R'},
+  17: {short: 'R3', long: 'Race 3', type: 'R'},
+  18: {short: 'TT', long: 'Time Trial', type: 'TT'},
+};
