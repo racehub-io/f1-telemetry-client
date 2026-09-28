@@ -86,5 +86,8 @@ export const NATIONALITIES: {[index: number]: string} = {
   85: 'Barbadian',
   86: 'Welsh',
   87: 'Vietnamese',
+  88: 'Algerian',
+  89: 'Bosnian',
+  90: 'Filipino',
   255: 'Not found',
 };

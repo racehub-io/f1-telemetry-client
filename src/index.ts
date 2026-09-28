@@ -24,7 +24,12 @@ import {
   PacketSessionHistoryDataParser,
 } from './parsers/packets';
 import * as packetTypes from './parsers/packets/types';
-import {Address, Options, ParsedMessage} from './types';
+import {
+  Address,
+  F1TelemetryClientEvents,
+  Options,
+  ParsedMessage,
+} from './types';
 import {PacketTyreSetsDataParser} from './parsers/packets/PacketTyreSetsDataParser';
 import {PacketMotionExDataParser} from './parsers/packets/PacketMotionExDataParser';
 import {PacketHeader} from './parsers/packets/types';
@@ -37,22 +42,38 @@ const BIGINT_ENABLED = true;
  *
  */
 class F1TelemetryClient extends EventEmitter {
+  address?: string;
   port: number;
   bigintEnabled: boolean;
   skipParsing: boolean;
   forwardAddresses?: Address[];
   socket?: dgram.Socket;
 
+  declare on: <K extends string | symbol>(
+    event: K,
+    listener: K extends keyof F1TelemetryClientEvents
+      ? (...args: F1TelemetryClientEvents[K]) => void
+      : Parameters<EventEmitter['on']>[1]
+  ) => this;
+  declare once: <K extends string | symbol>(
+    event: K,
+    listener: K extends keyof F1TelemetryClientEvents
+      ? (...args: F1TelemetryClientEvents[K]) => void
+      : Parameters<EventEmitter['once']>[1]
+  ) => this;
+
   constructor(opts: Options = {}) {
     super();
 
     const {
+      address,
       port = DEFAULT_PORT,
       bigintEnabled = BIGINT_ENABLED,
       forwardAddresses = FORWARD_ADDRESSES,
       skipParsing = false,
     } = opts;
 
+    this.address = address;
     this.port = port;
     this.bigintEnabled = bigintEnabled;
     this.skipParsing = skipParsing;
@@ -198,10 +219,21 @@ class F1TelemetryClient extends EventEmitter {
       return;
     }
 
-    const parsedMessage = F1TelemetryClient.parseBufferMessage(
-      message,
-      this.bigintEnabled
-    );
+    let parsedMessage: ParsedMessage | undefined;
+    try {
+      parsedMessage = F1TelemetryClient.parseBufferMessage(
+        message,
+        this.bigintEnabled
+      );
+    } catch (error) {
+      this.emit(
+        'error',
+        error instanceof Error ? error : new Error(String(error)),
+        message,
+        rinfo
+      );
+      return;
+    }
 
     if (!parsedMessage || !parsedMessage.packetData) {
       return;
@@ -256,6 +288,7 @@ class F1TelemetryClient extends EventEmitter {
 
     this.socket.on('message', (m, rinfo) => this.handleMessage(m, rinfo));
     this.socket.bind({
+      address: this.address,
       port: this.port,
       exclusive: false,
     });
@@ -285,3 +318,10 @@ export {
   BIGINT_ENABLED,
   FORWARD_ADDRESSES,
 };
+
+export type {
+  F1TelemetryClientEvents,
+  Options,
+  Address,
+  ParsedMessage,
+} from './types';

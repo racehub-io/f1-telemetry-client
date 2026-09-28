@@ -18,6 +18,7 @@ import {NATIONALITIES} from './nationalities';
 import {PACKETS} from './packets';
 import {PACKET_SIZES} from './packetSizes';
 import {PENALTIES} from './penalties';
+import {PIT_STATUS} from './pitStatus';
 import {RESULT_STATUS} from './resultStatus';
 import {RULESETS} from './rulesets';
 import {SAFETY_CAR_STATUSES} from './safetyCarStatuses';
@@ -45,6 +46,7 @@ export {
   PACKETS,
   PACKET_SIZES,
   PENALTIES,
+  PIT_STATUS,
   RULESETS,
   SAFETY_CAR_STATUSES,
   SESSION_TYPES,

@@ -12,6 +12,7 @@ It does not grant trademark or patent rights.
 
 - The existing [MIT licence](LICENSE) remains available for this project. Keep its notice with copies of MIT material.
 - Protocol updates and recorded F1 24/25 test data are adapted from [z0mt3c/f1-telemetry-client](https://github.com/z0mt3c/f1-telemetry-client/tree/2271a9b1767165fe4b2c2fcdfdd51869278b6c79), under the MIT License.
+- Typed listener and network binding updates are adapted from the MIT-licensed [jayden-chan](https://github.com/jayden-chan/f1-telemetry-client) and [mmertz](https://github.com/mmertz/f1-telemetry-client) forks.
 - Other contributors' code, dependencies, game software, protocol documents, and recordings retain their own terms.
 
 Use the existing terms for material outside the rights RaceHub owns.

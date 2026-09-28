@@ -157,45 +157,105 @@ describe('F1TelemetryClient', () => {
       expect(rawCount).toBe(1);
     });
 
-    it('includes sender details in both events from a real UDP packet', async () => {
-      const client = new F1TelemetryClient({port: 0});
-      const sender = createSocket('udp4');
-      try {
-        const listening = once(client.socket!, 'listening');
-        client.start();
-        await listening;
-        const packetEvent = once(client, constants.PACKETS.motion);
-        const rawEvent = once(client, 'raw');
-        sender.send(
-          message,
-          (client.socket!.address() as AddressInfo).port,
-          '127.0.0.1'
-        );
-        const [[packet, remote], [raw, rawRemote]] = await Promise.all([
-          packetEvent,
-          rawEvent,
-        ]);
-        expect(remote).toEqual({
-          address: '127.0.0.1',
-          port: (sender.address() as AddressInfo).port,
-          family: 'IPv4',
-          size: message.length,
-        });
-        expect(rawRemote).toBe(remote);
-        expect(normalize(packet)).toEqual(capture.parsed);
-        expect(raw.packetData.data).toBe(packet);
-        expect(raw.message).toEqual(message);
-        expect(packet.m_header).not.toHaveProperty('ip');
-      } finally {
-        const closed = Promise.all([
-          once(sender, 'close'),
-          once(client.socket!, 'close'),
-        ]);
-        sender.close();
-        client.stop();
-        await closed;
+    it.each([undefined, '127.0.0.1'])(
+      'receives UDP packets after a parse error with address %s',
+      async address => {
+        const client = new F1TelemetryClient({port: 0, address});
+        const sender = createSocket('udp4');
+        try {
+          const listening = once(client.socket!, 'listening');
+          client.start();
+          await listening;
+          const local = client.socket!.address() as AddressInfo;
+          expect(local.address).toBe(address ?? '0.0.0.0');
+          let packetCount = 0;
+          let rawCount = 0;
+          client.on(constants.PACKETS.motion, () => packetCount++);
+          client.on('raw', () => rawCount++);
+          const malformed = message.subarray(0, 1);
+          const parseError = once(client, 'error');
+          const datagram = once(client.socket!, 'message');
+          sender.send(malformed, local.port, '127.0.0.1');
+          const [
+            [error, failedBuffer, failedRemote],
+            [received, receivedRemote],
+          ] = await Promise.all([parseError, datagram]);
+          expect(error).toBeInstanceOf(RangeError);
+          expect(failedBuffer).toBe(received);
+          expect(failedBuffer).toEqual(malformed);
+          expect(failedRemote).toBe(receivedRemote);
+          expect(failedRemote).toEqual({
+            address: '127.0.0.1',
+            port: (sender.address() as AddressInfo).port,
+            family: 'IPv4',
+            size: malformed.length,
+          });
+          expect(packetCount).toBe(0);
+          expect(rawCount).toBe(0);
+          const packetEvent = once(client, constants.PACKETS.motion);
+          const rawEvent = once(client, 'raw');
+          sender.send(message, local.port, '127.0.0.1');
+          const [[packet, remote], [raw, rawRemote]] = await Promise.all([
+            packetEvent,
+            rawEvent,
+          ]);
+          expect(remote).toEqual({
+            address: '127.0.0.1',
+            port: (sender.address() as AddressInfo).port,
+            family: 'IPv4',
+            size: message.length,
+          });
+          expect(rawRemote).toBe(remote);
+          expect(normalize(packet)).toEqual(capture.parsed);
+          expect(raw.packetData.data).toBe(packet);
+          expect(raw.message).toEqual(message);
+          expect(packet.m_header).not.toHaveProperty('ip');
+          expect(packetCount).toBe(1);
+          expect(rawCount).toBe(1);
+        } finally {
+          const closed = Promise.all([
+            once(sender, 'close'),
+            once(client.socket!, 'close'),
+          ]);
+          sender.close();
+          client.stop();
+          await closed;
+        }
       }
+    );
+
+    it('throws parse errors without an error listener and from direct parsing', () => {
+      const malformed = message.subarray(0, 1);
+      const client = new F1TelemetryClient();
+      expect(() => client.handleMessage(malformed)).toThrow();
+      expect(() => F1TelemetryClient.parseBufferMessage(malformed)).toThrow(
+        RangeError
+      );
+      let errorCount = 0;
+      client.on('error', (error, buffer, remote) => {
+        errorCount++;
+        expect(error).toBeInstanceOf(RangeError);
+        expect(buffer).toBe(malformed);
+        expect(remote).toBeUndefined();
+      });
+      client.handleMessage(malformed);
+      expect(errorCount).toBe(1);
     });
+
+    it.each([constants.PACKETS.motion, 'raw'])(
+      'keeps exceptions from %s listeners unchanged',
+      event => {
+        const client = new F1TelemetryClient();
+        const failure = new Error('Listener failed');
+        let errorCount = 0;
+        client.on('error', () => errorCount++);
+        client.on(event, () => {
+          throw failure;
+        });
+        expect(() => client.handleMessage(message)).toThrow(failure);
+        expect(errorCount).toBe(0);
+      }
+    );
 
     it('skips parsing when skipParsing is true', () => {
       const client = new F1TelemetryClient({skipParsing: true});

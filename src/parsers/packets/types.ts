@@ -8,7 +8,7 @@ export interface PacketHeader extends PacketHeaderBase {
   m_gameMinorVersion?: number;
   m_packetVersion: number;
   m_packetId: number;
-  m_sessionUID: bigint;
+  m_sessionUID?: bigint;
   m_sessionTime: number;
   m_frameIdentifier: number;
   m_overallFrameIdentifier?: number;
@@ -263,7 +263,7 @@ export interface CarDamageData {
   m_diffuserDamage: number;
   m_sidepodDamage: number;
   m_drsFault: number;
-  m_ersFault: number;
+  m_ersFault?: number;
   m_gearBoxDamage: number;
   m_engineDamage: number;
   m_engineMGUHWear: number;
@@ -272,8 +272,8 @@ export interface CarDamageData {
   m_engineICEWear: number;
   m_engineMGUKWear: number;
   m_engineTCWear: number;
-  m_engineBlown: number;
-  m_engineSeized: number;
+  m_engineBlown?: number;
+  m_engineSeized?: number;
   m_tyreBlisters?: number[];
 }
 
@@ -531,10 +531,10 @@ export interface LobbyInfoData {
   m_aiControlled: number;
   m_teamId: number;
   m_nationality: number;
-  m_platform: number;
+  m_platform?: number;
   m_name: string;
-  m_carNumber: number;
-  m_readyStatus: string;
+  m_carNumber?: number;
+  m_readyStatus: number;
   m_yourTelemetry?: number;
   m_showOnlineNames?: number;
   m_techLevel?: number;
