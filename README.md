@@ -4,7 +4,21 @@
 
 Read F1 game telemetry over UDP in Node.js. The package includes a client, packet parsers, TypeScript types, and game constants. It is free to use and needs no RaceHub account or subscription.
 
-**Release status:** This README describes the `0.3.0` update in [PR #107](https://github.com/racehub-io/f1-telemetry-client/pull/107). The npm `latest` version is still `0.2.12`. Use the [source setup](#run-from-source) to try the new features before publication.
+**Release status:** Version `0.3.0` is published as npm `latest`. [PR #107](https://github.com/racehub-io/f1-telemetry-client/pull/107) is merged.
+
+## RaceHub project
+
+RaceHub is a free, open source telemetry project. This repository provides its Node.js F1 packet library.
+
+- [RaceHub Web](https://github.com/racehub-io/racehub-web) provides local recording controls, lap comparison, charts, and file exports.
+- [RaceHub Rust](https://github.com/racehub-io/racehub-rust) receives UDP directly and saves original packets and source-rate Parquet. This native path does not use the JavaScript parser.
+- [iRacing bridge](https://github.com/racehub-io/racehub-iracing-udp) reads the iRacing SDK on Windows and sends UDP packets.
+- [rFactor 2 broadcaster](https://github.com/racehub-io/rfactor2-udp-broadcaster) sends telemetry and scoring from a Windows game plug-in.
+- [Legacy Python collector](https://github.com/racehub-io/racehub-client-python) contains earlier capture tools. The web app can import its supported F1 Parquet exports.
+
+Native F1 capture currently supports F1 24. The web app's sampled JSON mode uses the formats supported by this library.
+The local tools need no RaceHub account or cloud service. Games and SDKs keep their own terms.
+See the [RaceHub project wiki](https://github.com/racehub-io/racehub-web/blob/telemetry/local-platform/docs/wiki/Home.md) for setup and project guides.
 
 ## Supported formats
 
